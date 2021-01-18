@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12565f7b24db4e23b65908e7d02384f, type: 3}
+  m_Name: Unarmed
+  m_EditorClassIdentifier: 
+  itemID: 3c8ca2b9-60cb-4b72-a404-c3d0b3104e1b
+  displayName: Unarmed
+  description: Fists
+  icon: {fileID: 0}
+  pickup: {fileID: 6494234044896430859, guid: ab73185f2dadf4445ae07e78eb669c1f, type: 3}
+  stackable: 0
+  allowedEquipLocation: 5
+  animatorOverride: {fileID: 0}
+  equippedPrefab: {fileID: 898825627834525582, guid: 561b3f5e3d99449cd9950f556bf599d2, type: 3}
+  weaponRange: 2
+  weaponDamage: 3
+  percentageBonus: 0
+  isRightHand: 1
+  projectile: {fileID: 0}

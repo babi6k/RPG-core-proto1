@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12565f7b24db4e23b65908e7d02384f, type: 3}
+  m_Name: BowBlueArrow
+  m_EditorClassIdentifier: 
+  itemID: 00168662-3746-417a-905f-d0da5370b4fa
+  displayName: Bow Blue arrow
+  description: 'Normal Bow with Homing '
+  icon: {fileID: 21300000, guid: 3f22ab22d4de7462ebea8d670ed30a6d, type: 3}
+  pickup: {fileID: 5256425974735407435, guid: 86e7cc5b3d8574202bd6038864346ab0, type: 3}
+  stackable: 0
+  allowedEquipLocation: 5
+  animatorOverride: {fileID: 22100000, guid: 0efc906bb7bb84b82b7398d65f6210f6, type: 2}
+  equippedPrefab: {fileID: 2273851121152346501, guid: a85bd61314435487fa7d29b7ac4ae892, type: 3}
+  weaponRange: 10
+  weaponDamage: 10
+  percentageBonus: 0
+  isRightHand: 0
+  projectile: {fileID: 7709906182335329732, guid: cb1f59f87a7024c29b3043daa2871769, type: 3}
