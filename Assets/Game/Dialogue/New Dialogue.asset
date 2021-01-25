@@ -13,46 +13,5 @@ MonoBehaviour:
   m_Name: New Dialogue
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 6933305470407914542}
-  - {fileID: 7412199069331929842}
---- !u!114 &6933305470407914542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 229f5ab5c82db7443958c07d0c0ac73d, type: 3}
-  m_Name: b26cfd54-f793-487c-8b5f-3563a748209a
-  m_EditorClassIdentifier: 
-  text: 
-  children:
-  - ba8ebf52-ea15-4b13-8026-4a79cce6ae06
-  rect:
-    serializedVersion: 2
-    x: 126
-    y: 134
-    width: 300
-    height: 100
---- !u!114 &7412199069331929842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 229f5ab5c82db7443958c07d0c0ac73d, type: 3}
-  m_Name: ba8ebf52-ea15-4b13-8026-4a79cce6ae06
-  m_EditorClassIdentifier: 
-  text: asa
-  children: []
-  rect:
-    serializedVersion: 2
-    x: 512
-    y: 49
-    width: 300
-    height: 100
+  - {fileID: 0}
+  newNodeOffset: {x: 250, y: 0}
