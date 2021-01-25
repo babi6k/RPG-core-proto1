@@ -106,7 +106,6 @@ namespace RPG.Attributes
         {
             float regenHP = GetComponent<BaseStats>().GetStat(Stat.Health) * (regenartionPercentage / 100) ;
             healthPoints.value = Mathf.Max(healthPoints.value, regenHP);
-
         }
 
         public object CaptureState()
