@@ -13,5 +13,26 @@ MonoBehaviour:
   m_Name: New Dialogue
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 0}
+  - {fileID: 2045133272087149854}
   newNodeOffset: {x: 250, y: 0}
+--- !u!114 &2045133272087149854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 229f5ab5c82db7443958c07d0c0ac73d, type: 3}
+  m_Name: 6e8536e1-ca6a-45ff-ac57-620bb1872fe8
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 100
+    y: 98
+    width: 200
+    height: 100

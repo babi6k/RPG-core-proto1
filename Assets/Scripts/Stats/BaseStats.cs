@@ -23,7 +23,6 @@ namespace RPG.Stats
         {
             experience = GetComponent<Experience>();
             currentLevel = new LazyValue<int>(CalculateLevel);
-            
         }
 
 
