@@ -27,6 +27,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experiencePoints: 0
+--- !u!114 &349516348251574192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6747448569462442312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5740d5c8a9d3743b4b2b1fe12aab34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scatterDistance: 2
+  dropLibrary: {fileID: 0}
 --- !u!114 &587853739531216509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTarget: {fileID: 0}
   targetCount: 9
---- !u!114 &349516348251574192
+--- !u!114 &471789455487075388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,10 +170,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6747448569462442312}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f5740d5c8a9d3743b4b2b1fe12aab34, type: 3}
+  m_Script: {fileID: 11500000, guid: 29d920962b020884c97e39f1458ad5d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scatterDistance: 2
+  currentDialogue: {fileID: 11400000, guid: 842b954f58e4b9746bc5ea68052ea513, type: 2}
 --- !u!1 &1548066401600457006
 GameObject:
   m_ObjectHideFlags: 0
