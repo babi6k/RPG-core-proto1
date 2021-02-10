@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Dialogue;
 using TMPro;
+using UnityEngine.UI;
 
 namespace RPG.UI
 {
@@ -10,17 +11,47 @@ namespace RPG.UI
     {
         PlayerConversant playerConversant;
         [SerializeField] TextMeshProUGUI AIText;
+        [SerializeField] Button nextButton;
+        [SerializeField] GameObject AIResponse;
+        [SerializeField] Transform choiceRoot;
+        [SerializeField] GameObject choicePrefab;
+
         // Start is called before the first frame update
         void Start()
         {
             playerConversant = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerConversant>();
-            AIText.text = playerConversant.GetText();
+            nextButton.onClick.AddListener(Next);
+
+            UpdateUI();
         }
 
-        // Update is called once per frame
-        void Update()
+        void Next()
         {
+            playerConversant.Next();
+            UpdateUI();
+        }
 
+        void UpdateUI()
+        {
+            AIResponse.SetActive(!playerConversant.IsChoosing());
+            choiceRoot.gameObject.SetActive(playerConversant.IsChoosing());
+            if (playerConversant.IsChoosing())
+            {
+                foreach (Transform item in choiceRoot)
+                {
+                    Destroy(item.gameObject);
+                }
+                foreach (DialogueNode choice in playerConversant.GetChoices())
+                {
+                    var choiceInstance = Instantiate(choicePrefab, choiceRoot);
+                    choiceInstance.GetComponentInChildren<TextMeshProUGUI>().text = choice.GetText();
+                }
+            }
+            else
+            {
+                AIText.text = playerConversant.GetText();
+                nextButton.gameObject.SetActive(playerConversant.HasNext());
+            }
         }
     }
 }
