@@ -29,11 +29,6 @@ namespace GameDevTV.Inventories
             coolDownManager = GetComponent<CoolDownManager>();
         }
 
-        private void Start()
-        {
-            //AddAction(InventoryItem.GetFromID("8aa75352-6636-4043-9581-4c6bbc6edf3c"), 7 , 1);
-        }
-
         public event Action<int, float> OnCoolDownApplied;
 
         // PUBLIC
@@ -212,6 +207,7 @@ namespace GameDevTV.Inventories
 
         void ISaveable.RestoreState(object state)
         {
+            dockedItems.Clear();
             var stateDict = (Dictionary<int, DockedItemRecord>)state;
             foreach (var pair in stateDict)
             {

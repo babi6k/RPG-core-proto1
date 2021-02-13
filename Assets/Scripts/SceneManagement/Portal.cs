@@ -62,13 +62,13 @@ namespace RPG.SceneManagement
             Portal otherPortal = GetOtherPortal();
             UpdatePlayer(otherPortal);
 
-            savingWrapper.Save();
+            
 
             yield return new WaitForSeconds(fadeWaitTime);
             fader.FadeIn(fadeInTime);
-
-            newPlayerController.enabled = true;
             //Restore control player
+            newPlayerController.enabled = true;
+            savingWrapper.Save();
             Destroy(gameObject);
         }
 
