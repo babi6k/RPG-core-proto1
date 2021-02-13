@@ -435,6 +435,7 @@ MonoBehaviour:
   AIResponse: {fileID: 7083825742816744368}
   choiceRoot: {fileID: 3896910454912035071}
   choicePrefab: {fileID: 6611544988069882814, guid: 7538df27b17797544b05682a4ac7e1ef, type: 3}
+  quitButton: {fileID: 903348193473245337}
 --- !u!1 &8105454995360275721
 GameObject:
   m_ObjectHideFlags: 0

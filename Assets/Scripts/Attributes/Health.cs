@@ -118,7 +118,7 @@ namespace RPG.Attributes
             healthPoints.value = (float)state;
             if (healthPoints.value <= 0)
             {
-                Invoke(nameof(DeadAlready), .01f);
+                Die();
             }
         }
 
