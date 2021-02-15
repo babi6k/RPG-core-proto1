@@ -41,6 +41,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scatterDistance: 2
   dropLibrary: {fileID: 0}
+--- !u!114 &471789455487075388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6747448569462442312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d920962b020884c97e39f1458ad5d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testDialogue: {fileID: 0}
 --- !u!114 &587853739531216509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +95,9 @@ MonoBehaviour:
   - texture: {fileID: 2800000, guid: f8c873f1e53e83f4aabf342d6be1dfc3, type: 3}
     hotspot: {x: 0, y: 0}
     type: 4
+  - texture: {fileID: 2800000, guid: 96d4bfdb0d6d8c042bf8fccf6524d239, type: 3}
+    hotspot: {x: 0, y: 0}
+    type: 6
   maxNevMeshProjectionDistance: 1
   raycastRadius: 1
 --- !u!114 &2167478953415427382
@@ -161,19 +177,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTarget: {fileID: 0}
   targetCount: 9
---- !u!114 &471789455487075388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6747448569462442312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29d920962b020884c97e39f1458ad5d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentDialogue: {fileID: 11400000, guid: 842b954f58e4b9746bc5ea68052ea513, type: 2}
 --- !u!1 &1548066401600457006
 GameObject:
   m_ObjectHideFlags: 0

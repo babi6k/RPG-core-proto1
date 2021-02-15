@@ -9,32 +9,30 @@ namespace RPG.Dialogue
 
     public class PlayerConversant : MonoBehaviour
     {
-        [SerializeField] Dialogue testDialogue;
         Dialogue currentDialogue;
         DialogueNode currentNode = null;
+        AIConversant currentConversant = null;
         bool isChoosing = false;
 
         public event Action onConversationUpdated;
 
-        IEnumerator Start()
+        public void StartDialogue(AIConversant newConversant, Dialogue newDialogue)
         {
-            yield return new WaitForSeconds(2);
-            StartDialogue(testDialogue);
-        }
-
-        public void StartDialogue(Dialogue newDialogue)
-        {
+            currentConversant = newConversant;
             currentDialogue = newDialogue;
             currentNode = currentDialogue.GetRootNode();
+            TriggerEnterAction();
             onConversationUpdated();
         }
 
-        
+
         public void Quit()
         {
             currentDialogue = null;
+            TriggerExitAction();
             currentNode = null;
             isChoosing = false;
+            currentConversant = null;
             onConversationUpdated();
         }
 
@@ -63,9 +61,10 @@ namespace RPG.Dialogue
             return currentDialogue.GetPlayerChildren(currentNode);
         }
 
-        public void SelectChoice (DialogueNode chosenNode)
+        public void SelectChoice(DialogueNode chosenNode)
         {
             currentNode = chosenNode;
+            TriggerEnterAction();
             isChoosing = false;
             Next();
         }
@@ -76,18 +75,47 @@ namespace RPG.Dialogue
             if (numPlayerResponses > 0)
             {
                 isChoosing = true;
+                TriggerExitAction();
                 onConversationUpdated();
                 return;
             }
             DialogueNode[] children = currentDialogue.GetAIChildren(currentNode).ToArray();
             int randomIndex = UnityEngine.Random.Range(0, children.Count());
+            TriggerExitAction();
             currentNode = children[randomIndex];
+            TriggerEnterAction();
             onConversationUpdated();
         }
 
         public bool HasNext()
         {
             return currentDialogue.GetAllChildren(currentNode).Count() > 0;
+        }
+
+        private void TriggerEnterAction()
+        {
+            if (currentNode != null)
+            {
+                TriggerAction(currentNode.GetOnEnterAction());
+            }
+        }
+
+        private void TriggerExitAction()
+        {
+            if (currentNode != null)
+            {
+                TriggerAction(currentNode.GetOnExitAction());
+            }
+        }
+
+        private void TriggerAction(string action)
+        {
+            if (action == "") { return; }
+
+            foreach (DialogueTrigger trigger in currentConversant.GetComponents<DialogueTrigger>())
+            {
+                trigger.Trigger(action);
+            }
         }
     }
 }

@@ -18,7 +18,6 @@ namespace RPG.Combat
             {
                 combatTargets[index] = other.GetComponent<CombatTarget>();
                 index++;
-                print(index);
             }
         }
 
@@ -41,7 +40,6 @@ namespace RPG.Combat
                     }
                    
                 }
-                print(index);
                 GetComponent<Fighter>().Cancel();
                 index = 0;
                 currentTarget = null;
