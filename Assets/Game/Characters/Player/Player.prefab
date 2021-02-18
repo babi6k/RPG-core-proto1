@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d920962b020884c97e39f1458ad5d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testDialogue: {fileID: 0}
+  playerName: Ragnar Lothbrok
 --- !u!114 &587853739531216509
 MonoBehaviour:
   m_ObjectHideFlags: 0
