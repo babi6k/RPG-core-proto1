@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG.Stats
 {
-    [CreateAssetMenu(fileName = "ScriptabClass", menuName = "Class/New Class", order = 0)]
+    [CreateAssetMenu(fileName = "ScriptabClass", menuName = "RPG/Class/New Class", order = 0)]
     public class ScriptableClass : ScriptableObject
     {
         [SerializeField] string className = null;
