@@ -177,6 +177,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTarget: {fileID: 0}
   targetCount: 9
+--- !u!114 &875283166450685400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6747448569462442312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc5ca9ebf02a5ce4681f238d6f04f17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statuses:
+  - quest: {fileID: 11400000, guid: 8cd831051309a06469f3c8f634c6ea7c, type: 2}
+    completedObjectives:
+    - a
+    - b
+  - quest: {fileID: 11400000, guid: 6184147aeada7ae49b8fe6b831188e29, type: 2}
+    completedObjectives:
+    - 2
 --- !u!1 &1548066401600457006
 GameObject:
   m_ObjectHideFlags: 0

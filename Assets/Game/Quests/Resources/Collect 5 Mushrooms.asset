@@ -13,8 +13,16 @@ MonoBehaviour:
   m_Name: Collect 5 Mushrooms
   m_EditorClassIdentifier: 
   objectives:
-  - 
-  - 
-  - 
-  - 
-  - 
+  - reference: a
+    description: Get a mushroom from the guard
+  - reference: b
+    description: Collect more mushrooms
+  - reference: c
+    description: Buy a mushroom
+  - reference: d
+    description: Trade a potion for a mushroom
+  - reference: e
+    description: Kill a guard for a mushroom
+  rewards:
+  - number: 1
+    item: {fileID: 11400000, guid: a6730de16380a4fda824a57fcdd74248, type: 2}

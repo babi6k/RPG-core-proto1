@@ -22,6 +22,8 @@ MonoBehaviour:
     y: 45
     width: 200
     height: 100
+  onEnterAction: 
+  onExitAction: 
 --- !u!114 &-2038624991325452001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,6 +47,8 @@ MonoBehaviour:
     y: 171
     width: 200
     height: 100
+  onEnterAction: 
+  onExitAction: 
 --- !u!114 &-2018965722912111448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +70,8 @@ MonoBehaviour:
     y: 89
     width: 200
     height: 100
+  onEnterAction: 
+  onExitAction: GiveQuest
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,6 +113,8 @@ MonoBehaviour:
     y: 274
     width: 200
     height: 100
+  onEnterAction: 
+  onExitAction: 
 --- !u!114 &6678820483275809780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,3 +136,5 @@ MonoBehaviour:
     y: 230
     width: 200
     height: 100
+  onEnterAction: 
+  onExitAction: CompleteObjective

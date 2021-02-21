@@ -13,5 +13,10 @@ MonoBehaviour:
   m_Name: Find the angry guard
   m_EditorClassIdentifier: 
   objectives:
-  - 
-  - 
+  - reference: 1
+    description: Find the guard
+  - reference: 2
+    description: Kill him
+  rewards:
+  - number: 0
+    item: {fileID: 11400000, guid: a6730de16380a4fda824a57fcdd74248, type: 2}
