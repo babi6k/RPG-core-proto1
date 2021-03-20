@@ -26,7 +26,8 @@ namespace RPG.Control
         [SerializeField] float raycastRadius = 1f;
 
         bool isDragginUI = false;
-   
+
+        public bool IsDragging() { return isDragginUI;}
 
         private void Awake()
         {

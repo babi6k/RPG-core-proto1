@@ -58,9 +58,9 @@ namespace RPG.Control
         private void Update()
         {
             if (health.IsDead()) { return; }
-            GameObject player = GameObject.FindWithTag("Player");
+            //GameObject player = GameObject.FindWithTag("Player");
 
-            if (InChaseRangeOfPlayer())
+            if (InChaseRangeOfPlayer() && !player.GetComponent<Health>().IsDead())
             {
                 //Chase state
                 ChaseBehaviour();
