@@ -49,20 +49,16 @@ namespace RPG.SceneManagement
 
             yield return fader.FadeOut(fadeOutTime);
 
-            
             savingWrapper.Save();
 
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
             PlayerController newPlayerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
             newPlayerController.enabled = false;
             //Remove control player
-
             savingWrapper.Load();
 
             Portal otherPortal = GetOtherPortal();
             UpdatePlayer(otherPortal);
-
-            
 
             yield return new WaitForSeconds(fadeWaitTime);
             fader.FadeIn(fadeInTime);
@@ -79,8 +75,6 @@ namespace RPG.SceneManagement
             player.transform.rotation = otherPortal.spawnPoint.rotation;
             player.GetComponent<NavMeshAgent>().Warp(otherPortal.spawnPoint.position);
             player.GetComponent<NavMeshAgent>().enabled = true;
-            
-
         }
 
         private Portal GetOtherPortal()

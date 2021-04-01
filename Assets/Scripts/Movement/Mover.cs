@@ -3,6 +3,7 @@ using UnityEngine.AI;
 using RPG.Core;
 using GameDevTV.Saving;
 using RPG.Attributes;
+using UnityEngine.SceneManagement;
 
 namespace RPG.Movement
 {
@@ -81,6 +82,7 @@ namespace RPG.Movement
         {
             public SerializableVector3 position;
             public SerializableVector3 rotation;
+            public int sceneIndex;
         }
 
         public object CaptureState()
@@ -88,12 +90,15 @@ namespace RPG.Movement
             MoverSaveData data = new MoverSaveData();
             data.position = new SerializableVector3(transform.position);
             data.rotation = new SerializableVector3(transform.eulerAngles);
+            data.sceneIndex = SceneManager.GetActiveScene().buildIndex;
             return data;
         }
 
         public void RestoreState(object state)
         {
             MoverSaveData data = (MoverSaveData)state;
+            int buildIndex = SceneManager.GetActiveScene().buildIndex;
+            if (data.sceneIndex != buildIndex ) return;
             navMeshAgent.enabled = false;
             transform.position = data.position.ToVector();
             transform.eulerAngles = data.rotation.ToVector();

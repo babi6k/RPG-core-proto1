@@ -26,12 +26,15 @@ namespace RPG.Control
         [SerializeField] float raycastRadius = 1f;
 
         bool isDragginUI = false;
+        Vector3 startingPosition;
 
         public bool IsDragging() { return isDragginUI;}
+        public Vector3 GetStartPos() {return startingPosition;}
 
         private void Awake()
         {
             health = GetComponent<Health>();
+            startingPosition = transform.position;
         }
 
         void Update()

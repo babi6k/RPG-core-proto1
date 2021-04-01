@@ -117,9 +117,15 @@ namespace RPG.Combat
             
         }
 
-        void Shoot()
+        public void Shoot()
         {
             Hit();
+        }
+
+        public void SetHandTransfroms(Transform right, Transform left)
+        {
+            rightHandTransform = right;
+            leftHandTransform = left;
         }
 
         private bool GetIsInRange(Transform targetTransform)

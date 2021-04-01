@@ -10,6 +10,7 @@ namespace RPG.SceneManagement
     public class SavingWrapper : MonoBehaviour
     {
         const string defaultSaveFile = "Autosave";
+        const string newSaveFile = "SaveSlot";
         [SerializeField] float fadeInTime = 0.2f;
 
         private void Awake()
@@ -60,6 +61,21 @@ namespace RPG.SceneManagement
         {
             //Call to saving system to save
             GetComponent<SavingSystem>().Save(defaultSaveFile);
+        }
+
+        public void NewSaveFile(int index)
+        {
+            GetComponent<SavingSystem>().Save(newSaveFile + index);
+        }
+
+        public void LoadFromMenu(int index)
+        {
+           GetComponent<SavingSystem>().Load(newSaveFile + index); 
+        }
+
+        public bool FileExists(int index)
+        {
+            return GetComponent<SavingSystem>().FileExists(newSaveFile + index);
         }
     }
 }
