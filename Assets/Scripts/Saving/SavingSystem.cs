@@ -26,12 +26,15 @@ namespace GameDevTV.Saving
         {
             Dictionary<string, object> state = LoadFile(saveFile);
             int buildIndex = SceneManager.GetActiveScene().buildIndex;
+            if (buildIndex > 1)
+            {
             if (state.ContainsKey("lastSceneBuildIndex"))
             {
                 buildIndex = (int)state["lastSceneBuildIndex"];
             }
             yield return SceneManager.LoadSceneAsync(buildIndex);
             RestoreState(state);
+            }
         }
 
         /// <summary>

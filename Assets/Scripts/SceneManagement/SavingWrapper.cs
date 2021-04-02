@@ -14,13 +14,14 @@ namespace RPG.SceneManagement
         [SerializeField] float fadeInTime = 0.2f;
 
 
-        // private void Awake()
-        // {
-        //     StartCoroutine(LoadLastScene());
-        // }
+        private void Awake()
+        {
+            StartCoroutine(LoadLastScene());
+        }
 
         IEnumerator LoadLastScene()
         {
+            Debug.Log("LoadingLastScene");
             yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
             Fader fader = FindObjectOfType<Fader>();
             fader.FadeOutImmediate();
