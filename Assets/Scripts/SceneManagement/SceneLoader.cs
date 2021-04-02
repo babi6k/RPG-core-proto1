@@ -4,6 +4,7 @@ using GameDevTV.Saving;
 using RPG.Control;
 using RPG.SceneManagement;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
@@ -15,22 +16,20 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] float fadeWaitTime = 0.5f;
     [SerializeField] int sceneToLoad = 2;
 
-    SavingSystem savingSystem;
     SavingWrapper savingWrapper;
     Fader fader;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        savingSystem = GetComponent<SavingSystem>();
-        savingWrapper = GetComponent<SavingWrapper>();
-        fader = GetComponent<Fader>();
+        savingWrapper = FindObjectOfType<SavingWrapper>();
+        fader = FindObjectOfType<Fader>();
         character = character.GetComponent<CharacterSelector>();
         saveMenu = saveMenu.GetComponent<SaveMenu>();
     }
 
-    void StartNewGame()
+    public void StartNewGame()
     {
-
+        StartCoroutine(LoadNewGame());
     }
 
     IEnumerator LoadNewGame()
@@ -48,15 +47,20 @@ public class SceneLoader : MonoBehaviour
 
         yield return fader.FadeOut(fadeOutTime);
 
-        savingWrapper.Save();
+        savingWrapper.NewSaveFile(saveMenu.GetSlotIndex());
 
         yield return SceneManager.LoadSceneAsync(sceneToLoad);
         PlayerController newPlayerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         newPlayerController.enabled = false;
-        //Remove control player
+        //Change Player Character
         Vector3 startPos = newPlayerController.GetStartPos();
-        savingWrapper.Load();
-        newPlayerController.transform.position = startPos;
-        
+        savingWrapper.LoadFromMenu(saveMenu.GetSlotIndex());
+        newPlayerController.GetComponent<NavMeshAgent>().Warp(startPos);
+        newPlayerController.GetComponent<CharacterSelector>().ChangeCharacterModel(character.GetCurrentIndex());
+        yield return new WaitForSeconds(fadeWaitTime);
+        fader.FadeIn(fadeInTime);
+        newPlayerController.enabled = true;
+        savingWrapper.NewSaveFile(saveMenu.GetSlotIndex());
+        Destroy(gameObject); 
     }
 }

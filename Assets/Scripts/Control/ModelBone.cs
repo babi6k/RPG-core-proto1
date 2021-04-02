@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using RPG.Combat;
 using UnityEngine;
 
 public class ModelBone : MonoBehaviour
 {
-    [SerializeField] Transform player;
+    [SerializeField] Transform leftHand;
+    [SerializeField] Transform rightHand;
 
-    private void Start() 
+    Fighter player;
+
+    private void Awake() 
     {
-        
+        player = GameObject.FindWithTag("Player").GetComponent<Fighter>();
+
     }
     private void OnEnable() 
     {
-        
+        player.SetHandTransfroms(leftHand,rightHand);
+        player.GetComponent<Animator>().Rebind();
     }
 }

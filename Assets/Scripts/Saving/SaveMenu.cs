@@ -38,12 +38,5 @@ public class SaveMenu : MonoBehaviour
         character.ActiveCharacter(false);
     }
 
-    public void StartNewGame()
-    {
-        // savingSystem.Delete(savefileName + slotIndex);
-        // savingSystem.Save(savefileName + slotIndex);
-        // SceneManager.LoadScene(2);
-    }
-
     public int GetSlotIndex() {return slotIndex;}
 }
