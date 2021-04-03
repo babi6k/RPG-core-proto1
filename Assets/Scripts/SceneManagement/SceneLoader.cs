@@ -9,7 +9,6 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    [SerializeField] CharacterSelector character;
     [SerializeField] SaveMenu saveMenu;
     [SerializeField] float fadeOutTime = 1f;
     [SerializeField] float fadeInTime = 2f;
@@ -23,7 +22,6 @@ public class SceneLoader : MonoBehaviour
     {
         savingWrapper = FindObjectOfType<SavingWrapper>();
         fader = FindObjectOfType<Fader>();
-        character = character.GetComponent<CharacterSelector>();
         saveMenu = saveMenu.GetComponent<SaveMenu>();
     }
 
@@ -34,12 +32,6 @@ public class SceneLoader : MonoBehaviour
 
     IEnumerator LoadNewGame()
     {
-        if (sceneToLoad < 0)
-        {
-            Debug.LogError("Scene to load not set.");
-            yield break;
-        }
-
         DontDestroyOnLoad(transform.root.gameObject);
         PlayerController playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         playerController.enabled = false;
@@ -47,19 +39,20 @@ public class SceneLoader : MonoBehaviour
 
         yield return fader.FadeOut(fadeOutTime);
 
+        savingWrapper.SetSlotIndex(saveMenu.GetSlotIndex());
         savingWrapper.NewSaveFile(saveMenu.GetSlotIndex());
-
+        
         yield return SceneManager.LoadSceneAsync(sceneToLoad);
+        savingWrapper.LoadFromMenu(saveMenu.GetSlotIndex());
         PlayerController newPlayerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         newPlayerController.enabled = false;
         //Change Player Character
         Vector3 startPos = newPlayerController.GetStartPos();
-        savingWrapper.LoadFromMenu(saveMenu.GetSlotIndex());
         newPlayerController.GetComponent<NavMeshAgent>().Warp(startPos);
-        newPlayerController.GetComponent<CharacterSelector>().ChangeCharacterModel(character.GetCurrentIndex());
         yield return new WaitForSeconds(fadeWaitTime);
         fader.FadeIn(fadeInTime);
         newPlayerController.enabled = true;
+        savingWrapper.SetSlotIndex(saveMenu.GetSlotIndex());
         savingWrapper.NewSaveFile(saveMenu.GetSlotIndex());
         Destroy(gameObject); 
     }

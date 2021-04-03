@@ -13,16 +13,12 @@ namespace RPG.SceneManagement
         const string newSaveFile = "SaveSlot";
         [SerializeField] float fadeInTime = 0.2f;
 
-
-        private void Awake()
-        {
-            StartCoroutine(LoadLastScene());
-        }
+        int saveSlotIndex = 0;
 
         IEnumerator LoadLastScene()
         {
             Debug.Log("LoadingLastScene");
-            yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
+            yield return GetComponent<SavingSystem>().LoadLastScene(newSaveFile + saveSlotIndex);
             Fader fader = FindObjectOfType<Fader>();
             fader.FadeOutImmediate();
             yield return fader.FadeIn(fadeInTime);
@@ -48,21 +44,26 @@ namespace RPG.SceneManagement
 
         }
 
+        public void SetSlotIndex(int index)
+        {
+            saveSlotIndex = index;
+        }
+
         public void Delete()
         {
-            GetComponent<SavingSystem>().Delete(defaultSaveFile);
+            GetComponent<SavingSystem>().Delete(newSaveFile + saveSlotIndex);
         }
 
         public void Load()
         {
             //Call to saving system to load
-            GetComponent<SavingSystem>().Load(defaultSaveFile);            
+            GetComponent<SavingSystem>().Load(newSaveFile + saveSlotIndex);            
         }
 
         public void Save()
         {
             //Call to saving system to save
-            GetComponent<SavingSystem>().Save(defaultSaveFile);
+            GetComponent<SavingSystem>().Save(newSaveFile + saveSlotIndex);
         }
 
         public void NewSaveFile(int index)
@@ -73,6 +74,11 @@ namespace RPG.SceneManagement
         public void LoadFromMenu(int index)
         {
            GetComponent<SavingSystem>().Load(newSaveFile + index); 
+        }
+
+        public void LoadLastSave()
+        {
+            StartCoroutine(LoadLastScene());
         }
 
         public bool FileExists(int index)

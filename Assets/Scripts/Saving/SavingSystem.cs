@@ -26,15 +26,13 @@ namespace GameDevTV.Saving
         {
             Dictionary<string, object> state = LoadFile(saveFile);
             int buildIndex = SceneManager.GetActiveScene().buildIndex;
-            if (buildIndex > 1)
-            {
-            if (state.ContainsKey("lastSceneBuildIndex"))
-            {
-                buildIndex = (int)state["lastSceneBuildIndex"];
-            }
-            yield return SceneManager.LoadSceneAsync(buildIndex);
-            RestoreState(state);
-            }
+            
+                if (state.ContainsKey("lastSceneBuildIndex"))
+                {
+                    buildIndex = (int)state["lastSceneBuildIndex"];
+                }
+                yield return SceneManager.LoadSceneAsync(buildIndex);
+                RestoreState(state);
         }
 
         /// <summary>
@@ -70,6 +68,7 @@ namespace GameDevTV.Saving
         private Dictionary<string, object> LoadFile(string saveFile)
         {
             string path = GetPathFromSaveFile(saveFile);
+            print("Loading to " + path);
             if (!File.Exists(path))
             {
                 return new Dictionary<string, object>();
