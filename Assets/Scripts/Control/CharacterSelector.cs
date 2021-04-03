@@ -21,7 +21,6 @@ public class CharacterSelector : MonoBehaviour, ISaveable
 
     void ApplyCurrentCharacter()
     {
-        Debug.Log($"ApplyCurrentCharacter() = {currentCharacter}");
         foreach (Transform model in models)
         {
             model.gameObject.SetActive(false);
@@ -31,16 +30,12 @@ public class CharacterSelector : MonoBehaviour, ISaveable
 
     public object CaptureState()
     {
-        Debug.Log("i am now saving the CurrentCharacter");
-        Debug.Log($"CaptureState() = {currentCharacter}");
         return currentCharacter;
     }
 
     public void RestoreState(object state)
     {
-        Debug.Log("i am now loading the CurrentCharacter");
         currentCharacter = (int)state;
-        Debug.Log($"RestoreState() = {currentCharacter}");
         ApplyCurrentCharacter();
      }
 }
