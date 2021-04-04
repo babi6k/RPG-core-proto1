@@ -18,6 +18,7 @@ namespace RPG.SceneManagement
         IEnumerator LoadLastScene()
         {
             Debug.Log("LoadingLastScene");
+            Debug.Log("Save Slot index is : " + saveSlotIndex);
             yield return GetComponent<SavingSystem>().LoadLastScene(newSaveFile + saveSlotIndex);
             Fader fader = FindObjectOfType<Fader>();
             fader.FadeOutImmediate();

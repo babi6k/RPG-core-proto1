@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class CharacterSelector : MonoBehaviour, ISaveable
 {
-    [SerializeField] List<Transform> models = new List<Transform>();
+    [SerializeField] List<GameObject> models = new List<GameObject>();
     int currentCharacter = 0;
+    GameObject currentModel;
+    Animator animator;
 
     void Awake()
     {
+        animator = GetComponent<Animator>();
         ApplyCurrentCharacter(); //default to character 0 until set or restoreState
     }
 
@@ -21,11 +24,19 @@ public class CharacterSelector : MonoBehaviour, ISaveable
 
     void ApplyCurrentCharacter()
     {
-        foreach (Transform model in models)
-        {
-            model.gameObject.SetActive(false);
-        }
-        models[currentCharacter].gameObject.SetActive(true);
+       if (currentModel) Destroy(currentModel);
+       currentModel = Instantiate(models[currentCharacter],transform);
+       StartCoroutine(ResetAnimator());
+    }
+
+    IEnumerator ResetAnimator()
+    {
+       animator.enabled = false;
+       currentModel.SetActive(false);
+       yield return new WaitForSeconds(0.3f);
+       animator.enabled = true;  
+       currentModel.SetActive(true);
+       animator.Rebind();
     }
 
     public object CaptureState()

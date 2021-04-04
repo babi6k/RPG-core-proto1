@@ -18,22 +18,7 @@ public class ModelBone : MonoBehaviour
     private void OnEnable()
     {
         player.SetHandTransfroms(rightHand, leftHand);
-        player.GetComponent<Animator>().Rebind();
+        player.GetComponent<Caster>().SetHandTransfroms(leftHand);
     }
-
-    // public void Hit()
-    // {
-    //     player.Hit();
-    // }
-
-    // public void Shoot()
-    // {
-    //     player.Hit();
-    // }
-
-    // public void CastSpell()
-    // {
-    //     player.GetComponent<Caster>().CastSpell();
-    // }
 
 }

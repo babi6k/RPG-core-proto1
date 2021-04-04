@@ -12,7 +12,7 @@ public class SaveMenu : MonoBehaviour
     [SerializeField] Transform player;
 
     int slotIndex = 1;
-    const string savefileName = "saveSlot";
+    const string savefileName = "SaveSlot";
     SavingWrapper savingWrapper;
 
     private void Awake() 
@@ -22,11 +22,10 @@ public class SaveMenu : MonoBehaviour
 
     public void ChooseCharacter(int index)
     {
-        // if (savingWrapper.FileExists(index))
-        // {
-        //     savingWrapper.SetSlotIndex(index);
-        //     savingWrapper.LoadLastSave();
-        // }
+        if (savingWrapper.FileExists(index))
+        {
+            savingWrapper.SetSlotIndex(index);
+        }
 
         slotIndex = index;
         gameObject.SetActive(false);

@@ -40,11 +40,11 @@ namespace RPG.Combat
             }
         }
 
-        private void SpellBehavior()
+        public void SetHandTransfroms(Transform left)
         {
-            transform.LookAt(target.transform);
-            TriggerSpell();
+            hand = left;
         }
+        
 
         public void Cast(GameObject spellTarget, float spellRange, float spellDamage, Projectile newProjectile)
         {
@@ -67,13 +67,19 @@ namespace RPG.Combat
             return Vector3.Distance(transform.position, targetTransform.position) < currentSpellRange;
         }
 
-        public void CastSpell()
+        public void Shoot()
         {
             if (target == null) { return; }
             if (currentProjectile == null) return;
             Projectile newProjectile = Instantiate(currentProjectile,hand.position, Quaternion.identity);
             newProjectile.SetTarget(target, gameObject, currentDamage);
             isCast = true;
+        }
+
+        private void SpellBehavior()
+        {
+            transform.LookAt(target.transform);
+            TriggerSpell();
         }
 
         public void Cancel()
