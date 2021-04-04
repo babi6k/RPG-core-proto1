@@ -13,7 +13,6 @@ public class ModelBone : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").GetComponent<Fighter>();
-
     }
     private void OnEnable()
     {

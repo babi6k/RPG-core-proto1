@@ -61,7 +61,7 @@ namespace GameDevTV.Saving
         public bool FileExists(string saveFile)
         {
             string path = GetPathFromSaveFile(saveFile);
-            return FileExists(path);
+            return File.Exists(path);
         }
         // PRIVATE
 

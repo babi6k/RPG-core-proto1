@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using GameDevTV.Utils;
 using System;
 using GameDevTV.Inventories;
+using System.Collections;
 
 namespace RPG.Combat
 {
@@ -29,13 +30,14 @@ namespace RPG.Combat
 
         private void Awake()
         {
-            currentWeaponConfig = defaultWeapon;
-            currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
             equipment = GetComponent<Equipment>();
+            animator = GetComponent<Animator>();
             if (equipment)
             {
                 equipment.equipmentUpdated += UpdateWeapon;
             }
+            currentWeaponConfig = defaultWeapon;
+            currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
         }
 
         private Weapon SetupDefaultWeapon()
@@ -45,7 +47,6 @@ namespace RPG.Combat
 
         private void Start()
         {
-            animator = GetComponent<Animator>();
             currentWeapon.ForceInit();
         }
 
@@ -128,6 +129,7 @@ namespace RPG.Combat
         {
             rightHandTransform = right;
             leftHandTransform = left;
+            UpdateWeapon();
         }
 
         private bool GetIsInRange(Transform targetTransform)
@@ -175,8 +177,9 @@ namespace RPG.Combat
             currentWeapon.value = AttachWeapon(weapon);
         }
 
-        private void UpdateWeapon()
+        public void UpdateWeapon()
         {
+            if (!equipment) return;
             var weapon = equipment.GetItemInSlot(EquipLocation.Weapon) as WeaponConfig;
             if (weapon == null)
             {
@@ -207,11 +210,10 @@ namespace RPG.Combat
 
         public void RestoreState(object state)
         {
-            string weaponName = (string)state;
+            string weaponName = (string)state;   
             WeaponConfig weapon = UnityEngine.Resources.Load<WeaponConfig>(weaponName);
             EquipWeapon(weapon);
         }
-
         
     }
 }

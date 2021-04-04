@@ -19,7 +19,6 @@ namespace RPG.Combat
 
         const string weaponName = "Weapon";
 
-
         public float WeaponRange { get => weaponRange;}
         public float WeaponDamage { get => weaponDamage;}
         public float PercentageBonus { get => percentageBonus;}

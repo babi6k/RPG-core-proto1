@@ -12,6 +12,7 @@ namespace RPG.SceneManagement
         const string defaultSaveFile = "Autosave";
         const string newSaveFile = "SaveSlot";
         [SerializeField] float fadeInTime = 0.2f;
+        [SerializeField] float fadeOutTime = 1f;
 
         int saveSlotIndex = 0;
 
@@ -19,9 +20,9 @@ namespace RPG.SceneManagement
         {
             Debug.Log("LoadingLastScene");
             Debug.Log("Save Slot index is : " + saveSlotIndex);
-            yield return GetComponent<SavingSystem>().LoadLastScene(newSaveFile + saveSlotIndex);
             Fader fader = FindObjectOfType<Fader>();
-            fader.FadeOutImmediate();
+            yield return fader.FadeOut(fadeOutTime);
+            yield return GetComponent<SavingSystem>().LoadLastScene(newSaveFile + saveSlotIndex);
             yield return fader.FadeIn(fadeInTime);
         }
 

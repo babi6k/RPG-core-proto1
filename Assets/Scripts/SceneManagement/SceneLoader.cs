@@ -41,11 +41,13 @@ public class SceneLoader : MonoBehaviour
 
         savingWrapper.SetSlotIndex(saveMenu.GetSlotIndex());
         savingWrapper.NewSaveFile(saveMenu.GetSlotIndex());
-        
+
+        //Load new Scene
         yield return SceneManager.LoadSceneAsync(sceneToLoad);
         savingWrapper.LoadFromMenu(saveMenu.GetSlotIndex());
         PlayerController newPlayerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         newPlayerController.enabled = false;
+        
         //Change Player Character
         Vector3 startPos = newPlayerController.GetStartPos();
         newPlayerController.GetComponent<NavMeshAgent>().Warp(startPos);

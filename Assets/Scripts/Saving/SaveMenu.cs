@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using RPG.Control;
 using RPG.SceneManagement;
+using TMPro;
 using UnityEngine;
 
 public class SaveMenu : MonoBehaviour
@@ -10,6 +11,7 @@ public class SaveMenu : MonoBehaviour
     [SerializeField] GameObject backButton;
     [SerializeField] GameObject startButton;
     [SerializeField] Transform player;
+    [SerializeField] TextMeshProUGUI [] savefilesNames;
 
     int slotIndex = 1;
     const string savefileName = "SaveSlot";
@@ -20,11 +22,32 @@ public class SaveMenu : MonoBehaviour
         savingWrapper = FindObjectOfType<SavingWrapper>();
     }
 
+    private void Start() 
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (savingWrapper.FileExists(i+1))
+            {
+                savefilesNames[i].text = "Continue";
+            }
+            else
+            {
+                savefilesNames[i].text = savefileName + (i+ 1);
+            }
+        }
+    }
+
     public void ChooseCharacter(int index)
     {
         if (savingWrapper.FileExists(index))
         {
             savingWrapper.SetSlotIndex(index);
+            savingWrapper.LoadLastSave();
+            gameObject.SetActive(false);
+            characterPanel.SetActive(false);
+            backButton.SetActive(false);
+            startButton.SetActive(false);
+            return;
         }
 
         slotIndex = index;
