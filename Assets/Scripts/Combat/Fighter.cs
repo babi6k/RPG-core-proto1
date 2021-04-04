@@ -22,6 +22,7 @@ namespace RPG.Combat
 
         Health target;
         Equipment equipment;
+        Animator animator;
         float timeSinceLastAttack = Mathf.Infinity;
         WeaponConfig currentWeaponConfig;
         LazyValue <Weapon> currentWeapon;
@@ -44,6 +45,7 @@ namespace RPG.Combat
 
         private void Start()
         {
+            animator = GetComponent<Animator>();
             currentWeapon.ForceInit();
         }
 
@@ -88,8 +90,8 @@ namespace RPG.Combat
 
         public void TriggerAttack()
         {
-            GetComponent<Animator>().ResetTrigger("attack");
-            GetComponent<Animator>().SetTrigger("attack");
+            animator.ResetTrigger("attack");
+            animator.SetTrigger("attack");
         }
 
 
@@ -161,8 +163,8 @@ namespace RPG.Combat
         
         private void StopAttack()
         {
-            GetComponent<Animator>().ResetTrigger("attack");
-            GetComponent<Animator>().SetTrigger("stopAttack");
+            animator.ResetTrigger("attack");
+            animator.SetTrigger("stopAttack");
         }
 
         //Weapon Part
@@ -189,7 +191,7 @@ namespace RPG.Combat
 
         private Weapon AttachWeapon(WeaponConfig weapon)
         {
-            Animator animator = GetComponent<Animator>();
+            animator = GetComponent<Animator>();
             return weapon.Spawn(rightHandTransform, leftHandTransform, animator);
         }
 

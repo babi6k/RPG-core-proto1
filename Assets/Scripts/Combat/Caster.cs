@@ -12,11 +12,15 @@ namespace RPG.Combat
         [SerializeField] Transform hand;
         //Cached
         Health target;
+        Projectile currentProjectile;
+        Animator animator;
+        bool isCast = false;
         float currentSpellRange = 0;
         float currentDamage = 0;
-        Projectile currentProjectile;
-        bool isCast = false;
-
+        private void Start() 
+        {
+            animator = GetComponent<Animator>();
+        }
 
         private void Update()
         {
@@ -54,8 +58,8 @@ namespace RPG.Combat
 
         public void TriggerSpell()
         {
-            GetComponent<Animator>().ResetTrigger("cast");
-            GetComponent<Animator>().SetTrigger("cast");
+            animator.ResetTrigger("cast");
+            animator.SetTrigger("cast");
         }
 
         private bool GetIsInRange(Transform targetTransform)
@@ -63,7 +67,7 @@ namespace RPG.Combat
             return Vector3.Distance(transform.position, targetTransform.position) < currentSpellRange;
         }
 
-        public void Shoot()
+        public void CastSpell()
         {
             if (target == null) { return; }
             if (currentProjectile == null) return;

@@ -10,14 +10,30 @@ public class ModelBone : MonoBehaviour
 
     Fighter player;
 
-    private void Awake() 
+    private void Awake()
     {
         player = GameObject.FindWithTag("Player").GetComponent<Fighter>();
 
     }
-    private void OnEnable() 
+    private void OnEnable()
     {
-        player.SetHandTransfroms(rightHand,leftHand);
+        player.SetHandTransfroms(rightHand, leftHand);
         player.GetComponent<Animator>().Rebind();
     }
+
+    // public void Hit()
+    // {
+    //     player.Hit();
+    // }
+
+    // public void Shoot()
+    // {
+    //     player.Hit();
+    // }
+
+    // public void CastSpell()
+    // {
+    //     player.GetComponent<Caster>().CastSpell();
+    // }
+
 }
