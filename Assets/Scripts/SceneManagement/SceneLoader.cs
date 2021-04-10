@@ -7,55 +7,59 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+namespace RPG.SceneManagement
 {
-    [SerializeField] SaveMenu saveMenu;
-    [SerializeField] float fadeOutTime = 1f;
-    [SerializeField] float fadeInTime = 2f;
-    [SerializeField] float fadeWaitTime = 0.5f;
-    [SerializeField] int sceneToLoad = 2;
 
-    SavingWrapper savingWrapper;
-    Fader fader;
-    // Start is called before the first frame update
-    void Awake()
+    public class SceneLoader : MonoBehaviour
     {
-        savingWrapper = FindObjectOfType<SavingWrapper>();
-        fader = FindObjectOfType<Fader>();
-        saveMenu = saveMenu.GetComponent<SaveMenu>();
-    }
+        [SerializeField] SaveMenu saveMenu;
+        [SerializeField] float fadeOutTime = 1f;
+        [SerializeField] float fadeInTime = 2f;
+        [SerializeField] float fadeWaitTime = 0.5f;
+        [SerializeField] int sceneToLoad = 2;
 
-    public void StartNewGame()
-    {
-        StartCoroutine(LoadNewGame());
-    }
+        SavingWrapper savingWrapper;
+        Fader fader;
+        // Start is called before the first frame update
+        void Awake()
+        {
+            savingWrapper = FindObjectOfType<SavingWrapper>();
+            fader = FindObjectOfType<Fader>();
+            saveMenu = saveMenu.GetComponent<SaveMenu>();
+        }
 
-    IEnumerator LoadNewGame()
-    {
-        DontDestroyOnLoad(transform.root.gameObject);
-        PlayerController playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        playerController.enabled = false;
-        //Remove control player
+        public void StartNewGame()
+        {
+            StartCoroutine(LoadNewGame());
+        }
 
-        yield return fader.FadeOut(fadeOutTime);
+        IEnumerator LoadNewGame()
+        {
+            DontDestroyOnLoad(transform.root.gameObject);
+            PlayerController playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+            playerController.enabled = false;
+            //Remove control player
 
-        savingWrapper.SetSlotIndex(saveMenu.GetSlotIndex());
-        savingWrapper.NewSaveFile(saveMenu.GetSlotIndex());
+            yield return fader.FadeOut(fadeOutTime);
 
-        //Load new Scene
-        yield return SceneManager.LoadSceneAsync(sceneToLoad);
-        savingWrapper.LoadFromMenu(saveMenu.GetSlotIndex());
-        PlayerController newPlayerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        newPlayerController.enabled = false;
-        
-        //Change Player Character
-        Vector3 startPos = newPlayerController.GetStartPos();
-        newPlayerController.GetComponent<NavMeshAgent>().Warp(startPos);
-        yield return new WaitForSeconds(fadeWaitTime);
-        fader.FadeIn(fadeInTime);
-        newPlayerController.enabled = true;
-        savingWrapper.SetSlotIndex(saveMenu.GetSlotIndex());
-        savingWrapper.NewSaveFile(saveMenu.GetSlotIndex());
-        Destroy(gameObject); 
+            savingWrapper.SetSlotIndex(saveMenu.GetSlotIndex());
+            savingWrapper.NewSaveFile(saveMenu.GetSlotIndex());
+
+            //Load new Scene
+            yield return SceneManager.LoadSceneAsync(sceneToLoad);
+            savingWrapper.LoadFromMenu(saveMenu.GetSlotIndex());
+            PlayerController newPlayerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+            newPlayerController.enabled = false;
+
+            //Change Player Character
+            Vector3 startPos = newPlayerController.GetStartPos();
+            newPlayerController.GetComponent<NavMeshAgent>().Warp(startPos);
+            yield return new WaitForSeconds(fadeWaitTime);
+            fader.FadeIn(fadeInTime);
+            newPlayerController.enabled = true;
+            savingWrapper.SetSlotIndex(saveMenu.GetSlotIndex());
+            savingWrapper.NewSaveFile(saveMenu.GetSlotIndex());
+            Destroy(gameObject);
+        }
     }
 }

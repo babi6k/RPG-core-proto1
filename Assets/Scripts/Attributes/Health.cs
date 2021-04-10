@@ -17,7 +17,6 @@ namespace RPG.Attributes
         [SerializeField] UnityEvent onDie;
         bool isDead = false;
 
-
         private void Awake()
         {
             healthPoints = new LazyValue<float>(GetInitialHealth);

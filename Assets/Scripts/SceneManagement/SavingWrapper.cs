@@ -3,26 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameDevTV.Saving;
 using System;
+using UnityEngine.SceneManagement;
 
 namespace RPG.SceneManagement
 {
 
     public class SavingWrapper : MonoBehaviour
     {
-        const string defaultSaveFile = "Autosave";
         const string newSaveFile = "SaveSlot";
         [SerializeField] float fadeInTime = 0.2f;
         [SerializeField] float fadeOutTime = 1f;
 
         int saveSlotIndex = 0;
+        Fader fader;
+
+        private void Awake() 
+        {
+            fader = FindObjectOfType<Fader>();
+        }
 
         IEnumerator LoadLastScene()
         {
             Debug.Log("LoadingLastScene");
             Debug.Log("Save Slot index is : " + saveSlotIndex);
-            Fader fader = FindObjectOfType<Fader>();
             yield return fader.FadeOut(fadeOutTime);
             yield return GetComponent<SavingSystem>().LoadLastScene(newSaveFile + saveSlotIndex);
+            yield return fader.FadeIn(fadeInTime);
+        }
+
+        IEnumerator MainMenu()
+        {
+            yield return fader.FadeOut(fadeOutTime);
+            yield return SceneManager.LoadSceneAsync(1);
             yield return fader.FadeIn(fadeInTime);
         }
 
@@ -81,6 +93,11 @@ namespace RPG.SceneManagement
         public void LoadLastSave()
         {
             StartCoroutine(LoadLastScene());
+        }
+
+        public void LoadMainMenu()
+        {
+            StartCoroutine(MainMenu());
         }
 
         public bool FileExists(int index)
