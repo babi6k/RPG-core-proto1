@@ -111,8 +111,8 @@ namespace RPG.Combat
             if (currentProjectile == null) return;
             Projectile newProjectile = Instantiate(currentProjectile, hand.position, Quaternion.identity);
             newProjectile.SetTarget(target, gameObject, currentDamage);
-            Cancel();
             isCastSpell = false;
+            Cancel();
         }
 
         public void AOEDamage()
