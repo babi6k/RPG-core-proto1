@@ -7,24 +7,25 @@ using UnityEngine;
 namespace RPG.Combat
 {
 
-    public class Caster : MonoBehaviour , IAction
+    public class Caster : MonoBehaviour, IAction
     {
         [SerializeField] Transform hand;
         //Cached
         Health target;
         Projectile currentProjectile;
+        GameObject currentAOEEffect;
         Animator animator;
-        bool isCast = false;
+        bool isCastSpell = false;
+        bool isCastAOE = false;
         float currentSpellRange = 0;
         float currentDamage = 0;
-        private void Start() 
+        private void Start()
         {
             animator = GetComponent<Animator>();
         }
 
         private void Update()
         {
-            if (isCast) return;
             if (target == null) return;
             if (target.IsDead()) return;
 
@@ -35,8 +36,11 @@ namespace RPG.Combat
             else
             {
                 //In range of attack Stoping the movement
-                GetComponent<Mover>().Cancel();
-                SpellBehavior();
+                if (isCastSpell || isCastAOE)
+                {
+                    GetComponent<Mover>().Cancel();
+                    SpellBehavior();
+                }
             }
         }
 
@@ -44,22 +48,56 @@ namespace RPG.Combat
         {
             hand = left;
         }
-        
 
-        public void Cast(GameObject spellTarget, float spellRange, float spellDamage, Projectile newProjectile)
+
+        public void CastSpell(GameObject spellTarget, float spellRange, float spellDamage, Projectile newProjectile)
         {
             GetComponent<ActionScheduler>().StartAction(this);
             target = spellTarget.GetComponent<Health>();
             currentSpellRange = spellRange;
             currentDamage = spellDamage;
             currentProjectile = newProjectile;
-            isCast = false;
+            isCastSpell = true;
         }
 
-        public void TriggerSpell()
+        public void CastAOE(GameObject spellTarget,float spellRange, float spellDamage, GameObject AoeEffect)
         {
-            animator.ResetTrigger("cast");
-            animator.SetTrigger("cast");
+            GetComponent<ActionScheduler>().StartAction(this);
+            target = spellTarget.GetComponent<Health>();
+            currentSpellRange = spellRange;
+            currentDamage = spellDamage;
+            currentAOEEffect = AoeEffect;
+            isCastAOE = true;
+        }
+
+        private void TriggerSpell()
+        {
+            Debug.Log("Casting Spell");
+            //animator.ResetTrigger("stopCast");
+            if (isCastSpell)
+            {
+                animator.ResetTrigger("cast");
+                animator.SetTrigger("cast");
+            }
+            if (isCastAOE)
+            {
+                animator.ResetTrigger("AOE");
+                animator.SetTrigger("AOE");
+            }
+        }
+
+        private void StopCast()
+        {
+            Debug.Log("Stop Casting");
+            if (!isCastAOE)
+            {
+                animator.ResetTrigger("AOE");
+            }
+            if (!isCastSpell)
+            {
+                animator.ResetTrigger("cast");
+            }
+            animator.SetTrigger("stopCast");
         }
 
         private bool GetIsInRange(Transform targetTransform)
@@ -71,9 +109,27 @@ namespace RPG.Combat
         {
             if (target == null) { return; }
             if (currentProjectile == null) return;
-            Projectile newProjectile = Instantiate(currentProjectile,hand.position, Quaternion.identity);
+            Projectile newProjectile = Instantiate(currentProjectile, hand.position, Quaternion.identity);
             newProjectile.SetTarget(target, gameObject, currentDamage);
-            isCast = true;
+            Cancel();
+            isCastSpell = false;
+        }
+
+        public void AOEDamage()
+        {
+            if (currentAOEEffect == null) return;
+            GameObject newAoeEffect = Instantiate(currentAOEEffect,transform.position,Quaternion.identity);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, currentSpellRange);
+            foreach (Collider c in colliders)
+            {
+                if (c.tag == "Enemy" && !c.GetComponent<Health>().IsDead())
+                {
+                    c.GetComponent<Health>().TakeDamage(gameObject, currentDamage);
+                }
+            }
+            isCastAOE = false;
+            Cancel();
+            Destroy(newAoeEffect, 3f); 
         }
 
         private void SpellBehavior()
@@ -84,6 +140,7 @@ namespace RPG.Combat
 
         public void Cancel()
         {
+            //StopCast();
             target = null;
             GetComponent<Mover>().Cancel();
         }

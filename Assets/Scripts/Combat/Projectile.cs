@@ -19,8 +19,6 @@ namespace RPG.Combat
         GameObject instigator = null;
         float damage = 0;
 
-
-
         private void Start()
         {
             transform.LookAt(GetAimLocation());

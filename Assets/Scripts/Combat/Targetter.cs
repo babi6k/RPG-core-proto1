@@ -8,22 +8,15 @@ namespace RPG.Combat
     {
         public CombatTarget currentTarget;
 
-        [SerializeField] int targetCount = 9;
-        CombatTarget[] combatTargets;
-        int index = 0;
+        //[SerializeField] int targetCount = 9;
+        List<CombatTarget> combatTargets = new List<CombatTarget>();
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == "Enemy" && !other.GetComponent<Health>().IsDead())
             {
-                combatTargets[index] = other.GetComponent<CombatTarget>();
-                index++;
+                combatTargets.Add(other.GetComponent<CombatTarget>());
             }
-        }
-
-        private void Awake()
-        {
-            combatTargets = new CombatTarget[targetCount];
         }
 
         private void Update()
@@ -31,21 +24,18 @@ namespace RPG.Combat
             if (!currentTarget) return;
             if (currentTarget.GetComponent<Health>().IsDead())
             {
-                for (int i = 0; i < index; i++)
+                for(int i = 0; i < combatTargets.Count; i++)
                 {
                     if (!combatTargets[i].GetComponent<Health>().IsDead())
                     {
                         currentTarget = combatTargets[i];
                         return;
                     }
-                   
                 }
                 GetComponent<Fighter>().Cancel();
-                index = 0;
+                combatTargets.Clear();
                 currentTarget = null;
             }
         }
     }
-
-    
 }

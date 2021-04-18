@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5135e19dbded3cc4db007b35c5da2536, type: 3}
-  m_Name: FireBall
+  m_Name: IceBall
   m_EditorClassIdentifier: 
-  itemID: d1778929-6c2b-4fae-b394-4ab6f06e8c46
-  displayName: FireBall
-  description: Shoot Fireball with 10 fire damage
-  icon: {fileID: 21300000, guid: 8743e41d642144441b0003de4e16a3a2, type: 3}
+  itemID: 8b64663e-473c-45ae-a44b-3bcbd58b9b80
+  displayName: Ice Ball
+  description: Shoot Ice Ball with 10 Ice damage
+  icon: {fileID: 21300000, guid: 158f34cb1d77948629bd07db2fa24a2d, type: 3}
   pickup: {fileID: 6494234044896430859, guid: ab73185f2dadf4445ae07e78eb669c1f, type: 3}
   stackable: 0
   consumable: 0
@@ -23,4 +23,4 @@ MonoBehaviour:
   manaAmount: 10
   spellRange: 15
   spellDamage: 10
-  projectile: {fileID: 7499477240109984098, guid: 48632460ae385439ea7f5267a76a71d9, type: 3}
+  projectile: {fileID: 7499477240109984098, guid: e6cac71ff4b76464fa802dcd47cd0111, type: 3}

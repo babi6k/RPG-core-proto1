@@ -3,25 +3,19 @@ using RPG.Attributes;
 using RPG.Combat;
 using UnityEngine;
 
-
-[CreateAssetMenu(menuName = ("RPG/Inventory/Skill"))]
-public class Skill : ActionItem 
+namespace RPG.Inventories
 {
-    [SerializeField] float manaAmount = 10f;
-    [SerializeField] float spellRange = 15f;
-    [SerializeField] float spellDamage = 10f;
-    [SerializeField] Projectile projectile = null;
 
-    public override void Use(GameObject user)
+    [CreateAssetMenu(menuName = ("RPG/Inventory/Skill"))]
+    public class Skill : ActionItem
     {
-        base.Use(user);
-        user.GetComponent<Mana>().UseMana(manaAmount);
-        var player = GameObject.FindWithTag("Player");
-        var target = player.GetComponent<Targetter>().currentTarget;
-        if (target == null)
-        {
-            return;
-        }
-        player.GetComponent<Caster>().Cast(target.gameObject,spellRange,spellDamage,projectile);
+        [SerializeField] float manaAmount = 10f;
+        [SerializeField] float spellRange = 15f;
+        [SerializeField] float spellDamage = 10f;
+
+
+        public float GetManaAmount() { return manaAmount; }
+        public float GetSpellRange() { return spellRange; }
+        public float GetSpellDamage() { return spellDamage; }
     }
 }

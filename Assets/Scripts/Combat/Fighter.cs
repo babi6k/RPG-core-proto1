@@ -91,7 +91,7 @@ namespace RPG.Combat
 
         public void TriggerAttack()
         {
-            animator.ResetTrigger("attack");
+            animator.ResetTrigger("stopAttack");
             animator.SetTrigger("attack");
         }
 

@@ -96,7 +96,6 @@ MonoBehaviour:
   - {fileID: 1265346787747520, guid: 33327bc9948cc644ca0f4b1963219c08, type: 3}
   - {fileID: 1713508950806912, guid: 5e91ea75b82393c4f80d8bc436ee1f52, type: 3}
   - {fileID: 1298028809135162, guid: 2cb1fd74719e8374a89858491d382396, type: 3}
-  characterController: {fileID: 9100000, guid: eec02b68d87c445f4b090bbf2276674d, type: 2}
 --- !u!114 &1275030682520671778
 MonoBehaviour:
   m_ObjectHideFlags: 0
