@@ -112,7 +112,7 @@ namespace GameDevTV.Inventories
                     dockedItems[index].item.Use(user);
                     if (dockedItems[index].number >= 0)
                     {
-                        if (dockedItems[index].item.isConsumable())
+                        if (dockedItems[index].item.IsConsumable())
                         {
                             if (dockedItems[index].number > 1)
                             {
@@ -171,7 +171,7 @@ namespace GameDevTV.Inventories
             {
                 return 0;
             }
-            if (actionItem.isConsumable())
+            if (actionItem.IsConsumable())
             {
                 return int.MaxValue;
             }

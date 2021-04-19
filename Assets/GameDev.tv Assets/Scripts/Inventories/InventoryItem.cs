@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 namespace GameDevTV.Inventories
 {
@@ -98,9 +99,24 @@ namespace GameDevTV.Inventories
             return displayName;
         }
 
-        public string GetDescription()
+        public virtual string GetDescription()
         {
             return description;
+        }
+
+        public string GetRawDescription()
+        {
+            return description;
+        }
+
+        public Pickup GetPickup()
+        {
+            return pickup;
+        }
+
+        public bool FloatEquals(float value1, float value2)
+        {
+            return Mathf.Abs(value1 - value2) < Mathf.Epsilon;
         }
 
         // PRIVATE
@@ -119,5 +135,89 @@ namespace GameDevTV.Inventories
             // Require by the ISerializationCallbackReceiver but we don't need
             // to do anything with it.
         }
+
+
+        #if UNITY_EDITOR 
+
+        [NonSerialized] protected GUIStyle contentStyle;
+        bool drawInventoryItem = true;
+        public GUIStyle foldoutStyle;
+
+        public virtual void DrawCustomInspector()
+        {
+            contentStyle = new GUIStyle {padding = new RectOffset(15, 15, 0, 0)};
+            foldoutStyle = new GUIStyle(EditorStyles.foldout);
+            foldoutStyle.fontStyle = FontStyle.Bold;
+            drawInventoryItem = EditorGUILayout.Foldout(drawInventoryItem, "InventoryItem Data", foldoutStyle);
+            if (!drawInventoryItem) return;
+            EditorGUILayout.BeginVertical(contentStyle);
+            SetItemID(EditorGUILayout.TextField("ItemID (clear to reset", GetItemID()));
+            SetDisplayName(EditorGUILayout.TextField("Display name", GetDisplayName()));
+            SetDescription(EditorGUILayout.TextField("Description", GetDescription()));
+            SetIcon((Sprite)EditorGUILayout.ObjectField("Icon", GetIcon(), typeof(Sprite), false));
+            SetPickup((Pickup)EditorGUILayout.ObjectField("Pickup", pickup, typeof(Pickup), false));
+            SetStackable(EditorGUILayout.Toggle("Stackable", IsStackable()));
+            EditorGUILayout.EndVertical();
+        }
+
+        public void SetUndo(string message)
+        {
+            Undo.RecordObject(this, message);
+        }
+
+        public void Dirty()
+        {
+            EditorUtility.SetDirty(this);
+        }
+
+         public void SetItemID(string newItemID)
+        {
+            if (itemID == newItemID) return;
+            SetUndo("Change ItemID");
+            itemID = newItemID;
+            Dirty();
+        }
+
+        public void SetDisplayName(string newDisplayName)
+        {
+            if (newDisplayName == displayName) return;
+            SetUndo("Change Display Name");
+            displayName = newDisplayName;
+            Dirty();
+        }
+
+        public void SetDescription(string newDescription)
+        {
+            if (newDescription == description) return;
+            SetUndo("Change Description");
+            description = newDescription;
+            Dirty();
+        }
+
+        public void SetIcon(Sprite newIcon)
+        {
+            if (icon == newIcon) return;
+            SetUndo("Change Icon");
+            icon = newIcon;
+            Dirty();
+        }
+
+        public void SetPickup(Pickup newPickup)
+        {
+            if (pickup == newPickup) return;
+            SetUndo("Change Pickup");
+            pickup = newPickup;
+            Dirty();
+        }
+
+        public void SetStackable(bool newStackable)
+        {
+            if (stackable == newStackable) return;
+            SetUndo(stackable?"Set Not Stackable": "Set Stackable");
+            stackable = newStackable;
+            Dirty();
+        }
+
+        #endif 
     }
 }

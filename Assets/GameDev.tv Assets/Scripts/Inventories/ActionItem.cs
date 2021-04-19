@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace GameDevTV.Inventories
@@ -10,13 +11,13 @@ namespace GameDevTV.Inventories
     /// This class should be used as a base. Subclasses must implement the `Use`
     /// method.
     /// </remarks>
-    [CreateAssetMenu(menuName = ("GameDevTV/GameDevTV.UI.InventorySystem/Action Item"))]
+    //[CreateAssetMenu(menuName = ("GameDevTV/GameDevTV.UI.InventorySystem/Action Item"))]
     public class ActionItem : InventoryItem
     {
         // CONFIG DATA
         [Tooltip("Does an instance of this item get consumed every time it's used.")]
         [SerializeField] bool consumable = false;
-        [SerializeField] float coolDownTime = 3;
+        [SerializeField] float coolDownTime = 3f;
      
         // PUBLIC
 
@@ -29,7 +30,7 @@ namespace GameDevTV.Inventories
             Debug.Log("Using action: " + this);
         }
 
-        public bool isConsumable()
+        public bool IsConsumable()
         {
             return consumable;
         }
@@ -37,5 +38,38 @@ namespace GameDevTV.Inventories
         {
             return coolDownTime;
         }
+
+#if UNITY_EDITOR
+
+
+        void SetIsConsumable(bool value)
+        {
+            if (consumable == value) return;
+            SetUndo(value?"Set Consumable":"Set Not Consumable");
+            consumable = value;
+            Dirty();
+        }
+
+        void SetCoolDownTime(float value)
+        {
+            if (coolDownTime == value) return;
+            SetUndo("Change CoolDown Time");
+            coolDownTime = value;
+            Dirty();
+        }
+
+        bool drawActionItem = true;
+        public override void DrawCustomInspector()
+        {
+            base.DrawCustomInspector();
+            drawActionItem = EditorGUILayout.Foldout(drawActionItem, "Action Item Data");
+            if (!drawActionItem) return;
+            EditorGUILayout.BeginVertical(contentStyle);
+            SetIsConsumable(EditorGUILayout.Toggle("Is Consumable", consumable));
+            SetCoolDownTime(EditorGUILayout.IntSlider("Cooldown Time",(int) coolDownTime,1,60));
+            EditorGUILayout.EndVertical();
+        }
+
+#endif
     }
 }

@@ -1,3 +1,5 @@
+using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace GameDevTV.Inventories
@@ -19,5 +21,36 @@ namespace GameDevTV.Inventories
         {
             return allowedEquipLocation;
         }
+
+#if UNITY_EDITOR
+
+        bool drawEquipableItem = true;
+        public void SetAllowedEquipLocation(EquipLocation newLocation)
+        {
+            if (allowedEquipLocation == newLocation) return;
+            SetUndo("Change Equip Location");
+            allowedEquipLocation = newLocation;
+            Dirty();
+        }
+
+        public override void DrawCustomInspector()
+        {
+            base.DrawCustomInspector();
+            drawEquipableItem = EditorGUILayout.Foldout(drawEquipableItem, "EquipableItem Data",foldoutStyle);
+            if (!drawEquipableItem) return;
+            EditorGUILayout.BeginVertical(contentStyle);
+            SetAllowedEquipLocation((EquipLocation)
+            EditorGUILayout.EnumPopup(new GUIContent("Equip Location"),
+             allowedEquipLocation, IsLocationSelectable, false));
+            EditorGUILayout.EndVertical();
+        }
+
+        public virtual  bool IsLocationSelectable(Enum location)
+        {
+            EquipLocation candidate = (EquipLocation)location;
+            return candidate != EquipLocation.Weapon;
+        }
+
+#endif
     }
 }

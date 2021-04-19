@@ -72,8 +72,6 @@ namespace RPG.Combat
 
         private void TriggerSpell()
         {
-            Debug.Log("Casting Spell");
-            //animator.ResetTrigger("stopCast");
             if (isCastSpell)
             {
                 animator.ResetTrigger("cast");
@@ -84,20 +82,6 @@ namespace RPG.Combat
                 animator.ResetTrigger("AOE");
                 animator.SetTrigger("AOE");
             }
-        }
-
-        private void StopCast()
-        {
-            Debug.Log("Stop Casting");
-            if (!isCastAOE)
-            {
-                animator.ResetTrigger("AOE");
-            }
-            if (!isCastSpell)
-            {
-                animator.ResetTrigger("cast");
-            }
-            animator.SetTrigger("stopCast");
         }
 
         private bool GetIsInRange(Transform targetTransform)
@@ -140,7 +124,6 @@ namespace RPG.Combat
 
         public void Cancel()
         {
-            //StopCast();
             target = null;
             GetComponent<Mover>().Cancel();
         }
