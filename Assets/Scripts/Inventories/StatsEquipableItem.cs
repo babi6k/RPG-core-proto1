@@ -54,7 +54,8 @@ namespace RPG.Inventories
 
         public override string GetDescription()
         {
-            string result =  GetRawDescription()+"\n";
+            Debug.Log("Creating Description");
+            string result =  base.GetDescription()+"\n";
             foreach (Modifier mod in addtiveModifers)
             {
                 result += FormatAttribute(mod, false);

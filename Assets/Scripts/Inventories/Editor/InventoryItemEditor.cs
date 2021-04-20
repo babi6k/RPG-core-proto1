@@ -17,26 +17,10 @@ namespace GameDevTV.Inventories.Editor
         private void OnEnable()
         {
             previewStyle = new GUIStyle();
-            var tex2D = EditorGUIUtility.Load
+            previewStyle.normal.background = EditorGUIUtility.Load
             ("Assets/AssetPacks/GUI/GUI Pro Kit Fantasy RPG/Sprites/99_Popup/common_popup.png") as Texture2D;
-            Color myColor = new Color(255, 168, 0);
-            previewStyle.normal.background = tex2D;
-            previewStyle.padding = new RectOffset(40, 40, 40, 40);
-            previewStyle.border = new RectOffset(0, 0, 0, 0);
-        }
-
-        private Texture2D MakeTex(int width, int height, Color col)
-        {
-            Color[] pix = new Color[width * height];
-            for (int i = 0; i < pix.Length; i++)
-            {
-                pix[i] = col;
-            }
-            Texture2D result = EditorGUIUtility.Load
-            ("Assets/AssetPacks/GUI/GUI Pro Kit Fantasy RPG/Sprites/99_Popup/common_popup.png") as Texture2D;
-            result.SetPixels(pix);
-            result.Apply();
-            return result;
+            previewStyle.padding = new RectOffset(30, 20, 10, 40);
+            previewStyle.border = new RectOffset(80, 80, 120, 120);
         }
 
         [MenuItem("Window/InventoryItem Editor")]
@@ -91,13 +75,18 @@ namespace GameDevTV.Inventories.Editor
                     richText = true,
                     wordWrap = true,
                     stretchHeight = true,
-                    fontSize = 14,
-                    alignment = TextAnchor.MiddleCenter
+                    fontSize = 20,
+                    alignment = TextAnchor.MiddleCenter,
+                    font = EditorGUIUtility.Load("Assets/AssetPacks/GUI/GUI Pro Kit Fantasy RPG/Font/Alata-Regular.ttf") as Font
                 };
-                headerStyle = new GUIStyle(descriptionStyle) {fontSize = 24};
+                headerStyle = new GUIStyle(descriptionStyle) 
+                {
+                    fontSize = 35,
+                    font = EditorGUIUtility.Load("Assets/AssetPacks/GUI/GUI Pro Kit Fantasy RPG/Font/Alata-Regular.ttf") as Font
+                };
                 stylesInitialized = true;
             }
-            Rect rect = new Rect(0,0, position.width * .65f, position.height);
+            Rect rect = new Rect(0,0, position.width * .65f, position.height );
             DrawInspector(rect);
             rect.x = rect.width;
             rect.width /= 2.0f;
@@ -106,16 +95,23 @@ namespace GameDevTV.Inventories.Editor
 
         private void DrawPreviewTooltip(Rect rect)
         {
+            Color oldColor = GUI.backgroundColor;
+            GUI.backgroundColor = new Color(1,0.5f,0);
             GUILayout.BeginArea(rect, previewStyle);
+            EditorGUILayout.BeginVertical();
+            headerStyle.fixedWidth = rect.width - 60;
+            EditorGUILayout.LabelField(selected.GetDisplayName(), headerStyle);
             if (selected.GetIcon() != null)
             {
                 float iconSize = Mathf.Min(rect.width * .33f, rect.height * .33f);
                 Rect texRect = GUILayoutUtility.GetRect(iconSize, iconSize);
                 GUI.DrawTexture(texRect, selected.GetIcon().texture, ScaleMode.ScaleToFit);
             }
-            EditorGUILayout.LabelField(selected.GetDisplayName(), headerStyle);
+            descriptionStyle.fixedWidth = rect.width - 60;
             EditorGUILayout.LabelField(selected.GetDescription(), descriptionStyle);
+            EditorGUILayout.EndVertical();
             GUILayout.EndArea();
+            GUI.backgroundColor = oldColor;
         }
 
         private void DrawInspector(Rect rect)

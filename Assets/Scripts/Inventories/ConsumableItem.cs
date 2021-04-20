@@ -31,7 +31,8 @@ namespace RPG.Inventories
 
         public override string GetDescription()
         {
-            string result = GetRawDescription()+"\n";
+            Debug.Log("Creating Description");
+            string result = base.GetDescription()+"\n";
             result += $"This potion will restore {(int)consumeValue} {stat} points";
             return result;
         }

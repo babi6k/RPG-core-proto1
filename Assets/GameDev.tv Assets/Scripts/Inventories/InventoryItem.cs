@@ -153,7 +153,7 @@ namespace GameDevTV.Inventories
             EditorGUILayout.BeginVertical(contentStyle);
             SetItemID(EditorGUILayout.TextField("ItemID (clear to reset", GetItemID()));
             SetDisplayName(EditorGUILayout.TextField("Display name", GetDisplayName()));
-            SetDescription(EditorGUILayout.TextField("Description", GetDescription()));
+            SetDescription(EditorGUILayout.TextField("Description", GetRawDescription()));
             SetIcon((Sprite)EditorGUILayout.ObjectField("Icon", GetIcon(), typeof(Sprite), false));
             SetPickup((Pickup)EditorGUILayout.ObjectField("Pickup", pickup, typeof(Pickup), false));
             SetStackable(EditorGUILayout.Toggle("Stackable", IsStackable()));

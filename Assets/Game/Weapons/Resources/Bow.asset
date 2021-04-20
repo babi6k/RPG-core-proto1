@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: cb373560-ecfa-45a5-9e2b-8915f96ca682
   displayName: Bow
-  description: Normal Bow 10 damage
+  description: Common Bow
   icon: {fileID: 21300000, guid: b053c8aa34b0b43178d3ce67809ee367, type: 3}
   pickup: {fileID: 5256425974735407435, guid: 86e7cc5b3d8574202bd6038864346ab0, type: 3}
   stackable: 0

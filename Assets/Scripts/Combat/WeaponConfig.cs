@@ -99,8 +99,9 @@ namespace RPG.Combat
 
         public override string GetDescription()
         {
+            Debug.Log("Creating Description");
             string result = projectile ? "Ranged Weapon" : "Melle Weapon";
-            result += $"\n\n{GetRawDescription()}\n";
+            result += $"\n\n{base.GetDescription()}\n";
             result += $"\nRange {weaponRange} meters";
             result += $"\nBase Damage {weaponDamage} points";
             if ((int)percentageBonus != 0)
@@ -164,6 +165,7 @@ namespace RPG.Combat
 
         void SetProjectile(Projectile possibleProjectile)
         {
+            if (possibleProjectile == null) return;
             if (!possibleProjectile.TryGetComponent<Projectile>(out Projectile newProjectile)) return;
             if (newProjectile == projectile) return;
             SetUndo("Set Projectile");

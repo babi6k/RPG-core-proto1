@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 2ac61882-8053-4c9d-b094-54e8723b3ebf
   displayName: Health Potion
-  description: Resore 50 HP
+  description: Small portion of red liquid
   icon: {fileID: 21300000, guid: 99926be94f0394db3b327706159f9655, type: 3}
   pickup: {fileID: 8906301336495291948, guid: 4ef05747cc14c4adc8a7dd916f060e0f, type: 3}
   stackable: 1
