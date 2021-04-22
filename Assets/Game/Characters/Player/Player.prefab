@@ -127,6 +127,9 @@ MonoBehaviour:
   - texture: {fileID: 2800000, guid: 96d4bfdb0d6d8c042bf8fccf6524d239, type: 3}
     hotspot: {x: 0, y: 0}
     type: 6
+  - texture: {fileID: 2800000, guid: e4fac5245b727db42ba0ca0258851b83, type: 3}
+    hotspot: {x: 0, y: 0}
+    type: 7
   maxNevMeshProjectionDistance: 1
   raycastRadius: 1
 --- !u!114 &2167478953415427382
@@ -192,6 +195,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c25ff71611d249578e8064a600019d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7257629044143129861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6747448569462442312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fdd96f89050c941b148d4004f6f08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7578260731976135222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +233,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTarget: {fileID: 0}
-  targetCount: 9
 --- !u!1001 &12614679708323514
 PrefabInstance:
   m_ObjectHideFlags: 0
