@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using GameDevTV.Saving;
+using System.Collections.Generic;
 
 namespace GameDevTV.Inventories
 {
@@ -47,6 +48,16 @@ namespace GameDevTV.Inventories
         public bool HasSpaceFor(InventoryItem item)
         {
             return FindSlot(item) >= 0;
+        }
+
+        public bool HasSpaceFor(IEnumerable<InventoryItem> items)
+        {
+            int count = 0;
+            foreach (var item in items)
+            {
+                count++;
+            }
+            return count <= inventorySize;
         }
 
         /// <summary>

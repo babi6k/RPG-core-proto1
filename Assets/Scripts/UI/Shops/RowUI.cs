@@ -1,21 +1,43 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using RPG.Shops;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RPG.UI.Shops
 {
     public class RowUI : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        [SerializeField] Image iconField;
+        [SerializeField] TextMeshProUGUI nameField;
+        [SerializeField] TextMeshProUGUI availabilityField;
+        [SerializeField] TextMeshProUGUI priceField;
+        [SerializeField] TextMeshProUGUI quantityField;
 
+        Shop currentShop = null;
+        ShopItem item = null;
+        
+        public void Setup(Shop currentShop, ShopItem item)
+        {
+            this.currentShop = currentShop;
+            this.item = item;
+            iconField.sprite = item.GetIcon();
+            nameField.text = item.GetName();
+            availabilityField.text = item.GetAvailability().ToString();
+            priceField.text = $"{item.GetPrice():N2}";
+            quantityField.text = $"{item.GetQuantityInTransaction()}";
         }
 
-        // Update is called once per frame
-        void Update()
+        public void Add()
         {
+            currentShop.AddToTransaction(item.GetInventoyItem(), 1);
+        }
 
+        public void Remove()
+        {
+            currentShop.AddToTransaction(item.GetInventoyItem(), -1);
         }
     }
 }

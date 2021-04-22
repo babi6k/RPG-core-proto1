@@ -28,6 +28,8 @@ namespace GameDevTV.Inventories
         [SerializeField] Pickup pickup = null;
         [Tooltip("If true, multiple items of this type can be stacked in the same inventory slot.")]
         [SerializeField] bool stackable = false;
+        [Tooltip("Price of item")]
+        [SerializeField] float price = 0;
 
         // STATE
         static Dictionary<string, InventoryItem> itemLookupCache;
@@ -114,6 +116,11 @@ namespace GameDevTV.Inventories
             return pickup;
         }
 
+        public float GetPrice()
+        {
+            return price;
+        }
+
         public bool FloatEquals(float value1, float value2)
         {
             return Mathf.Abs(value1 - value2) < Mathf.Epsilon;
@@ -157,6 +164,7 @@ namespace GameDevTV.Inventories
             SetIcon((Sprite)EditorGUILayout.ObjectField("Icon", GetIcon(), typeof(Sprite), false));
             SetPickup((Pickup)EditorGUILayout.ObjectField("Pickup", pickup, typeof(Pickup), false));
             SetStackable(EditorGUILayout.Toggle("Stackable", IsStackable()));
+            SetPrice(EditorGUILayout.Slider("Price",price, 0,100));
             EditorGUILayout.EndVertical();
         }
 
@@ -215,6 +223,14 @@ namespace GameDevTV.Inventories
             if (stackable == newStackable) return;
             SetUndo(stackable?"Set Not Stackable": "Set Stackable");
             stackable = newStackable;
+            Dirty();
+        }
+
+        public void SetPrice(float newPrice)
+        {
+           if (FloatEquals(price,newPrice)) return;
+            SetUndo("Change price");
+            price = newPrice;
             Dirty();
         }
 
