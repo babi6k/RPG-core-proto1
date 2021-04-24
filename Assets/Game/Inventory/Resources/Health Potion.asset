@@ -18,7 +18,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 99926be94f0394db3b327706159f9655, type: 3}
   pickup: {fileID: 8906301336495291948, guid: 4ef05747cc14c4adc8a7dd916f060e0f, type: 3}
   stackable: 1
-  price: 7.8
+  price: 5
+  category: 3
   foldoutStyle:
     m_Name: Foldout
     m_Normal:

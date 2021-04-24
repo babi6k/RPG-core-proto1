@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d2c540f127324d198e86bf01a999058, type: 3}
-  m_Name: Primarry Attack
+  m_Script: {fileID: 11500000, guid: 1fff7c911ff2e4f58a262e040ebe3f29, type: 3}
+  m_Name: Mana Potion
   m_EditorClassIdentifier: 
-  itemID: 5330a020-ba2e-459a-9394-77b00aa543b0
-  displayName: Primary Attack
-  description: Normal attack with Equiped weapon
-  icon: {fileID: 21300000, guid: ac03fdf15d1934321805f7927b8c3620, type: 3}
+  itemID: c0582206-f920-4236-bfea-12b3dace2ad9
+  displayName: Mana Potion
+  description: Small blue vial of oil
+  icon: {fileID: 21300000, guid: 0a6311c57e0884b30b2747c1d1cbd08c, type: 3}
   pickup: {fileID: 6494234044896430859, guid: ab73185f2dadf4445ae07e78eb669c1f, type: 3}
-  stackable: 0
-  price: 0
-  category: 5
+  stackable: 1
+  price: 5
+  category: 3
   foldoutStyle:
     m_Name: Foldout
     m_Normal:
@@ -93,5 +93,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  consumable: 0
-  coolDownTime: 2
+  consumable: 1
+  coolDownTime: 3
+  consumeValue: 30
+  stat: 4

@@ -30,6 +30,8 @@ namespace GameDevTV.Inventories
         [SerializeField] bool stackable = false;
         [Tooltip("Price of item")]
         [SerializeField] float price = 0;
+        [SerializeField] ItemCategory category = ItemCategory.None;
+
 
         // STATE
         static Dictionary<string, InventoryItem> itemLookupCache;
@@ -121,6 +123,11 @@ namespace GameDevTV.Inventories
             return price;
         }
 
+        public ItemCategory GetCategory()
+        {
+            return category;
+        }
+
         public bool FloatEquals(float value1, float value2)
         {
             return Mathf.Abs(value1 - value2) < Mathf.Epsilon;
@@ -165,6 +172,7 @@ namespace GameDevTV.Inventories
             SetPickup((Pickup)EditorGUILayout.ObjectField("Pickup", pickup, typeof(Pickup), false));
             SetStackable(EditorGUILayout.Toggle("Stackable", IsStackable()));
             SetPrice(EditorGUILayout.Slider("Price",price, 0,100));
+            SetItemCategory((ItemCategory)EditorGUILayout.EnumPopup("Category",category));
             EditorGUILayout.EndVertical();
         }
 
@@ -229,8 +237,16 @@ namespace GameDevTV.Inventories
         public void SetPrice(float newPrice)
         {
            if (FloatEquals(price,newPrice)) return;
-            SetUndo("Change price");
+            SetUndo("Change Crice");
             price = newPrice;
+            Dirty();
+        }
+
+        public void SetItemCategory(ItemCategory newCategory)
+        {
+            if (category == newCategory) return;
+            SetUndo("Change Category");
+            category = newCategory;
             Dirty();
         }
 

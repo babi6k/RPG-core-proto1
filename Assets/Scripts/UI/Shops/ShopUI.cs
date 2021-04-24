@@ -16,8 +16,12 @@ namespace RPG.UI.Shops
         [SerializeField] TextMeshProUGUI totalField;
         [SerializeField] TextMeshProUGUI bankField;
         [SerializeField] Button confirmButton;
+        [SerializeField] Button buyingModeButton;
+        [SerializeField] Button sellingModeButton;
         
         Color oldTotalTxtColor;
+        Color inActiveButtonColor;
+        Color activeButtonColor;
 
         Shopper shopper = null;
         Shop currentShop = null;
@@ -25,11 +29,15 @@ namespace RPG.UI.Shops
         void Start()
         {
             oldTotalTxtColor = totalField.color;
+            inActiveButtonColor = sellingModeButton.image.color;
+            activeButtonColor = buyingModeButton.image.color;
             shopper = GameObject.FindGameObjectWithTag("Player").GetComponent<Shopper>();
             if (shopper == null) return;
 
             shopper.activeShopChange += ShopChanged;
             confirmButton.onClick.AddListener(ConfirmTransaction);
+            buyingModeButton.onClick.AddListener(SwitchToBuying);
+            sellingModeButton.onClick.AddListener(SwitchToSelling);
             ShopChanged();
         }
 
@@ -41,6 +49,10 @@ namespace RPG.UI.Shops
             }
             currentShop = shopper.GetActiveShop();
             gameObject.SetActive(currentShop != null);
+            foreach (FilterButtonUI button in GetComponentsInChildren<FilterButtonUI>())
+            {
+                button.SetShop(currentShop);
+            }
             if (currentShop == null) return;
             shopName.text = currentShop.GetShopName();
 
@@ -65,6 +77,31 @@ namespace RPG.UI.Shops
             bankField.text = $"Bank: {currentShop.BankTotal():N2}";
             totalField.color = currentShop.HasSuffiecientFund() ? oldTotalTxtColor : Color.red;
             confirmButton.interactable = currentShop.CanTransact();
+            TextMeshProUGUI buyModeText = buyingModeButton.GetComponentInChildren<TextMeshProUGUI>();
+            TextMeshProUGUI sellModeText = sellingModeButton.GetComponentInChildren<TextMeshProUGUI>();
+            TextMeshProUGUI confirmText = confirmButton.GetComponentInChildren<TextMeshProUGUI>();
+
+            if (currentShop.IsBuyingMode())
+            {
+                buyModeText.color = Color.white;
+                buyingModeButton.image.color = activeButtonColor;
+                sellModeText.color = Color.yellow;
+                sellingModeButton.image.color = inActiveButtonColor;
+                confirmText.text = "Buy";
+            }
+            else
+            {
+                buyModeText.color = Color.yellow;
+                buyingModeButton.image.color = inActiveButtonColor;
+                sellModeText.color = Color.white;
+                sellingModeButton.image.color = activeButtonColor;
+                confirmText.text = "Sell";
+            }
+
+            foreach (FilterButtonUI button in GetComponentsInChildren<FilterButtonUI>())
+            {
+                button.RefreshUI();
+            }
         }
 
         public void Close()
@@ -75,6 +112,16 @@ namespace RPG.UI.Shops
         public void ConfirmTransaction()
         {
             currentShop.ConfirmTransaction();
+        }
+
+        public void SwitchToBuying()
+        {
+            currentShop.SelectMode(true);
+        }
+
+        public void SwitchToSelling()
+        {
+            currentShop.SelectMode(false);
         }
     }
 }

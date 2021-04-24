@@ -151,7 +151,7 @@ namespace RPG.Control
         private void SetCursor(CursorType type)
         {
             CursorMapping mapping = GetCursorMapping(type);
-            mapping.hotspot = Vector2.zero;
+            //mapping.hotspot = Vector2.zero;
             Cursor.SetCursor(mapping.texture, mapping.hotspot, CursorMode.Auto);
         }
 
