@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12565f7b24db4e23b65908e7d02384f, type: 3}
+  m_Name: Bow
+  m_EditorClassIdentifier: 
+  itemID: cb373560-ecfa-45a5-9e2b-8915f96ca682
+  displayName: Bow
+  description: Common Bow
+  icon: {fileID: 21300000, guid: b053c8aa34b0b43178d3ce67809ee367, type: 3}
+  pickup: {fileID: 5256425974735407435, guid: 86e7cc5b3d8574202bd6038864346ab0, type: 3}
+  stackable: 0
+  price: 5
+  category: 2
+  foldoutStyle:
+    m_Name: Foldout
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds:
+      - {fileID: -6801349707174745596, guid: 0000000000000000d000000000000000, type: 0}
+      m_TextColor: {r: 0.8235294, g: 0.8235294, b: 0.8235294, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0.8235294, g: 0.8235294, b: 0.8235294, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds:
+      - {fileID: -1674602421990392834, guid: 0000000000000000d000000000000000, type: 0}
+      m_TextColor: {r: 0.29803923, g: 0.49411765, b: 1, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds:
+      - {fileID: 3684442412078439994, guid: 0000000000000000d000000000000000, type: 0}
+      m_TextColor: {r: 0.8235294, g: 0.8235294, b: 0.8235294, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds:
+      - {fileID: 8938427661926886800, guid: 0000000000000000d000000000000000, type: 0}
+      m_TextColor: {r: 0.8235294, g: 0.8235294, b: 0.8235294, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0.8235294, g: 0.8235294, b: 0.8235294, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds:
+      - {fileID: -8680445939362908933, guid: 0000000000000000d000000000000000, type: 0}
+      m_TextColor: {r: 0.29803923, g: 0.49411765, b: 1, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds:
+      - {fileID: 6561537487811827939, guid: 0000000000000000d000000000000000, type: 0}
+      m_TextColor: {r: 0.8235294, g: 0.8235294, b: 0.8235294, a: 1}
+    m_Border:
+      m_Left: 14
+      m_Right: 0
+      m_Top: 13
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 4
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 14
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: -2
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 12
+    m_FontStyle: 1
+    m_Alignment: 3
+    m_WordWrap: 0
+    m_RichText: 0
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
+  allowedEquipLocation: 5
+  animatorOverride: {fileID: 22100000, guid: 0efc906bb7bb84b82b7398d65f6210f6, type: 2}
+  equippedPrefab: {fileID: 5599559080685728356, guid: ea15d5e87d99b8f438f5e96de16428dd, type: 3}
+  weaponRange: 10
+  weaponDamage: 10
+  percentageBonus: 0
+  isRightHand: 0
+  projectile: {fileID: 7499477240109984098, guid: f416987168e1946a6be15c4d9cfed927, type: 3}

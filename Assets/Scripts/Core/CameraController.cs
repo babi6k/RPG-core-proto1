@@ -27,7 +27,7 @@ namespace RPG.Core
                 // use the following line for mouse control of zoom instead of mouse wheel
                 // be sure to change Input Axis Name on the Y axis to "Mouse Y"
 
-                //freeLookComponent.m_YAxis.m_MaxSpeed = 10;
+                freeLookComponent.m_YAxis.m_MaxSpeed = 500;
                 freeLookComponent.m_XAxis.m_MaxSpeed = 500;
             }
             if (Input.GetMouseButtonUp(1))

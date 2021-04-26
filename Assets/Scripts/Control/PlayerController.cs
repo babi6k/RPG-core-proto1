@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using RPG.Movement;
-using RPG.Combat;
 using RPG.Attributes;
 using System;
 using UnityEngine.EventSystems;
 using UnityEngine.AI;
-using GameDevTV.Inventories;
 
 namespace RPG.Control
 {
@@ -46,7 +44,7 @@ namespace RPG.Control
                 return;
             }
             if (InteractWithComponent()) return;
-            if (InteractWithMovement()) { return; }
+            if (InteractWithMovement()) return;
 
             SetCursor(CursorType.None);
           
@@ -151,7 +149,6 @@ namespace RPG.Control
         private void SetCursor(CursorType type)
         {
             CursorMapping mapping = GetCursorMapping(type);
-            //mapping.hotspot = Vector2.zero;
             Cursor.SetCursor(mapping.texture, mapping.hotspot, CursorMode.Auto);
         }
 

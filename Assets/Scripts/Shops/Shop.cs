@@ -36,13 +36,40 @@ namespace RPG.Shops
 
         public event Action onChange;
 
+        
+#region Getters
+        public string GetShopName() { return shopName; }
+
+        public bool IsBuyingMode(){return isBuyingMode;}
+
+        private int GetShopperLevel()
+        {
+            BaseStats stats = currentShopper.GetComponent<BaseStats>();
+            if (stats == null) return 0;
+
+            return stats.GetLevel();
+        }
+
+         public CursorType GetCursorType()
+        {
+            return CursorType.Shop;
+        }
+#endregion
+
         public void SetShopper(Shopper shopper)
         {
             currentShopper = shopper;
         }
+        public void SelectMode(bool isBuying)
+        {
+            isBuyingMode = isBuying;
+            if (onChange != null)
+            {
+                onChange();
+            }
+        }
 
-        public string GetShopName() { return shopName; }
-
+#region filters getting shop items
         public IEnumerable<ShopItem> GetFilteredItems()
         {
             foreach (ShopItem shopItem in GetAllItems())
@@ -85,21 +112,10 @@ namespace RPG.Shops
         {
             return filter;
         }
-
-        public void SelectMode(bool isBuying)
-        {
-            isBuyingMode = isBuying;
-            if (onChange != null)
-            {
-                onChange();
-            }
-        }
-
-        public bool IsBuyingMode()
-        {
-            return isBuyingMode;
-        }
-
+#endregion
+        
+       
+#region Transactions
         public bool CanTransact()
         {
             if (IsTransactionEmpty()) return false;
@@ -212,11 +228,7 @@ namespace RPG.Shops
                 onChange();
             }
         }
-
-        public CursorType GetCursorType()
-        {
-            return CursorType.Shop;
-        }
+#endregion
 
         public bool HandleRayCast(PlayerController callingController)
         {
@@ -226,7 +238,7 @@ namespace RPG.Shops
             }
             return true;
         }
-
+#region Buying / Selling
         private int CountItemsInInventory(InventoryItem item)
         {
 
@@ -345,15 +357,8 @@ namespace RPG.Shops
             }
             return -1;
         }
-
-        private int GetShopperLevel()
-        {
-            BaseStats stats = currentShopper.GetComponent<BaseStats>();
-            if (stats == null) return 0;
-
-            return stats.GetLevel();
-        }
-
+#endregion
+#region Saving
         public object CaptureState()
         {
             Dictionary<string, int> saveObject = new Dictionary<string, int>();
@@ -374,5 +379,7 @@ namespace RPG.Shops
                 stockSold[InventoryItem.GetFromID(pair.Key)] = pair.Value; 
             }
         }
+#endregion
+    
     }
 }
