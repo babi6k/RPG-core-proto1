@@ -349,6 +349,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2045469499032496218}
+  - component: {fileID: 1327853198966004882}
+  - component: {fileID: 3496360156005360243}
   m_Layer: 0
   m_Name: Dead UI
   m_TagString: Untagged
@@ -378,6 +380,31 @@ RectTransform:
   m_AnchoredPosition: {x: -6.481, y: 113.539}
   m_SizeDelta: {x: 2430.081, y: 1286.101}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1327853198966004882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5747002935682828325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b6a7fac6e2d604a8e529f6dddf65b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiContainer: {fileID: 5747002935682828325}
+--- !u!114 &3496360156005360243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5747002935682828325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f50dd9f7e5cf0479795245b10763ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8121862826912471663
 GameObject:
   m_ObjectHideFlags: 0

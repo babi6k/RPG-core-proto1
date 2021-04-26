@@ -15,8 +15,8 @@ MonoBehaviour:
   className: Player
   formulas:
   - stat: 0
-    currentValue: 200
-    baseValue: 160
+    currentValue: 0
+    baseValue: 400
     adderPerLevel: 40
     multiplierPerLevel: 1
     isComplex: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
     multiplierPerLevel: 0
     isComplex: 1
   - stat: 4
-    currentValue: 200
+    currentValue: 0
     baseValue: 160
     adderPerLevel: 40
     multiplierPerLevel: 1
