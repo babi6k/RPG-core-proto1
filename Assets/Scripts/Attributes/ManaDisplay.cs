@@ -16,7 +16,7 @@ namespace RPG.Attributes
 
         private void Update()
         {
-            textContainer.text = mana.GetManaPoints().ToString() + "/" + mana.GetMaxManaPoints();
+            textContainer.text = Mathf.RoundToInt(mana.GetMana()).ToString() + "/" + mana.GetMaxMana();
             GetComponent<Slider>().value = mana.GetFraction();
         }
     }

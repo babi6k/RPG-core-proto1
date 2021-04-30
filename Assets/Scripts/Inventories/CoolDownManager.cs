@@ -14,46 +14,35 @@ namespace RPG.Inventories
             public float timeSinceLastCooldown;
         }
 
-        public void AddCoolDown(string itemId , float coolDownTime)
+        public void StartCoolDown(string itemId, float time)
         {
-            if (!itemsInCoolDown.ContainsKey(itemId))
-            {
-                var itemInCoolDown = new ItemInCooldown();
-                itemInCoolDown.coolDownTime = coolDownTime;
-                itemInCoolDown.timeSinceLastCooldown = Mathf.Infinity;
-                itemsInCoolDown[itemId] = itemInCoolDown;
-            }
+            var itemInCoolDown = new ItemInCooldown();
+            itemInCoolDown.coolDownTime = time;
+            itemInCoolDown.timeSinceLastCooldown = Time.time + time;
+            itemsInCoolDown[itemId] = itemInCoolDown; 
         }
 
-        public void StartCoolDown(string itemId)
+        public float GetTimeRemaining (string itemID)
         {
-            if (itemsInCoolDown.ContainsKey(itemId))
+            if (!itemsInCoolDown.ContainsKey(itemID)) return 0;
+            float remaining = itemsInCoolDown[itemID].timeSinceLastCooldown - Time.time;
+            if (remaining < 0)
             {
-                if (itemsInCoolDown[itemId].coolDownTime < itemsInCoolDown[itemId].timeSinceLastCooldown)
-                {
-                    itemsInCoolDown[itemId].timeSinceLastCooldown = 0;
-                }
+                remaining = 0;
+                itemsInCoolDown.Remove(itemID);
             }
+            return remaining;
         }
 
-        public bool IsInCoolDown(string itemId)
+        public float GetFractionRemaining(string itemID)
         {
-            if (itemsInCoolDown.ContainsKey(itemId))
+            float remainingTime = GetTimeRemaining(itemID);
+            if (remainingTime <= 0)
             {
-                return itemsInCoolDown[itemId].coolDownTime > itemsInCoolDown[itemId].timeSinceLastCooldown; 
+                return 0;
             }
-            return false;
+            Debug.Log("Fraction Time = " + remainingTime / itemsInCoolDown[itemID].coolDownTime );
+            return remainingTime / itemsInCoolDown[itemID].coolDownTime;
         }
-
-        private void Update()
-        {
-            foreach (var pair in itemsInCoolDown)
-            {
-                pair.Value.timeSinceLastCooldown += Time.deltaTime;
-            }
-        }
-
-
-
     }
 }

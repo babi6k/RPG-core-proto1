@@ -21,13 +21,7 @@ namespace GameDevTV.Inventories
             public ActionItem item;
             public int number;
         }
-        //Cached
-        CoolDownManager coolDownManager;
 
-        private void Awake()
-        {
-            coolDownManager = GetComponent<CoolDownManager>();
-        }
 
         public event Action<int, float> OnCoolDownApplied;
 
@@ -87,7 +81,7 @@ namespace GameDevTV.Inventories
                 slot.item = item as ActionItem;
                 slot.number = number;
                 dockedItems[index] = slot;
-                coolDownManager.AddCoolDown(slot.item.GetItemID(), slot.item.GetCoolDownTime());
+                //coolDownManager.AddCoolDown(slot.item.GetItemID(), slot.item.GetCoolDownTime());
             }
             if (storeUpdated != null)
             {
@@ -103,7 +97,19 @@ namespace GameDevTV.Inventories
         /// <returns>False if the action could not be executed.</returns>
         public bool Use(int index, GameObject user)
         {
-            if (dockedItems.ContainsKey(index))
+
+             if (dockedItems.ContainsKey(index))
+            {
+                dockedItems[index].item.Use(user);
+                if (dockedItems[index].item.IsConsumable())
+                {
+                    RemoveItems(index, 1);
+                }
+                return true;
+            }
+            return false;
+
+            /* if (dockedItems.ContainsKey(index))
             {
                 var itemId = dockedItems[index].item.GetItemID();
                 if (!coolDownManager.IsInCoolDown(itemId))
@@ -131,7 +137,7 @@ namespace GameDevTV.Inventories
                 }
                 Debug.Log("Is in cooldown");
             }
-            return false;
+            return false; */
         }
 
         /// <summary>

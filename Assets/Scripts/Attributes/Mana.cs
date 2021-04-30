@@ -3,95 +3,82 @@ using GameDevTV.Saving;
 using RPG.Stats;
 using GameDevTV.Utils;
 using UnityEngine.Events;
-
+using System;
 
 namespace RPG.Attributes
 {
 
     public class Mana : MonoBehaviour, ISaveable
     {
-        [SerializeField] float manaRegenTime = 5;
-        [SerializeField] float regenartionPercentage = 70;
-        [SerializeField] LazyValue<float> manaPoints;
-     
-
-        //Cached
-        float timeSinceLastRegen = Mathf.Infinity;
-
-        private void Update()
-        {
-            timeSinceLastRegen += Time.deltaTime;
-            if (timeSinceLastRegen > manaRegenTime)
-            {
-                RestoreMana(Mathf.Round(GetMaxManaPoints() * 0.05f));
-                timeSinceLastRegen = 0;
-            }
-        }
-
+        [SerializeField] LazyValue<float> mana;
+        
         private void Awake()
         {
-            manaPoints = new LazyValue<float>(GetInitialMana);
-        }
-
-        private float GetInitialMana()
-        {
-            return GetComponent<BaseStats>().GetStat(Stat.Mana);
+            mana = new LazyValue<float>(GetMaxMana);
         }
 
         private void Start()
         {
-            manaPoints.ForceInit();
+            mana.ForceInit();
         }
 
-        private void OnEnable()
+        private void Update()
         {
-            GetComponent<BaseStats>().onLevelUp += RegenerateMana;
+           if (mana.value < GetMaxMana())
+           {
+               RegenerateMana(GetRegenerationRate() * Time.deltaTime);
+           }
         }
 
-        private void OnDisable()
+        public void RegenerateMana(float points)
         {
-            GetComponent<BaseStats>().onLevelUp -= RegenerateMana;
+            mana.value += points;
+            float maxMana = GetMaxMana();
+            if (mana.value > maxMana)
+            {
+                mana.value = maxMana;
+            }
         }
 
-        private void RegenerateMana()
+        public bool UseMana(float amount)
         {
-            float regenMP = GetComponent<BaseStats>().GetStat(Stat.Mana) * (regenartionPercentage / 100);
-            manaPoints.value = Mathf.Max(manaPoints.value, regenMP);
+            if (mana.value < amount)
+            {
+                return false;
+            }
+            mana.value -= amount;
+            return true;
         }
 
-        public void UseMana(float manaUsed)
+// Getters
+        public float GetMana()
         {
-            manaPoints.value = Mathf.Max(manaPoints.value - manaUsed, 0);  
+            return mana.value;
         }
 
-        public void RestoreMana(float manaToRestore)
-        {
-            manaPoints.value = Mathf.Min(manaPoints.value + manaToRestore, GetMaxManaPoints());
-        }
-
-        public float GetMaxManaPoints()
+        public float GetMaxMana()
         {
             return GetComponent<BaseStats>().GetStat(Stat.Mana);
         }
 
-        public float GetManaPoints()
-        {
-            return manaPoints.value;
-        }
-
         public float GetFraction()
         {
-            return manaPoints.value / GetComponent<BaseStats>().GetStat(Stat.Mana);
+            return mana.value / GetMaxMana();
+        }
+
+        private float GetRegenerationRate()
+        {
+            return GetComponent<BaseStats>().GetStat(Stat.ManaRegeneration);
         }
 
         public object CaptureState()
         {
-            return manaPoints.value;
+            return mana.value;
         }
 
         public void RestoreState(object state)
         {
-            manaPoints.value = (float)state;
+            mana.value = (float)state;
         }
     }
 }

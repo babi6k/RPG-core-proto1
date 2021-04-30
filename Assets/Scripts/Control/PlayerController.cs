@@ -45,7 +45,6 @@ namespace RPG.Control
                 Cursor.SetCursor(null,Vector2.zero,CursorMode.Auto);
                 return;
             }
-            UseAbilities();
             if (InteractWithUI()) return;
             if (health.IsDead())
             {
@@ -57,18 +56,6 @@ namespace RPG.Control
 
             SetCursor(CursorType.None);
           
-        }
-
-        private void UseAbilities()
-        {
-           ActionStore actionStore = GetComponent<ActionStore>();
-            for (int i = 0; i < 9; i++)
-            {
-                if (Input.GetKeyDown(KeyCode.Alpha1 + i))
-                {
-                    actionStore.Use(i, gameObject);
-                }
-            }
         }
 
         private bool InteractWithUI()

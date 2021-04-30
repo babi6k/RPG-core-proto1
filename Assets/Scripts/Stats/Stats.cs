@@ -6,6 +6,7 @@
         ExperienceReward,
         ExperienceToLevelUp,
         Damage,
-        Mana
+        Mana,
+        ManaRegeneration,
     }
 }

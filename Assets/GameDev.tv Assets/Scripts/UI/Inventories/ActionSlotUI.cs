@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using GameDevTV.Core.UI.Dragging;
 using GameDevTV.Inventories;
+using RPG.Inventories;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -17,38 +18,28 @@ namespace GameDevTV.UI.Inventories
         // CONFIG DATA
         [SerializeField] InventoryItemIcon icon = null;
         [SerializeField] int index = 0;
-        [SerializeField] GameObject coolDownEffect;
+        [SerializeField] GameObject coolDownEffect = null;
 
         // CACHE
         ActionStore store;
-        bool isInCooldown = false;
-        float timeSinceLastCoolDown = Mathf.Infinity;
-        float coolDownTime = 0;
+        CoolDownManager cooldownManager;
 
         // LIFECYCLE METHODS
         private void Awake()
         {
-            store = GameObject.FindGameObjectWithTag("Player").GetComponent<ActionStore>();
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            store = player.GetComponent<ActionStore>();
+            cooldownManager = player.GetComponent<CoolDownManager>();
             store.storeUpdated += UpdateIcon;
-            store.OnCoolDownApplied += UpdateCoolDown;
         }
 
         private void Update()
-        {
-            if (timeSinceLastCoolDown < coolDownTime)
+        { 
+            if (GetItem() != null) 
             {
-                coolDownEffect.GetComponent<Image>().fillAmount = timeSinceLastCoolDown / coolDownTime;
-                isInCooldown = true;
+                coolDownEffect.GetComponent<Image>().fillAmount = cooldownManager.GetFractionRemaining(GetItem().GetItemID());
             }
-            else
-            {
-                coolDownEffect.GetComponent<Image>().fillAmount = 0;
-                isInCooldown = false;
-            }
-            timeSinceLastCoolDown += Time.deltaTime;
         }
-
-
 
         // PUBLIC
 
@@ -82,19 +73,6 @@ namespace GameDevTV.UI.Inventories
         void UpdateIcon()
         {
             icon.SetItem(GetItem(), GetNumber());
-        }
-
-        void UpdateCoolDown(int index, float cooldownTime)
-        {
-            if (index == this.index)
-            {
-                coolDownEffect.GetComponent<Image>().fillAmount = 1;
-                if (timeSinceLastCoolDown > cooldownTime)
-                {
-                    timeSinceLastCoolDown = 0;
-                    this.coolDownTime = cooldownTime;
-                }
-            }
         }
 
         public void OnPointerClick(PointerEventData eventData)

@@ -15,7 +15,12 @@ namespace RPG.Inventories
 
         public override void Use(GameObject user)
         {
-            base.Use(user);
+            var cooldownManger = user.GetComponent<CoolDownManager>();
+            if (cooldownManger && cooldownManger.GetTimeRemaining(GetItemID()) > 0)
+            {
+                return;
+            }
+
             if (stat == Stat.Health)
             {
                 user.GetComponent<Health>().Heal(consumeValue);
@@ -23,8 +28,10 @@ namespace RPG.Inventories
 
             if (stat == Stat.Mana)
             {
-                user.GetComponent<Mana>().RestoreMana(consumeValue);
+                user.GetComponent<Mana>().RegenerateMana(consumeValue);
             }
+
+            cooldownManger.StartCoolDown(GetItemID(),GetCoolDownTime());
         }
 
         public override string GetDescription()
