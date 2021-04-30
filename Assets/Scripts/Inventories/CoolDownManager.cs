@@ -40,8 +40,7 @@ namespace RPG.Inventories
             if (remainingTime <= 0)
             {
                 return 0;
-            }
-            Debug.Log("Fraction Time = " + remainingTime / itemsInCoolDown[itemID].coolDownTime );
+            } 
             return remainingTime / itemsInCoolDown[itemID].coolDownTime;
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using GameDevTV.Inventories;
 using RPG.Attributes;
@@ -14,6 +15,8 @@ namespace RPG.Abilities
         [SerializeField] EffectStrategy[] effects;
         [SerializeField] float effectScale = 1;
         [SerializeField] float manaCost = 0;
+        [SerializeField] string animatorTrigger = null;
+        [SerializeField] bool turnToTarget = false;
 
         public override void Use(GameObject user)
         {
@@ -49,6 +52,17 @@ namespace RPG.Abilities
             foreach (var filter in filters)
             {
                 data.SetTargets(filter.Filter(data.GetTargets()));
+            }
+
+            if (!String.IsNullOrWhiteSpace(animatorTrigger))
+            {
+                var animator = data.GetSource().GetComponent<Animator>();
+                animator.SetTrigger(animatorTrigger);
+            }
+
+            if (turnToTarget)
+            {
+                data.GetSource().transform.LookAt(data.GetTargetPoint());
             }
 
             foreach (var effect in effects)

@@ -15,4 +15,5 @@ MonoBehaviour:
   amount: 1
   steps: 10
   totalTime: 5
+  initialDelay: 0.56
   effectPrefab: {fileID: 4786823529206182, guid: 13ab229db703576419115092137ad886, type: 3}
