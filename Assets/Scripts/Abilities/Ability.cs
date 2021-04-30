@@ -25,7 +25,7 @@ namespace RPG.Abilities
         {
             foreach (var filter in filters)
             {
-                data.SetTargets (filter.Filter(data.GetTargets()));
+                data.SetTargets(filter.Filter(data.GetTargets()));
             }
 
             foreach (var effect in effects)

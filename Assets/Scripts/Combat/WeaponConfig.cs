@@ -99,7 +99,6 @@ namespace RPG.Combat
 
         public override string GetDescription()
         {
-            Debug.Log("Creating Description");
             string result = projectile ? "Ranged Weapon" : "Melle Weapon";
             result += $"\n\n{base.GetDescription()}\n";
             result += $"\nRange {weaponRange} meters";
