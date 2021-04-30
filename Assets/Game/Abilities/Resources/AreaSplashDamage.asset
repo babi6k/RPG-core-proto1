@@ -96,3 +96,8 @@ MonoBehaviour:
   consumable: 0
   coolDownTime: 3
   targeting: {fileID: 11400000, guid: f93bf85bc481a7e40b990e7d9ded2eaf, type: 2}
+  filters:
+  - {fileID: 11400000, guid: 9ae84e28503fe96469e3fe47d74af7d0, type: 2}
+  effects:
+  - {fileID: 11400000, guid: 69352d415ec162a4b9786622f1ff22dd, type: 2}
+  effectScale: 10
