@@ -45,7 +45,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1586809926123038510}
-  - component: {fileID: 3123308700548537448}
+  - component: {fileID: 5366826336601799662}
   m_Layer: 5
   m_Name: Button Menu
   m_TagString: Untagged
@@ -71,12 +71,12 @@ RectTransform:
   m_Father: {fileID: 386674390908166189}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -115, y: -131}
-  m_SizeDelta: {x: 1181.9966, y: 292.74423}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 164.21, y: -473.29}
+  m_SizeDelta: {x: 290.833, y: 909.283}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3123308700548537448
+--- !u!114 &5366826336601799662
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,18 +85,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 6896966639636986619}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 30
-    m_Right: 30
-    m_Top: 30
-    m_Bottom: 30
-  m_ChildAlignment: 3
-  m_Spacing: 20
+    m_Right: 20
+    m_Top: 20
+    m_Bottom: 20
+  m_ChildAlignment: 7
+  m_Spacing: 50
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 0
+  m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
@@ -192,6 +192,30 @@ PrefabInstance:
     - target: {fileID: 406874594614160305, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Toggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameDevTV.UI.ShowHideUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 9143338775623627839, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
       propertyPath: m_Name
@@ -409,6 +433,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Toggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameDevTV.UI.ShowHideUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7034149835928403350, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
       propertyPath: m_text
       value: Quests
@@ -519,9 +567,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Toggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameDevTV.UI.ShowHideUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605751923885593050, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7034149835928403350, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
       propertyPath: m_text
-      value: Settings
+      value: 'Settings
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 8310674609853226049, guid: 6e5a1ffc963067e45b6a20a938aff99a, type: 3}
       propertyPath: m_Sprite

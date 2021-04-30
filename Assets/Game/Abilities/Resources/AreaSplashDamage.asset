@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 962a2d1d278c342b3a724dbd318fb123, type: 3}
-  m_Name: Helmet of Health
+  m_Script: {fileID: 11500000, guid: 29423d6bbcbb5fd4ca448fb8098f4b3d, type: 3}
+  m_Name: AreaSplashDamage
   m_EditorClassIdentifier: 
-  itemID: 5664805c-2965-46b9-b533-7023f6fa917c
-  displayName: Helmet of health
-  description: Common Helmet with inc health
-  icon: {fileID: 21300000, guid: dc1a801b6749046d5986a83b09c5bd1b, type: 3}
+  itemID: ba40858e-79c1-4b6c-8348-32db7d886648
+  displayName: Area Splash Damage
+  description: 
+  icon: {fileID: 21300000, guid: b0a08f35a207342c9a9e452f766ca3ee, type: 3}
   pickup: {fileID: 6494234044896430859, guid: ab73185f2dadf4445ae07e78eb669c1f, type: 3}
   stackable: 0
   price: 10
-  category: 1
+  category: 0
   foldoutStyle:
     m_Name: Foldout
     m_Normal:
@@ -93,8 +93,6 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  allowedEquipLocation: 0
-  addtiveModifers:
-  - stat: 0
-    value: 50
-  percentageModifiers: []
+  consumable: 0
+  coolDownTime: 3
+  targeting: {fileID: 11400000, guid: f93bf85bc481a7e40b990e7d9ded2eaf, type: 2}

@@ -4,6 +4,7 @@ using RPG.Attributes;
 using System;
 using UnityEngine.EventSystems;
 using UnityEngine.AI;
+using GameDevTV.Inventories;
 
 namespace RPG.Control
 {
@@ -25,6 +26,8 @@ namespace RPG.Control
 
         bool isDragginUI = false;
         Vector3 startingPosition;
+        Rect ScreenWindow = new Rect(0,0,Screen.width, Screen.height);
+
 
         public bool IsDragging() { return isDragginUI;}
         public Vector3 GetStartPos() {return startingPosition;}
@@ -37,6 +40,12 @@ namespace RPG.Control
 
         void Update()
         {
+            if(!ScreenWindow.Contains(Input.mousePosition)) 
+            {
+                Cursor.SetCursor(null,Vector2.zero,CursorMode.Auto);
+                return;
+            }
+            UseAbilities();
             if (InteractWithUI()) return;
             if (health.IsDead())
             {
@@ -48,6 +57,18 @@ namespace RPG.Control
 
             SetCursor(CursorType.None);
           
+        }
+
+        private void UseAbilities()
+        {
+           ActionStore actionStore = GetComponent<ActionStore>();
+            for (int i = 0; i < 9; i++)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+                {
+                    actionStore.Use(i, gameObject);
+                }
+            }
         }
 
         private bool InteractWithUI()
@@ -164,7 +185,7 @@ namespace RPG.Control
             return cursorMappings[0];
         }
 
-        private static Ray GetMouseRay()
+        public static Ray GetMouseRay()
         {
             return Camera.main.ScreenPointToRay(Input.mousePosition);
         }

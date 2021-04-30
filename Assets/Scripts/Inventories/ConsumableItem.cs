@@ -13,7 +13,6 @@ namespace RPG.Inventories
         [SerializeField] float consumeValue = 0;
         [SerializeField] Stat stat;
 
-
         public override void Use(GameObject user)
         {
             base.Use(user);
@@ -26,12 +25,10 @@ namespace RPG.Inventories
             {
                 user.GetComponent<Mana>().RestoreMana(consumeValue);
             }
-
         }
 
         public override string GetDescription()
         {
-            Debug.Log("Creating Description");
             string result = base.GetDescription()+"\n";
             result += $"This potion will restore {(int)consumeValue} {stat} points";
             return result;

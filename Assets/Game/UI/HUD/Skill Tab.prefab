@@ -376,6 +376,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillSlot (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8050891906428086606, guid: ae6e09287be1c43e1aa8a07066e9e410, type: 3}
+      propertyPath: index
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae6e09287be1c43e1aa8a07066e9e410, type: 3}
 --- !u!224 &177054709985418695 stripped
@@ -477,6 +481,10 @@ PrefabInstance:
     - target: {fileID: 7953978577508695729, guid: ae6e09287be1c43e1aa8a07066e9e410, type: 3}
       propertyPath: m_Name
       value: SkillSlot (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050891906428086606, guid: ae6e09287be1c43e1aa8a07066e9e410, type: 3}
+      propertyPath: index
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae6e09287be1c43e1aa8a07066e9e410, type: 3}
@@ -580,6 +588,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillSlot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8050891906428086606, guid: ae6e09287be1c43e1aa8a07066e9e410, type: 3}
+      propertyPath: index
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae6e09287be1c43e1aa8a07066e9e410, type: 3}
 --- !u!224 &5260451304161538451 stripped
@@ -681,6 +693,10 @@ PrefabInstance:
     - target: {fileID: 7953978577508695729, guid: ae6e09287be1c43e1aa8a07066e9e410, type: 3}
       propertyPath: m_Name
       value: SkillSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050891906428086606, guid: ae6e09287be1c43e1aa8a07066e9e410, type: 3}
+      propertyPath: index
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae6e09287be1c43e1aa8a07066e9e410, type: 3}

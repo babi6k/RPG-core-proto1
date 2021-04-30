@@ -5,21 +5,24 @@ using RPG.Attributes;
 using RPG.Combat;
 using RPG.Inventories;
 
-[CreateAssetMenu(menuName = ("RPG/Inventory/Spell"))]
-public class Spell : Skill
+namespace RPG.Inventories
 {
-     [SerializeField] Projectile projectile = null;
-
-    public override void Use(GameObject user)
+    [CreateAssetMenu(menuName = ("RPG/Inventory/Spell"))]
+    public class Spell : Skill
     {
-        base.Use(user);
-        user.GetComponent<Mana>().UseMana(GetManaAmount());
-        //var player = GameObject.FindWithTag("Player");
-        var target = user.GetComponent<Targetter>().currentTarget;
-        if (target == null)
+        [SerializeField] Projectile projectile = null;
+
+        public override void Use(GameObject user)
         {
-            return;
+            base.Use(user);
+            user.GetComponent<Mana>().UseMana(GetManaAmount());
+            //var player = GameObject.FindWithTag("Player");
+            var target = user.GetComponent<Targetter>().currentTarget;
+            if (target == null)
+            {
+                return;
+            }
+            user.GetComponent<Caster>().CastSpell(target.gameObject, GetSpellRange(), GetSpellDamage(), projectile);
         }
-        user.GetComponent<Caster>().CastSpell(target.gameObject,GetSpellRange(),GetSpellDamage(),projectile);
     }
 }
