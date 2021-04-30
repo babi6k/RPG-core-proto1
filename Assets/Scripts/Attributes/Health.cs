@@ -91,7 +91,7 @@ namespace RPG.Attributes
             if (isDead) return;
             isDead = true;
             GetComponent<Animator>().SetTrigger("die");
-            GetComponent<ActionScheduler>().CancelCurrentAction();
+            GetComponent<ActionScheduler>().CancelCurrentAction(100);
         }
 
         private void AwardExperience(GameObject instigator)
@@ -120,13 +120,6 @@ namespace RPG.Attributes
             {
                 Die();
             }
-        }
-
-        private void DeadAlready()
-        {
-            isDead = true;
-            GetComponent<Animator>().SetTrigger("deadAlready");
-            GetComponent<ActionScheduler>().CancelCurrentAction();
-        }
+        }  
     }
 }

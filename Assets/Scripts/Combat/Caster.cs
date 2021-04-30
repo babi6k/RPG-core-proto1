@@ -1,4 +1,4 @@
-﻿using RPG.Attributes;
+﻿/* using RPG.Attributes;
 using RPG.Core;
 using RPG.Movement;
 using System;
@@ -129,3 +129,4 @@ namespace RPG.Combat
         }
     }
 }
+ */

@@ -17,7 +17,7 @@ public class ModelBone : MonoBehaviour
     private void OnEnable()
     {
         player.SetHandTransfroms(rightHand, leftHand);
-        player.GetComponent<Caster>().SetHandTransfroms(leftHand);
+        //player.GetComponent<Caster>().SetHandTransfroms(leftHand);
     }
 
 }

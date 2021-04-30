@@ -19,6 +19,6 @@ public class AOESpell : Skill
         {
             return;
         }
-        user.GetComponent<Caster>().CastAOE(target.gameObject,GetSpellRange(),GetSpellDamage(),AoeEffect);
+        //user.GetComponent<Caster>().CastAOE(target.gameObject,GetSpellRange(),GetSpellDamage(),AoeEffect);
     }
 }

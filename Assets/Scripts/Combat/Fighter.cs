@@ -4,18 +4,15 @@ using RPG.Movement;
 using GameDevTV.Saving;
 using RPG.Attributes;
 using RPG.Stats;
-using System.Collections.Generic;
 using GameDevTV.Utils;
 using System;
 using GameDevTV.Inventories;
-using System.Collections;
 
 namespace RPG.Combat
 {
 
     public class Fighter : MonoBehaviour, IAction,ISaveable
     {
-        
         [SerializeField] float timeBetweenAttacks = 0.7f;
         [SerializeField] Transform rightHandTransform = null;
         [SerializeField] Transform leftHandTransform = null;
@@ -23,6 +20,7 @@ namespace RPG.Combat
 
         Health target;
         Equipment equipment;
+        ActionScheduler actionScheduler;
         Animator animator;
         float timeSinceLastAttack = Mathf.Infinity;
         WeaponConfig currentWeaponConfig;
@@ -30,6 +28,7 @@ namespace RPG.Combat
 
         private void Awake()
         {
+            actionScheduler = GetComponent<ActionScheduler>();
             equipment = GetComponent<Equipment>();
             animator = GetComponent<Animator>();
             if (equipment)
@@ -56,7 +55,7 @@ namespace RPG.Combat
             timeSinceLastAttack += Time.deltaTime;
             if (target == null) return;
             if (target.IsDead()) return;
-
+            if (!actionScheduler.IsCurrentAction(this)) return;
             if (!GetIsInRange(target.transform))
             {//Moving to range to attack
                 GetComponent<Mover>().MoveTo(target.transform.position,1f);  
@@ -67,15 +66,12 @@ namespace RPG.Combat
                 GetComponent<Mover>().Cancel();
                 AttackBehavior();
             }
-
         }
 
         public WeaponConfig GetWeapon()
         {
             return currentWeaponConfig;
         }
-
-       
 
         private void AttackBehavior()
         {
@@ -94,9 +90,7 @@ namespace RPG.Combat
             animator.ResetTrigger("stopAttack");
             animator.SetTrigger("attack");
         }
-
-
-
+        
         //Animation Event
         public void Hit()
         {
@@ -151,7 +145,7 @@ namespace RPG.Combat
 
         public void Attack(GameObject combatTarget)
         {
-            GetComponent<ActionScheduler>().StartAction(this);
+            actionScheduler.StartAction(this, 1, 2);
             target = combatTarget.GetComponent<Health>();
         }
 
@@ -189,7 +183,6 @@ namespace RPG.Combat
             {
                 EquipWeapon(weapon);
             }
-        
         }
 
         private Weapon AttachWeapon(WeaponConfig weapon)
@@ -214,6 +207,10 @@ namespace RPG.Combat
             WeaponConfig weapon = UnityEngine.Resources.Load<WeaponConfig>(weaponName);
             EquipWeapon(weapon);
         }
-        
+
+        public void Activate()
+        {
+            
+        }
     }
 }

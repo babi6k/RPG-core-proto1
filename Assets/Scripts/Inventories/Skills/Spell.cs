@@ -22,7 +22,7 @@ namespace RPG.Inventories
             {
                 return;
             }
-            user.GetComponent<Caster>().CastSpell(target.gameObject, GetSpellRange(), GetSpellDamage(), projectile);
+            //user.GetComponent<Caster>().CastSpell(target.gameObject, GetSpellRange(), GetSpellDamage(), projectile);
         }
     }
 }

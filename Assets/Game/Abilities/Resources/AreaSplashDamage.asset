@@ -102,3 +102,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 69352d415ec162a4b9786622f1ff22dd, type: 2}
   effectScale: 10
   manaCost: 50
+  animatorTrigger: cast
+  turnToTarget: 1
