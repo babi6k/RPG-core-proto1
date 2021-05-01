@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 015886fcd3a2759438778f47fbbbd0c1, type: 3}
-  m_Name: DamageEffect
+  m_Script: {fileID: 11500000, guid: 0305f6b41e823b1468742cbe23953254, type: 3}
+  m_Name: PlayerFilter
   m_EditorClassIdentifier: 
-  amount: 1
-  steps: 5
-  totalTime: 5
-  initialDelay: 0.56
-  effectSize: 0.7
-  effectPrefab: {fileID: 4611121209224498, guid: 02470c08868b9254c8b82e0349663901, type: 3}
+  tagToInclude: Player
