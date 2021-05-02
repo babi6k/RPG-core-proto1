@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using RPG.Inventories;
 using UnityEngine;
 
 namespace RPG.Abilities
@@ -35,6 +35,11 @@ namespace RPG.Abilities
         public float GetEffectScaling()
         {
             return effectScale;
+        }
+
+        public MonoBehaviour GetCorutineOwner()
+        {
+            return source.GetComponent<CoolDownManager>();
         }
 
         public GameObject GetSource()

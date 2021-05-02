@@ -44,6 +44,18 @@ namespace RPG.Combat
             return AttachWeapon(defaultWeapon);
         }
 
+        public Transform GetHandTransform(bool useRightHand)
+        {
+            if (useRightHand)
+            {
+                return rightHandTransform;
+            }
+            else
+            {
+                return leftHandTransform;
+            }
+        }
+
         private void Start()
         {
             currentWeapon.ForceInit();

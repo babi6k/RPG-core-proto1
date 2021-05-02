@@ -1,6 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using RPG.Abilities.Helpers;
+using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Abilities.Targeting
@@ -8,9 +8,13 @@ namespace RPG.Abilities.Targeting
     [CreateAssetMenu(fileName = "TargetingDemo", menuName = "Abilities/Targeting/Demo", order = 0)]
     public class DemoTargeting : TargetingStrategy
     {
-        public override void StartTargeting(TargetingData data, Action<TargetingData> callback)
+        public override IAction MakeAction(TargetingData data, Action<TargetingData> callback)
         {
-            Debug.Log("Demo!");
+            return new LambdaAction(() => 
+            {
+                Debug.Log("Demo Targetting");
+                callback(data);
+            });
         }
     }
 }

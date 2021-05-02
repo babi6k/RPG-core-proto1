@@ -18,30 +18,42 @@ namespace RPG.Abilities.Targeting
 
         Transform targetingCircle;
 
-        public override void StartTargeting(TargetingData data, Action<TargetingData> callback)
+        public override IAction MakeAction(TargetingData data, Action<TargetingData> callback)
         {
-            new TargetingAction(this, data, callback);
+           return new TargetingAction(this, data, callback);
         }
 
         class TargetingAction : IAction
         {
             PlayerController playerController = null;
             DelayedClickTargeting strategy;
+            private readonly TargetingData data;
+            private readonly Action<TargetingData> callback;
             Coroutine targetingRoutine;
-            ActionScheduler scheduler;
 
-            public TargetingAction(DelayedClickTargeting newStrategy, TargetingData data, Action<TargetingData> callback)
+            public TargetingAction(DelayedClickTargeting newStrategy, TargetingData newData, Action<TargetingData> newCallback)
             {
                 strategy = newStrategy;
+                data = newData;
+                callback = newCallback;
+            }
+
+            public void Activate()
+            {
                 playerController = data.GetSource().GetComponent<PlayerController>();
-                scheduler = data.GetSource().GetComponent<ActionScheduler>();
-                scheduler.StartAction(this, 2, 3);
                 targetingRoutine = playerController.StartCoroutine(Targeting(data, callback));
+            }
+
+            public void Cancel()
+            {
+                playerController.StopCoroutine(targetingRoutine);
+                strategy.targetingCircle.gameObject.SetActive(false);
+                Destroy(strategy.targetingCircle.gameObject);
+                playerController.enabled = true;
             }
 
             private IEnumerator Targeting(TargetingData data, Action<TargetingData> callback)
             {
-                yield return new WaitUntil(() => scheduler.IsCurrentAction(this));
                 playerController.enabled = false;
                 if (!strategy.targetingCircle) strategy.targetingCircle = Instantiate(strategy.targettingCirclePrefab);
                 Transform targetingCircle = strategy.targetingCircle;
@@ -65,7 +77,6 @@ namespace RPG.Abilities.Targeting
                             // Capture the whole of this mouse click so we don't move
                             yield return new WaitWhile(() => Input.GetMouseButton(0));
                             if (callback != null) callback(data);
-                            scheduler.FinishAction(this);
                             Cancel();
                             yield break;
                         }
@@ -85,19 +96,6 @@ namespace RPG.Abilities.Targeting
                 {
                     yield return hit.transform.gameObject;
                 }
-            }
-
-            public void Activate()
-            {
-
-            }
-
-            public void Cancel()
-            {
-                playerController.StopCoroutine(targetingRoutine);
-                strategy.targetingCircle.gameObject.SetActive(false);
-                Destroy(strategy.targetingCircle.gameObject);
-                playerController.enabled = true;
             }
         }
     }

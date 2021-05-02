@@ -312,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8758001748176721590}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.09, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1599476108893881502}
@@ -337,7 +337,7 @@ MonoBehaviour:
   hitEffect: {fileID: 100010, guid: 889aa9b334b90774cae1b1d6d6689610, type: 3}
   maxLifeTime: 10
   destroyOnHit:
-  - {fileID: 0}
+  - {fileID: 1596192692107653002}
   lifeAfterImpact: 0.2
   onHit:
     m_PersistentCalls:
@@ -445,6 +445,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da8b9e6d656044e4e86d0393c62f1309, type: 3}
+--- !u!1 &1596192692107653002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1299427109253144, guid: da8b9e6d656044e4e86d0393c62f1309, type: 3}
+  m_PrefabInstance: {fileID: 1594921990318497682}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1599476108893881502 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4563052246375180, guid: da8b9e6d656044e4e86d0393c62f1309, type: 3}

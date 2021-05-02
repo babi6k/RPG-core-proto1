@@ -51,11 +51,25 @@ namespace RPG.Control
                 SetCursor(CursorType.None);
                 return;
             }
+
+            UseAbilities();
             if (InteractWithComponent()) return;
             if (InteractWithMovement()) return;
 
             SetCursor(CursorType.None);
           
+        }
+
+        private void UseAbilities()
+        {
+            ActionStore actionStore = GetComponent<ActionStore>();
+            for (int i = 0; i < 9; i++)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+                {
+                    actionStore.Use(i, gameObject);
+                }
+            }
         }
 
         private bool InteractWithUI()
