@@ -70,12 +70,12 @@ namespace RPG.Abilities.Targeting
                         targetingCircle.localScale = new Vector3(strategy.areaOfEffectRadius * 2,
                          1, strategy.areaOfEffectRadius * 2);
 
-                        if (Input.GetMouseButton(0))
+                        if (Input.GetMouseButtonDown(0))
                         {
                             data.SetTarget(mouseHit.point);
                             data.SetTargets(GetGameObjectsInArea(mouseHit.point));
                             // Capture the whole of this mouse click so we don't move
-                            yield return new WaitWhile(() => Input.GetMouseButton(0));
+                            yield return new WaitWhile(() => Input.GetMouseButtonDown(0));
                             if (callback != null) callback(data);
                             Cancel();
                             yield break;

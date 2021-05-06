@@ -15,6 +15,9 @@ namespace RPG.Combat
         [SerializeField] GameObject[] destroyOnHit = null;
         [SerializeField] float lifeAfterImpact = 2;
         [SerializeField] UnityEvent onHit;
+        [Header("Effects")]
+        [SerializeField] Transform effectProejctile;
+        [SerializeField] float effectSize;
 
         Vector3 targetPosition;
         Health target = null;
@@ -45,15 +48,22 @@ namespace RPG.Combat
          Vector3 targetPosition, GameObject instigator, float calculatedDamage, Health target = null)
         {
             Projectile projectileInstance = Instantiate(projectile, position, Quaternion.identity);
-            projectileInstance.SetTarget(targetPosition, target, instigator, calculatedDamage);
+            projectileInstance.SetTarget(targetPosition, target, instigator, calculatedDamage,position);
         }
 
-        private void SetTarget(Vector3 targetPosition, Health target, GameObject instigator, float damage)
+        private void SetTarget(Vector3 targetPosition, Health target, GameObject instigator, float damage, Vector3 effectPos)
         {
             this.targetPosition = targetPosition;
             this.target = target;
             this.damage = damage;
             this.instigator = instigator;
+            if (effectProejctile != null)
+            {
+                var effect = Instantiate(effectProejctile,effectPos,Quaternion.identity);
+                //effect.position = effectPos;
+                effect.localScale = new Vector3(effectSize,effectSize,effectSize);
+                effect.parent = transform;
+            }
 
             Destroy(gameObject, maxLifeTime);
         }
@@ -78,7 +88,7 @@ namespace RPG.Combat
             if (target != null && health != target) return;
             if (health == null || health.IsDead() || other.gameObject == instigator) return;
 
-            target.TakeDamage(instigator, damage);
+            health.TakeDamage(instigator, damage);
             speed = 0;
             onHit.Invoke();
 

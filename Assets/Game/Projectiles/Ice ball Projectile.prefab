@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7025783941459991585
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6174944197792845845, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: isHoming
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: hitEffect
+      value: 
+      objectReference: {fileID: 100010, guid: 889aa9b334b90774cae1b1d6d6689610, type: 3}
+    - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: effectSize
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: effectProejctile
+      value: 
+      objectReference: {fileID: 4563052246375180, guid: da8b9e6d656044e4e86d0393c62f1309, type: 3}
+    - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: destroyOnHit.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: destroyOnHit.Array.data[0]
+      value: 
+      objectReference: {fileID: 1481391617662624788}
+    - target: {fileID: 8434798546218678325, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: m_Name
+      value: Ice ball Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434798546218678327, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434798546218678327, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434798546218678327, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434798546218678327, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434798546218678327, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434798546218678327, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434798546218678327, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434798546218678327, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434798546218678327, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434798546218678327, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434798546218678327, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+--- !u!1 &1481391617662624788 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8434798546218678325, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+  m_PrefabInstance: {fileID: 7025783941459991585}
+  m_PrefabAsset: {fileID: 0}

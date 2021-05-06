@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnDelay: 0.56
   damage: 1
-  projectilePrefab: {fileID: 7499477240109984098, guid: 48632460ae385439ea7f5267a76a71d9, type: 3}
+  projectilePrefab: {fileID: 4363093564197430368, guid: 30bbf4e6176b67546aca79665180a790, type: 3}
   useRightHand: 0
