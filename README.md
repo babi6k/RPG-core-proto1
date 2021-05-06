@@ -1,5 +1,7 @@
 # RPG Core Prototype
- Inventory And Core Combat Done
+ Inventory And Core Combat Done , Dialogue Done , Quests need to be Upgraded
+ 
+ This game is an action classic Rpg 
 
 Copyright <2020> <Yaniv Hayat>
 
