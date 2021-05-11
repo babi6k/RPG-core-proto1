@@ -2,7 +2,6 @@
 {
     public interface IAction
     {
-        void Activate();
         void Cancel();
     }
 

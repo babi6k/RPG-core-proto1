@@ -8,14 +8,11 @@ namespace RPG.Abilities.Targeting
     [CreateAssetMenu(fileName = "SelfTargeting", menuName = "Abilities/Targeting/Self", order = 0)]
     public class SelfTargeting : TargetingStrategy
     {
-        public override IAction MakeAction(TargetingData data, Action<TargetingData> callback)
+        public override void StartTargeting(AbilityData data, Action finished)
         {
-            return new LambdaAction(() => 
-            {
-                data.SetTarget(data.GetSource().transform.position);
-                data.SetTargets(new GameObject[]{ data.GetSource() });
-                callback(data);
-            });
+            data.SetTargets(new GameObject[]{data.GetUser()});
+            data.SetTargetedPoint(data.GetUser().transform.position);
+            finished();
         }
     }
 }

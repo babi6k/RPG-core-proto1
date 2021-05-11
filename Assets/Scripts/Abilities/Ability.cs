@@ -11,15 +11,10 @@ namespace RPG.Abilities
     [CreateAssetMenu(fileName = "MyAbility", menuName = "Abilities/Ability", order = 0)]
     public class Ability : ActionItem
     {
-        [SerializeField] TargetingStrategy targeting;
-        [SerializeField] FilterStrategy[] filters;
-        [SerializeField] EffectStrategy[] effects;
-        [SerializeField] float effectScale = 1;
+        [SerializeField] TargetingStrategy targetingStrategy;
+        [SerializeField] FilterStrategy[] filterStrategies;
+        [SerializeField] EffectStrategy[] effectStrategies;
         [SerializeField] float manaCost = 0;
-        [SerializeField] string animatorTrigger = null;
-        [SerializeField] bool turnToTarget = false;
-        [SerializeField] int actionPriority = 3;
-        [SerializeField] int cancelAllActionsLowerThan = 3;
 
         public override void Use(GameObject user)
         {
@@ -34,88 +29,41 @@ namespace RPG.Abilities
                 return;
             }
 
+            AbilityData data = new AbilityData(user);
+
             ActionScheduler scheduler = user.GetComponent<ActionScheduler>();
-            scheduler.StartAction(new AbilityAction(this, scheduler, user), actionPriority, cancelAllActionsLowerThan);
+            scheduler.StartAction(data);
+
+            targetingStrategy.StartTargeting(data, () => {
+                TargetAquired(data);
+            });
         }
 
-        public class AbilityAction : IAction
+        private void TargetAquired(AbilityData data)
         {
-            Ability parent;
-            ActionScheduler scheduler;
-            GameObject user;
-            List<IAction> activeActions = new List<IAction>();
+            if (data.IsCancelled()) return;
 
-            public AbilityAction(Ability newParent, ActionScheduler newScheduler, GameObject newUser)
+            Mana mana = data.GetUser().GetComponent<Mana>();
+            if (!mana.UseMana(manaCost)) return;
+
+            CoolDownManager coolDownManager = data.GetUser().GetComponent<CoolDownManager>();
+            coolDownManager.StartCoolDown(GetItemID(), GetCoolDownTime());
+
+            foreach (var filterStrategy in filterStrategies)
             {
-                parent = newParent;
-                scheduler = newScheduler;
-                user = newUser;
+                data.SetTargets(filterStrategy.Filter(data.GetTargets()));
             }
-            public void Activate()
+            
+            foreach (var effect in effectStrategies)
             {
-                if (parent.targeting != null)
-                {
-                    var targetingData = new TargetingData(parent.effectScale, user);
-                    TrackAndActivate(parent.targeting.MakeAction(targetingData, TargetAquired));
-                }
+                effect.StartEffect(data, EffectFinished);
             }
+        }
 
-            public void Cancel()
-            {
-                foreach (var action in activeActions)
-                {
-                    action.Cancel();
-                }
-                activeActions.Clear();
-            }
-
-            private void TargetAquired(TargetingData data)
-            {
-                activeActions.Clear();
-
-                if (parent.manaCost > 0)
-                {
-                    var mana = data.GetSource().GetComponent<Mana>();
-                    if (!mana.UseMana(parent.manaCost)) return;
-                }
-                var cooldownManager = data.GetSource().GetComponent<CoolDownManager>();
-                if (cooldownManager)
-                {
-                    cooldownManager.StartCoolDown(parent.GetItemID(), parent.GetCoolDownTime());
-                }
-                foreach (var filter in parent.filters)
-                {
-                    data.SetTargets(filter.Filter(data.GetTargets()));
-                }
-
-                if (!String.IsNullOrWhiteSpace(parent.animatorTrigger))
-                {
-                    var animator = data.GetSource().GetComponent<Animator>();
-                    animator.SetTrigger(parent.animatorTrigger);
-                }
-
-                if (parent.turnToTarget)
-                {
-                    data.GetSource().transform.LookAt(data.GetTargetPoint());
-                }
-
-                foreach (var effect in parent.effects)
-                {
-                    TrackAndActivate(effect.MakeAction(data, EffectFinished));
-                }
-            }
-
-            private void EffectFinished()
-            {
-                activeActions.Clear();
-                scheduler.FinishAction(this);
-            }
-
-            private void TrackAndActivate(IAction action)
-            {
-                activeActions.Add(action);
-                action.Activate();
-            }
+        private void EffectFinished()
+        {
+            
         }
     }
+
 }

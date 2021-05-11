@@ -15,11 +15,12 @@ namespace RPG.Combat
         [SerializeField] GameObject[] destroyOnHit = null;
         [SerializeField] float lifeAfterImpact = 2;
         [SerializeField] UnityEvent onHit;
+        [SerializeField] Transform effectSpawner;
         [Header("Effects")]
         [SerializeField] Transform effectProejctile;
         [SerializeField] float effectSize;
 
-        Vector3 targetPosition;
+        Vector3 targetPoint;
         Health target = null;
         GameObject instigator = null;
         float damage = 0;
@@ -38,31 +39,29 @@ namespace RPG.Combat
             transform.Translate(Vector3.forward * Time.deltaTime * speed);
         }
 
-        public static void Launch(Projectile projectile, Vector3 position,
-         Health target, GameObject instigator, float calculatedDamage)
+        public void SetTarget(Health target, GameObject instigator, float damage)
         {
-            Launch(projectile, position, target.transform.position, instigator, calculatedDamage, target);
+            SetTarget(instigator, damage, target);
         }
 
-        public static void Launch(Projectile projectile, Vector3 position,
-         Vector3 targetPosition, GameObject instigator, float calculatedDamage, Health target = null)
+        public void SetTarget(Vector3 targetPoint, GameObject instigator, float damage)
         {
-            Projectile projectileInstance = Instantiate(projectile, position, Quaternion.identity);
-            projectileInstance.SetTarget(targetPosition, target, instigator, calculatedDamage,position);
+            SetTarget(instigator, damage, null, targetPoint);
         }
 
-        private void SetTarget(Vector3 targetPosition, Health target, GameObject instigator, float damage, Vector3 effectPos)
+
+        private void SetTarget(GameObject instigator, float damage, Health target = null, Vector3 targetPoint = default)
         {
-            this.targetPosition = targetPosition;
+            this.targetPoint = targetPoint;
             this.target = target;
             this.damage = damage;
             this.instigator = instigator;
             if (effectProejctile != null)
             {
-                var effect = Instantiate(effectProejctile,effectPos,Quaternion.identity);
+                var effect = Instantiate(effectProejctile,transform.position,Quaternion.identity);
                 //effect.position = effectPos;
                 effect.localScale = new Vector3(effectSize,effectSize,effectSize);
-                effect.parent = transform;
+                effect.parent = effectSpawner;
             }
 
             Destroy(gameObject, maxLifeTime);
@@ -72,7 +71,7 @@ namespace RPG.Combat
         {
             if (target == null)
             {
-                return targetPosition;
+                return targetPoint;
             }
             CapsuleCollider targetCapsule = target.GetComponent<CapsuleCollider>();
             if (targetCapsule == null)
@@ -86,7 +85,8 @@ namespace RPG.Combat
         {
             Health health = other.GetComponent<Health>();
             if (target != null && health != target) return;
-            if (health == null || health.IsDead() || other.gameObject == instigator) return;
+            if (health == null || health.IsDead()) return;
+            if (other.gameObject == instigator) return;
 
             health.TakeDamage(instigator, damage);
             speed = 0;
@@ -94,7 +94,8 @@ namespace RPG.Combat
 
             if (hitEffect != null)
             {
-                Instantiate(hitEffect, GetAimLocation(), transform.rotation);
+                var hitEffectInstance = Instantiate(hitEffect, GetAimLocation(), transform.rotation);
+                hitEffectInstance.transform.parent = transform;
             }
 
             foreach (GameObject toDestroy in destroyOnHit)

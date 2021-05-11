@@ -8,13 +8,10 @@ namespace RPG.Abilities.Targeting
     [CreateAssetMenu(fileName = "TargetingDemo", menuName = "Abilities/Targeting/Demo", order = 0)]
     public class DemoTargeting : TargetingStrategy
     {
-        public override IAction MakeAction(TargetingData data, Action<TargetingData> callback)
+        public override void StartTargeting(AbilityData data, Action finished)
         {
-            return new LambdaAction(() => 
-            {
-                Debug.Log("Demo Targetting");
-                callback(data);
-            });
+            Debug.Log("Demo Targeting Started");
+            finished();
         }
     }
 }

@@ -12,21 +12,29 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: speed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
       propertyPath: isHoming
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
       propertyPath: hitEffect
       value: 
-      objectReference: {fileID: 100010, guid: 889aa9b334b90774cae1b1d6d6689610, type: 3}
+      objectReference: {fileID: 1245966705752388, guid: a2817e105c7676447a5a4ba002ae2c28, type: 3}
     - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
       propertyPath: effectSize
-      value: 0.35
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: effectSpawner
+      value: 
+      objectReference: {fileID: 2349392863182423680}
     - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
       propertyPath: effectProejctile
       value: 
-      objectReference: {fileID: 4563052246375180, guid: da8b9e6d656044e4e86d0393c62f1309, type: 3}
+      objectReference: {fileID: 4760327381794736, guid: c8224dfdc446035478f98b84f23535dc, type: 3}
     - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
       propertyPath: destroyOnHit.Array.size
       value: 1
@@ -34,7 +42,7 @@ PrefabInstance:
     - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
       propertyPath: destroyOnHit.Array.data[0]
       value: 
-      objectReference: {fileID: 1481391617662624788}
+      objectReference: {fileID: 4604709524404848901}
     - target: {fileID: 8434798546218678325, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
       propertyPath: m_Name
       value: Ice ball Projectile
@@ -85,8 +93,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
---- !u!1 &1481391617662624788 stripped
+--- !u!1 &4604709524404848901 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 8434798546218678325, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6802598929048245540, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+  m_PrefabInstance: {fileID: 7025783941459991585}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2349392863182423680 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4691098356415355553, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
   m_PrefabInstance: {fileID: 7025783941459991585}
   m_PrefabAsset: {fileID: 0}

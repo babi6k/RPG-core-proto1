@@ -5,6 +5,6 @@ namespace RPG.Abilities
 {
     public abstract class EffectStrategy : ScriptableObject
     {
-        public abstract IAction MakeAction(TargetingData data, Action complete);
+        public abstract void StartEffect(AbilityData data, Action complete);
     }
 }

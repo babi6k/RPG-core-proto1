@@ -12,11 +12,10 @@ namespace RPG.Movement
     {
         [SerializeField] float maxSpeed = 6f;
         [SerializeField] float maxNavPathLength = 30f;
+
         NavMeshAgent navMeshAgent;
         Health health;
         ActionScheduler actionScheduler;
-        Vector3 requestedDestination;
-        float requestedSpeedFraction;
         Animator animator;
 
         private void Awake()
@@ -33,20 +32,14 @@ namespace RPG.Movement
         void Update()
         {
             navMeshAgent.enabled = !health.IsDead();
-            if (actionScheduler.IsCurrentAction(this))
-            {
-                MoveTo(requestedDestination, requestedSpeedFraction);
-            }
-
             UpdateAnimator();
         }
 
         //Moving to a point in the world
         public void StartMoveAction(Vector3 destination, float speedFraction)
         {
-            actionScheduler.StartAction(this, 1, 2);
-            requestedDestination = destination;
-            requestedSpeedFraction = speedFraction;
+            actionScheduler.StartAction(this);
+            MoveTo(destination,speedFraction);
         }
 
         public bool CanMoveTo(Vector3 destination)
@@ -118,12 +111,7 @@ namespace RPG.Movement
             transform.position = data.position.ToVector();
             transform.eulerAngles = data.rotation.ToVector();
             navMeshAgent.enabled = true;
-            GetComponent<ActionScheduler>().CancelCurrentAction(2);
-        }
-
-        public void Activate()
-        {
-            
+            GetComponent<ActionScheduler>().CancelCurrentAction();
         }
     }
 }

@@ -89,12 +89,11 @@ MonoBehaviour:
     m_StretchHeight: 0
   consumable: 0
   coolDownTime: 3
-  targeting: {fileID: 11400000, guid: f93bf85bc481a7e40b990e7d9ded2eaf, type: 2}
-  filters:
+  targetingStrategy: {fileID: 11400000, guid: f93bf85bc481a7e40b990e7d9ded2eaf, type: 2}
+  filterStrategies:
   - {fileID: 11400000, guid: 9ae84e28503fe96469e3fe47d74af7d0, type: 2}
-  effects:
-  - {fileID: 11400000, guid: 2245e483370d84e42b8a414d6ef92988, type: 2}
-  effectScale: 50
+  effectStrategies:
+  - {fileID: 11400000, guid: 569180ec42e7e36419b0b2472f6207f3, type: 2}
+  - {fileID: 11400000, guid: e13034dfbe374b148a049e07013724be, type: 2}
+  - {fileID: 11400000, guid: 5e75e74f9c0beed49ab447c7b71b1fa8, type: 2}
   manaCost: 70
-  animatorTrigger: cast
-  turnToTarget: 1

@@ -12,67 +12,40 @@ namespace RPG.Abilities.Targeting
     {
         [SerializeField] LayerMask castingLayer;
         [SerializeField] float groundOffset = 1;
-        [SerializeField] Texture2D effectCursor;
+        [SerializeField] Texture2D cursorTexture;
         [SerializeField] Vector2 cursorHotspot;
-        [SerializeField] float areaOfEffectRadius;
 
-         public override IAction MakeAction(TargetingData data, Action<TargetingData> callback)
+        public override void StartTargeting(AbilityData data, Action finished)
         {
-            return new TargetingAction(this,data,callback);
+            PlayerController playerController = data.GetUser().GetComponent<PlayerController>();
+            playerController.StartCoroutine(Targeting(data, playerController, finished));
         }
 
-        class TargetingAction : IAction
+
+        private IEnumerator Targeting(AbilityData data, PlayerController playerController, Action finished)
         {
-            PlayerController playerController = null;
-            DirectionalTargeting strategy;
-            private readonly TargetingData data;
-            private readonly Action<TargetingData> callback;
-            Coroutine targetingRoutine;
-
-            public TargetingAction(DirectionalTargeting newStrategy, TargetingData newData, Action<TargetingData> newCallback)
+            playerController.enabled = false;
+            while (!data.IsCancelled())
             {
-                strategy = newStrategy;
-                data = newData;
-                callback = newCallback;
-            }
+                Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
 
-            public void Activate()
-            {
-                playerController = data.GetSource().GetComponent<PlayerController>();
-                targetingRoutine = playerController.StartCoroutine(Targeting(data, callback));
-            }
-
-            public void Cancel()
-            {
-               playerController.StopCoroutine(targetingRoutine);
-               playerController.enabled = true;
-            }
-
-             private IEnumerator Targeting(TargetingData data, Action<TargetingData> callback)
-            {
-                playerController.enabled = false;
-                while (true)
+                RaycastHit mouseHit;
+                Ray ray = PlayerController.GetMouseRay();
+                if (Physics.Raycast(ray, out mouseHit, 100, castingLayer))
                 {
-                    Cursor.SetCursor(strategy.effectCursor, strategy.cursorHotspot, CursorMode.Auto);
 
-                    RaycastHit mouseHit;
-                    Ray ray = PlayerController.GetMouseRay();
-                    if (Physics.Raycast(ray, out mouseHit, 100, strategy.castingLayer))
+                    if (Input.GetMouseButtonDown(0))
                     {
-
-                        if (Input.GetMouseButtonDown(0))
-                        {
-                            data.SetTarget(mouseHit.point + strategy.groundOffset / ray.direction.y * ray.direction);
-                            // Capture the whole of this mouse click so we don't move
-                            yield return new WaitWhile(() => Input.GetMouseButtonDown(0));
-                            if (callback != null) callback(data);
-                            Cancel();
-                            yield break;
-                        }
+                        // Capture the whole of this mouse click so we don't move
+                        yield return new WaitWhile(() => Input.GetMouseButtonDown(0));
+                        data.SetTargetedPoint(mouseHit.point + groundOffset / ray.direction.y * ray.direction);
+                        break;
                     }
-                    yield return null;
                 }
+                yield return null;
             }
+            playerController.enabled = true;
+            finished();
         }
     }
 }

@@ -75,8 +75,8 @@ namespace RPG.Combat
 
         public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target, GameObject instigator, float calculatedDamage)
         {
-            Vector3 position = GetTransform(rightHand,leftHand).position;
-            Projectile.Launch(projectile , position, target, instigator, calculatedDamage);
+            Projectile projectileInstance = Instantiate(projectile, GetTransform(rightHand, leftHand).position, Quaternion.identity);
+            projectileInstance.SetTarget(target, instigator, calculatedDamage);
         }
 
         public IEnumerable<float> GetAdditiveModifiers(Stat stat)
@@ -104,7 +104,7 @@ namespace RPG.Combat
             if ((int)percentageBonus != 0)
             {
                 string bonus = percentageBonus > 0 ? "<color=#8888ff>bonus</color>" : "<color=#ff8888>penalty</color>";
-                result += $"\n{(int) percentageBonus} percent {bonus} to attack.";
+                result += $"\n{(int)percentageBonus} percent {bonus} to attack.";
             }
             return result;
         }
@@ -173,7 +173,7 @@ namespace RPG.Combat
         public override void DrawCustomInspector()
         {
             base.DrawCustomInspector();
-            drawWeaponConfig = EditorGUILayout.Foldout(drawWeaponConfig, "WeaponConfig Data",foldoutStyle);
+            drawWeaponConfig = EditorGUILayout.Foldout(drawWeaponConfig, "WeaponConfig Data", foldoutStyle);
             if (!drawWeaponConfig) return;
             EditorGUILayout.BeginVertical(contentStyle);
             SetEquippedPrefab((Weapon)EditorGUILayout.ObjectField("Equipped Prefab", equippedPrefab, typeof(Weapon), false));

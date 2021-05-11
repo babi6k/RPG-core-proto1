@@ -18,15 +18,19 @@ PrefabInstance:
     - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
       propertyPath: hitEffect
       value: 
-      objectReference: {fileID: 2302457091093092515, guid: 69d1b1037536b504884c93bb73d662db, type: 3}
+      objectReference: {fileID: 1433295770268946, guid: 9f0ee939215f6df4babea8e4758a7079, type: 3}
     - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
       propertyPath: effectSize
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+      propertyPath: effectSpawner
+      value: 
+      objectReference: {fileID: 748835441273063480}
+    - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
       propertyPath: effectProejctile
       value: 
-      objectReference: {fileID: 4033515565896200, guid: 76b91c2be8868654abc4a8f931d96bdb, type: 3}
+      objectReference: {fileID: 4929806263716274, guid: 7e79517cc2e95c24bae97245cc8e1e0e, type: 3}
     - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
       propertyPath: destroyOnHit.Array.size
       value: 1
@@ -34,7 +38,7 @@ PrefabInstance:
     - target: {fileID: 8434798546218678324, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
       propertyPath: destroyOnHit.Array.data[0]
       value: 
-      objectReference: {fileID: 4499140362939132588}
+      objectReference: {fileID: 1520505194672818109}
     - target: {fileID: 8434798546218678325, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
       propertyPath: m_Name
       value: NewFireBallProjectile
@@ -85,8 +89,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
---- !u!1 &4499140362939132588 stripped
+--- !u!1 &1520505194672818109 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 8434798546218678325, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6802598929048245540, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
+  m_PrefabInstance: {fileID: 5439861008728560281}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &748835441273063480 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4691098356415355553, guid: bad328d304a8bf64796d59a3ad45dbe1, type: 3}
   m_PrefabInstance: {fileID: 5439861008728560281}
   m_PrefabAsset: {fileID: 0}

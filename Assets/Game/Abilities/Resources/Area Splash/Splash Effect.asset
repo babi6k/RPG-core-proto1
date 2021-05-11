@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6f2a0395c22eb244ab09d8f2a00920a, type: 3}
-  m_Name: Spawn Fireballs
+  m_Script: {fileID: 11500000, guid: 251beaebb91206249ad042adbe810223, type: 3}
+  m_Name: Splash Effect
   m_EditorClassIdentifier: 
-  spawnDelay: 0.56
-  damage: 1
-  projectilePrefab: {fileID: 4363093564197430368, guid: 30bbf4e6176b67546aca79665180a790, type: 3}
-  useRightHand: 0
+  prefabToSpawn: {fileID: 4611121209224498, guid: 02470c08868b9254c8b82e0349663901, type: 3}
+  destroyDelay: 5
+  effectSize: 0.7

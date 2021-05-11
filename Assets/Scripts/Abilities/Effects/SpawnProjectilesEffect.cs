@@ -11,36 +11,45 @@ namespace RPG.Abilities.Effects
     [CreateAssetMenu(fileName = "Spawn Projectiles", menuName = "Abilities/Effects/Spawn Projectiles", order = 0)]
     public class SpawnProjectilesEffect : EffectStrategy
     {
-        [SerializeField] float spawnDelay = 0;
-        [SerializeField] float damage = 1;
-        [SerializeField] Projectile projectilePrefab = null;
-        [SerializeField] bool useRightHand = true;
+        [SerializeField] Projectile projectileToSpawn;
+        [SerializeField] float damage;
+        [SerializeField] bool isRightHand = true;
+        [SerializeField] bool useTargetPoint = true;
 
-        public override IAction MakeAction(TargetingData data, Action complete)
+        public override void StartEffect(AbilityData data, Action finished)
         {
-            return new CoroutineAction(data.GetCorutineOwner(), Effect(data, complete));
+            Fighter fighter = data.GetUser().GetComponent<Fighter>();
+            Vector3 spawnPosition = fighter.GetHandTransform(isRightHand).position;
+            if (useTargetPoint)
+            {
+                SpawnProjectileForTargetPoint(data, spawnPosition);
+            }
+            else
+            {
+                SpawnProjectilesForTargets(data, spawnPosition);
+            }
+            finished();
         }
 
-        private IEnumerator Effect(TargetingData data, Action complete)
+        private void SpawnProjectileForTargetPoint(AbilityData data, Vector3 spawnPosition)
         {
-            yield return new WaitForSeconds(spawnDelay);
-            var fighter = data.GetSource().GetComponent<Fighter>();
-            float calculatedDamage = damage * data.GetEffectScaling();
-            var targets = data.GetTargets();
-            if (targets == null)
+            Projectile projectile = Instantiate(projectileToSpawn);
+            projectile.transform.position = spawnPosition;
+            projectile.SetTarget(data.GetTargetedPoint(), data.GetUser(), damage);
+        }
+
+        private void SpawnProjectilesForTargets(AbilityData data, Vector3 spawnPosition)
+        {
+            foreach (var target in data.GetTargets())
             {
-                Projectile.Launch(projectilePrefab, fighter.GetHandTransform(useRightHand).position,
-                data.GetTargetPoint(), data.GetSource(), calculatedDamage);
-                complete();
-                yield break;
+                Health health = target.GetComponent<Health>();
+                if (health)
+                {
+                    Projectile projectile = Instantiate(projectileToSpawn);
+                    projectile.transform.position = spawnPosition;
+                    projectile.SetTarget(health, data.GetUser(), damage);
+                }
             }
-            foreach (var target in targets)
-            {
-                var health = target.GetComponent<Health>();
-                Projectile.Launch(projectilePrefab, fighter.GetHandTransform(useRightHand).position,
-                 health, data.GetSource(), calculatedDamage);
-            }
-            complete();
         }
     }
 }

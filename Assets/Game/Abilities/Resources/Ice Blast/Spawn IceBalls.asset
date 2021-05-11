@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 015886fcd3a2759438778f47fbbbd0c1, type: 3}
-  m_Name: DamageEffect
+  m_Script: {fileID: 11500000, guid: c6f2a0395c22eb244ab09d8f2a00920a, type: 3}
+  m_Name: Spawn IceBalls
   m_EditorClassIdentifier: 
-  amount: 1
-  steps: 5
-  totalTime: 5
-  initialDelay: 0.56
-  effectSize: 0.7
-  effectPrefab: {fileID: 4611121209224498, guid: 02470c08868b9254c8b82e0349663901, type: 3}
+  projectileToSpawn: {fileID: 1481391617662624789, guid: 7dad5e1539ed84d42b3e9b869bbe088d, type: 3}
+  damage: 30
+  isRightHand: 0
+  useTargetPoint: 1

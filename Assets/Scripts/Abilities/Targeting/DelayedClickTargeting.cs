@@ -10,92 +10,62 @@ namespace RPG.Abilities.Targeting
     [CreateAssetMenu(fileName = "DelayedClickTargeting", menuName = "Abilities/Targeting/Delayed Click", order = 0)]
     public class DelayedClickTargeting : TargetingStrategy
     {
-        [SerializeField] Texture2D effectCursor;
+        [SerializeField] Texture2D cursorTexture;
         [SerializeField] Vector2 cursorHotspot;
-        [SerializeField] float areaOfEffectRadius;
-        [SerializeField] LayerMask castingLayer;
-        [SerializeField] Transform targettingCirclePrefab;
+        [SerializeField] LayerMask layerMask;
+        [SerializeField] float areaAffectRadius;
+        [SerializeField] Transform targetingPrefab;
 
-        Transform targetingCircle;
+        Transform targetingPrefabInstance = null;
 
-        public override IAction MakeAction(TargetingData data, Action<TargetingData> callback)
+        public override void StartTargeting(AbilityData data, Action finished)
         {
-           return new TargetingAction(this, data, callback);
+            PlayerController playerController = data.GetUser().GetComponent<PlayerController>();
+            playerController.StartCoroutine(Targeting(data, playerController, finished));
         }
 
-        class TargetingAction : IAction
+        private IEnumerator Targeting(AbilityData data, PlayerController playerController, Action finished)
         {
-            PlayerController playerController = null;
-            DelayedClickTargeting strategy;
-            private readonly TargetingData data;
-            private readonly Action<TargetingData> callback;
-            Coroutine targetingRoutine;
-
-            public TargetingAction(DelayedClickTargeting newStrategy, TargetingData newData, Action<TargetingData> newCallback)
+            playerController.enabled = false;
+            if (targetingPrefabInstance == null)
             {
-                strategy = newStrategy;
-                data = newData;
-                callback = newCallback;
+                targetingPrefabInstance = Instantiate(targetingPrefab);
             }
-
-            public void Activate()
+            else
             {
-                playerController = data.GetSource().GetComponent<PlayerController>();
-                targetingRoutine = playerController.StartCoroutine(Targeting(data, callback));
+                targetingPrefabInstance.gameObject.SetActive(true);
             }
-
-            public void Cancel()
+            targetingPrefabInstance.localScale = new Vector3(areaAffectRadius * 2, 1, areaAffectRadius * 2);
+            while (!data.IsCancelled())
             {
-                playerController.StopCoroutine(targetingRoutine);
-                strategy.targetingCircle.gameObject.SetActive(false);
-                Destroy(strategy.targetingCircle.gameObject);
-                playerController.enabled = true;
-            }
-
-            private IEnumerator Targeting(TargetingData data, Action<TargetingData> callback)
-            {
-                playerController.enabled = false;
-                if (!strategy.targetingCircle) strategy.targetingCircle = Instantiate(strategy.targettingCirclePrefab);
-                Transform targetingCircle = strategy.targetingCircle;
-
-                while (true)
+                Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
+                RaycastHit raycastHit;
+                if (Physics.Raycast(PlayerController.GetMouseRay(), out raycastHit, 1000, layerMask))
                 {
-                    Cursor.SetCursor(strategy.effectCursor, strategy.cursorHotspot, CursorMode.Auto);
+                    targetingPrefabInstance.position = raycastHit.point;
 
-                    RaycastHit mouseHit;
-                    if (Physics.Raycast(PlayerController.GetMouseRay(), out mouseHit, 100, strategy.castingLayer))
+                    if (Input.GetMouseButtonDown(0))
                     {
-                        targetingCircle.gameObject.SetActive(true);
-                        targetingCircle.position = mouseHit.point;
-                        targetingCircle.localScale = new Vector3(strategy.areaOfEffectRadius * 2,
-                         1, strategy.areaOfEffectRadius * 2);
-
-                        if (Input.GetMouseButtonDown(0))
-                        {
-                            data.SetTarget(mouseHit.point);
-                            data.SetTargets(GetGameObjectsInArea(mouseHit.point));
-                            // Capture the whole of this mouse click so we don't move
-                            yield return new WaitWhile(() => Input.GetMouseButtonDown(0));
-                            if (callback != null) callback(data);
-                            Cancel();
-                            yield break;
-                        }
+                        // Absorb the whole mouse click
+                        yield return new WaitWhile(() => Input.GetMouseButtonDown(0));
+                        data.SetTargetedPoint(raycastHit.point);
+                        data.SetTargets(GetGameObjectsInRadius(raycastHit.point));
+                        break;
                     }
-                    else
-                    {
-                        targetingCircle.gameObject.SetActive(false);
-                    }
-                    yield return null;
                 }
+                yield return null;
             }
+            targetingPrefabInstance.gameObject.SetActive(false);
+            playerController.enabled = true;
+            finished();
+        }
 
-            private IEnumerable<GameObject> GetGameObjectsInArea(Vector3 point)
+        private IEnumerable<GameObject> GetGameObjectsInRadius(Vector3 point)
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(point, areaAffectRadius, Vector3.up, 0);
+            foreach (var hit in hits)
             {
-                RaycastHit[] hits = Physics.SphereCastAll(point, strategy.areaOfEffectRadius, Vector3.up, 0);
-                foreach (RaycastHit hit in hits)
-                {
-                    yield return hit.transform.gameObject;
-                }
+                yield return hit.collider.gameObject;
             }
         }
     }

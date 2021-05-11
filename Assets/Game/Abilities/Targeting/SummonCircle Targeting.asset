@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0263cfd6ba9b954fac784964467b1f9, type: 3}
   m_Name: SummonCircle Targeting
   m_EditorClassIdentifier: 
-  effectCursor: {fileID: 2800000, guid: 8859fce41c5d0a148ad0b7eebfca7fe9, type: 3}
+  cursorTexture: {fileID: 2800000, guid: 8859fce41c5d0a148ad0b7eebfca7fe9, type: 3}
   cursorHotspot: {x: 0, y: 0}
-  areaOfEffectRadius: 5
-  castingLayer:
+  layerMask:
     serializedVersion: 2
     m_Bits: 64
-  targettingCirclePrefab: {fileID: 5344675801255501715, guid: 605ae1f92cec7524a9011a86eadad18a, type: 3}
+  areaAffectRadius: 5
+  targetingPrefab: {fileID: 5344675801255501715, guid: 605ae1f92cec7524a9011a86eadad18a, type: 3}

@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6f2a0395c22eb244ab09d8f2a00920a, type: 3}
-  m_Name: Spawn IceBalls
+  m_Script: {fileID: 11500000, guid: cb14ab22a76ea6340a3ae68c319a4e9a, type: 3}
+  m_Name: Animation Ability1
   m_EditorClassIdentifier: 
-  spawnDelay: 1.2
-  damage: 1
-  projectilePrefab: {fileID: 1481391617662624789, guid: 7dad5e1539ed84d42b3e9b869bbe088d, type: 3}
-  useRightHand: 0
+  animationTrigger: ability1

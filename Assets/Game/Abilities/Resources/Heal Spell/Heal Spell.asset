@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29423d6bbcbb5fd4ca448fb8098f4b3d, type: 3}
-  m_Name: FireBall
+  m_Name: Heal Spell
   m_EditorClassIdentifier: 
-  itemID: 1f5070e9-795c-4a3d-822d-1332eb39528f
-  displayName: Fireball
-  description: 'Shoot a fireball by direction '
-  icon: {fileID: 21300000, guid: 8743e41d642144441b0003de4e16a3a2, type: 3}
+  itemID: ba2de421-5540-49ba-83f0-85cc2059398a
+  displayName: Heal Circle
+  description: Circle of healing over time
+  icon: {fileID: 21300000, guid: c2e319a40088444a4a3ea2fcb87ab86a, type: 3}
   pickup: {fileID: 6494234044896430859, guid: ab73185f2dadf4445ae07e78eb669c1f, type: 3}
-  stackable: 0
-  price: 50
+  stackable: 1
+  price: 20
   category: 0
   foldoutStyle:
     m_Name: 
@@ -89,13 +89,10 @@ MonoBehaviour:
     m_StretchHeight: 0
   consumable: 0
   coolDownTime: 3
-  targeting: {fileID: 11400000, guid: 28bf00ec5dde6ea4fa74fc1e32371c61, type: 2}
-  filters: []
-  effects:
-  - {fileID: 11400000, guid: 45c65f5f50ab5bf4aa9762d2a767c866, type: 2}
-  effectScale: 20
+  targetingStrategy: {fileID: 11400000, guid: 8da9a6cec19fb314abedd635617e37a0, type: 2}
+  filterStrategies:
+  - {fileID: 11400000, guid: 9bc8d8e46864eb1498de457a3fff873f, type: 2}
+  effectStrategies:
+  - {fileID: 11400000, guid: 569180ec42e7e36419b0b2472f6207f3, type: 2}
+  - {fileID: 11400000, guid: 07f08b69ff93fd146910fd58807fd856, type: 2}
   manaCost: 20
-  animatorTrigger: cast
-  turnToTarget: 1
-  actionPriority: 3
-  cancelAllActionsLowerThan: 3

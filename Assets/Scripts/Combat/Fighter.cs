@@ -67,7 +67,6 @@ namespace RPG.Combat
             timeSinceLastAttack += Time.deltaTime;
             if (target == null) return;
             if (target.IsDead()) return;
-            if (!actionScheduler.IsCurrentAction(this)) return;
             if (!GetIsInRange(target.transform))
             {//Moving to range to attack
                 GetComponent<Mover>().MoveTo(target.transform.position,1f);  
@@ -157,7 +156,7 @@ namespace RPG.Combat
 
         public void Attack(GameObject combatTarget)
         {
-            actionScheduler.StartAction(this, 1, 2);
+            actionScheduler.StartAction(this);
             target = combatTarget.GetComponent<Health>();
         }
 
