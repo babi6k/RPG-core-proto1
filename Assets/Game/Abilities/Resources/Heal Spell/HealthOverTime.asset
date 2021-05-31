@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: HealthOverTime
   m_EditorClassIdentifier: 
   healthChange: 50
-  steps: 3
-  totalTime: 10
+  steps: 10
+  totalTime: 5

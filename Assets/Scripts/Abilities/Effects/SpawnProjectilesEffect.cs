@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
-using RPG.Abilities.Helpers;
 using RPG.Attributes;
 using RPG.Combat;
-using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Abilities.Effects

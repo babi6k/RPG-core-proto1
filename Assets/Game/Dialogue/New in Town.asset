@@ -13,17 +13,46 @@ MonoBehaviour:
   m_Name: 82959cf8-9388-4754-bfac-ceb273294d8f
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 1
-  text: I come from Ashtown
+  text: What is in the East ?
   children:
   - 2f6f884f-0da0-4138-b83f-aed6f67d5787
   rect:
     serializedVersion: 2
-    x: 390
-    y: 45
+    x: 300
+    y: 9
     width: 200
     height: 100
   onEnterAction: 
   onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
+--- !u!114 &-4350093591634801942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 229f5ab5c82db7443958c07d0c0ac73d, type: 3}
+  m_Name: 97c9d338-ce25-447d-bb75-06b3c4a6f4e0
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: In the north there is forest be careful hero
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 667
+    y: 359
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
 --- !u!114 &-2038624991325452001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37,18 +66,23 @@ MonoBehaviour:
   m_Name: 56b6c041-37c5-4769-9093-85697df482bf
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: Greeting , Where do you come from ?
+  text: Welcome to HoneyTown hero , In here you will find many mysteries what information
+    you would like to know ?
   children:
   - 82959cf8-9388-4754-bfac-ceb273294d8f
   - cee79413-7ffe-47b4-99a6-856c26c1f767
+  - 2958ff98-22dc-4b96-9c9b-c4d212f9f7ed
   rect:
     serializedVersion: 2
-    x: 116
-    y: 171
+    x: 31
+    y: 146
     width: 200
     height: 100
   onEnterAction: 
   onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
 --- !u!114 &-2018965722912111448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,16 +96,20 @@ MonoBehaviour:
   m_Name: 2f6f884f-0da0-4138-b83f-aed6f67d5787
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: You are not part of the cycle
+  text: In the east is a EastMeadow Village with a big gate hero, on the way there
+    is a shop near the farm,  beware of the enemies ahead
   children: []
   rect:
     serializedVersion: 2
-    x: 639
-    y: 89
+    x: 658
+    y: 92
     width: 200
     height: 100
   onEnterAction: 
-  onExitAction: GiveQuest
+  onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +128,8 @@ MonoBehaviour:
   - {fileID: 3353055348297214657}
   - {fileID: -2018965722912111448}
   - {fileID: 6678820483275809780}
+  - {fileID: 5437882277238752640}
+  - {fileID: -4350093591634801942}
   newNodeOffset: {x: 250, y: 0}
 --- !u!114 &3353055348297214657
 MonoBehaviour:
@@ -104,17 +144,47 @@ MonoBehaviour:
   m_Name: cee79413-7ffe-47b4-99a6-856c26c1f767
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 1
-  text: I am a farmer from the Lost City
+  text: What is in the West?
   children:
   - 531cf5f8-a67a-4d29-a737-250adbe31d0f
   rect:
     serializedVersion: 2
-    x: 382
-    y: 274
+    x: 318
+    y: 158
     width: 200
     height: 100
   onEnterAction: 
   onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
+--- !u!114 &5437882277238752640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 229f5ab5c82db7443958c07d0c0ac73d, type: 3}
+  m_Name: 2958ff98-22dc-4b96-9c9b-c4d212f9f7ed
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: What is in the North ?
+  children:
+  - 97c9d338-ce25-447d-bb75-06b3c4a6f4e0
+  rect:
+    serializedVersion: 2
+    x: 313
+    y: 311
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
 --- !u!114 &6678820483275809780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,13 +198,17 @@ MonoBehaviour:
   m_Name: 531cf5f8-a67a-4d29-a737-250adbe31d0f
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: You seek to trade ?
+  text: In the west there is a village on the way you will have enemies to fight
+    be brave hero
   children: []
   rect:
     serializedVersion: 2
-    x: 653
-    y: 230
+    x: 663
+    y: 226
     width: 200
     height: 100
   onEnterAction: 
-  onExitAction: CompleteObjective
+  onExitAction: 
+  condition:
+    predicate: 
+    parameters: []

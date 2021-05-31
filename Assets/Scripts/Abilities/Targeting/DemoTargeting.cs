@@ -1,6 +1,4 @@
 using System;
-using RPG.Abilities.Helpers;
-using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Abilities.Targeting

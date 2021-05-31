@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b79879b7f857d4ca1972924668b45c, type: 3}
   m_Name: DamageEffectOverTime
   m_EditorClassIdentifier: 
-  healthChange: 0
-  steps: 1
-  totalTime: 1
+  healthChange: -50
+  steps: 10
+  totalTime: 5

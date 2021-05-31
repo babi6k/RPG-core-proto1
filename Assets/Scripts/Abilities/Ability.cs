@@ -34,7 +34,8 @@ namespace RPG.Abilities
             ActionScheduler scheduler = user.GetComponent<ActionScheduler>();
             scheduler.StartAction(data);
 
-            targetingStrategy.StartTargeting(data, () => {
+            targetingStrategy.StartTargeting(data, () =>
+            {
                 TargetAquired(data);
             });
         }
@@ -44,8 +45,11 @@ namespace RPG.Abilities
             if (data.IsCancelled()) return;
 
             Mana mana = data.GetUser().GetComponent<Mana>();
-            if (!mana.UseMana(manaCost)) return;
-
+            if (mana)
+            {
+                if (!mana.UseMana(manaCost)) return;
+            }
+            
             CoolDownManager coolDownManager = data.GetUser().GetComponent<CoolDownManager>();
             coolDownManager.StartCoolDown(GetItemID(), GetCoolDownTime());
 
@@ -53,7 +57,7 @@ namespace RPG.Abilities
             {
                 data.SetTargets(filterStrategy.Filter(data.GetTargets()));
             }
-            
+
             foreach (var effect in effectStrategies)
             {
                 effect.StartEffect(data, EffectFinished);
@@ -62,7 +66,7 @@ namespace RPG.Abilities
 
         private void EffectFinished()
         {
-            
+
         }
     }
 

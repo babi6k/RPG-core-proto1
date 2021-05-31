@@ -1,4 +1,6 @@
-﻿using GameDevTV.Inventories;
+﻿using System.Collections.Generic;
+using GameDevTV.Inventories;
+using GameDevTV.Saving;
 using RPG.Stats;
 using UnityEngine;
 using UnityEngine.AI;
@@ -11,6 +13,7 @@ namespace RPG.Inventories
         [Tooltip("How far the pickups be scatterd from the dropper.")]
         [SerializeField] float scatterDistance = 1;
         [SerializeField] DropLibrary dropLibrary;
+        [SerializeField] CoinDrop coinDrop;
 
         //Constants
         const int ATTEMPTS = 30;
@@ -31,13 +34,24 @@ namespace RPG.Inventories
 
         public void RandomDrop()
         {
+            Debug.Log("Starting random Drop");
             var baseStats = GetComponent<BaseStats>();
-            var drops = dropLibrary.GetRandomDrops(baseStats.GetLevel());
-            foreach (var drop in drops)
+            int level = baseStats.GetLevel();
+            int numberOfDrops = Random.Range(1,level);
+            int coinAmount = Random.Range(level * 10, 10 * level * level/4);
+            var newCoin = Instantiate(coinDrop);
+            newCoin.DropGold(coinAmount,GetDropLocation());
+            List<string> dropsEncounterd = new List<string>();
+            for (int i = 0; i< numberOfDrops; i++)
             {
-                DropItem(drop.item, drop.number);
-            }
-            
+                Drop drop = dropLibrary.GetRandomDrop(level);
+                if (drop.item != null)
+                {
+                    if (dropsEncounterd.Contains(drop.item.GetItemID())) continue;
+                    dropsEncounterd.Add(drop.item.GetItemID());
+                    DropItem(drop.item,drop.count);
+                }
+            } 
         }
     }
 }

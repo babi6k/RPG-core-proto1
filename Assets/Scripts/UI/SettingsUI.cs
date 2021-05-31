@@ -15,6 +15,13 @@ namespace RPG.UI
         bool soundIsActive = true;
         bool musicIsActive = true;
 
+        SavingWrapper savingWrapper;
+
+        private void Awake() 
+        {
+            savingWrapper = FindObjectOfType<SavingWrapper>(); 
+        }
+
         public void MuteSound()
         {
             soundIsActive = !soundIsActive;
@@ -47,7 +54,22 @@ namespace RPG.UI
 
         public void LoadMainMenu()
         {
-            FindObjectOfType<SavingWrapper>().LoadMainMenu();
+            savingWrapper.LoadMainMenu();
+        }
+
+        public void SaveGame()
+        {
+            savingWrapper.Save();
+        }
+
+        public void DeleteGame()
+        {
+            savingWrapper.Delete();
+        }
+
+        public void LoadGame()
+        {
+            savingWrapper.LoadLastSave();
         }
 
     }

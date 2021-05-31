@@ -39,7 +39,7 @@ namespace RPG.SceneManagement
             PlayerController playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
             playerController.enabled = false;
             //Remove control player
-
+            saveMenu.CloseUI();
             yield return fader.FadeOut(fadeOutTime);
 
             savingWrapper.SetSlotIndex(saveMenu.GetSlotIndex());

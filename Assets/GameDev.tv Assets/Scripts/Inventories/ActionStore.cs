@@ -32,6 +32,11 @@ namespace GameDevTV.Inventories
         /// </summary>
         public event Action storeUpdated;
 
+        private void Awake() 
+        {
+            AddAction(InventoryItem.GetFromID("5330a020-ba2e-459a-9394-77b00aa543b0"),7,1);
+        }
+
         /// <summary>
         /// Get the action at the given index.
         /// </summary>
@@ -108,36 +113,6 @@ namespace GameDevTV.Inventories
                 return true;
             }
             return false;
-
-            /* if (dockedItems.ContainsKey(index))
-            {
-                var itemId = dockedItems[index].item.GetItemID();
-                if (!coolDownManager.IsInCoolDown(itemId))
-                {
-                    coolDownManager.StartCoolDown(itemId);
-                    dockedItems[index].item.Use(user);
-                    if (dockedItems[index].number >= 0)
-                    {
-                        if (dockedItems[index].item.IsConsumable())
-                        {
-                            if (dockedItems[index].number > 1)
-                            {
-                                OnCoolDownApplied.Invoke(index, dockedItems[index].item.GetCoolDownTime());
-                            }
-                            RemoveItems(index, 1);
-                        }
-
-                        else
-                        {
-                            OnCoolDownApplied.Invoke(index, dockedItems[index].item.GetCoolDownTime());
-                        }
-                    }
-
-                    return true;
-                }
-                Debug.Log("Is in cooldown");
-            }
-            return false; */
         }
 
         /// <summary>

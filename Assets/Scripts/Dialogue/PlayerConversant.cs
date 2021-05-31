@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using RPG.Core;
+using RPG.Movement;
 
 namespace RPG.Dialogue
 {
 
-    public class PlayerConversant : MonoBehaviour
+    public class PlayerConversant : MonoBehaviour, IAction
     {
         [SerializeField] string playerName;
         Dialogue currentDialogue;
@@ -18,6 +18,26 @@ namespace RPG.Dialogue
 
         public event Action onConversationUpdated;
 
+        void Update()
+        {
+            if (!currentConversant) return;
+            if (!GetsInRange())
+            {
+                GetComponent<Mover>().MoveTo(currentConversant.transform.position, 1f);
+            }
+            else
+            {
+                GetComponent<Mover>().Cancel();
+                StartDialogue(currentConversant, currentDialogue);
+                currentConversant = null;
+            }
+        }
+
+        private bool GetsInRange()
+        {
+            return (Vector3.Distance(transform.position, currentConversant.transform.position) < 2f);
+        }
+
         public void StartDialogue(AIConversant newConversant, Dialogue newDialogue)
         {
             currentConversant = newConversant;
@@ -26,6 +46,16 @@ namespace RPG.Dialogue
             TriggerEnterAction();
             onConversationUpdated();
         }
+
+        public void StartDialogueAction(AIConversant newConversant, Dialogue newDialogue)
+        {
+            if (newConversant == currentConversant) return;
+            Quit();
+            GetComponent<ActionScheduler>().StartAction(this);
+            currentConversant = newConversant;
+            currentDialogue = newDialogue;
+        }
+
 
 
         public void Quit()
@@ -146,6 +176,12 @@ namespace RPG.Dialogue
             {
                 trigger.Trigger(action);
             }
+        }
+
+        public void Cancel()
+        {
+            Quit();
+            GetComponent<Mover>().Cancel();
         }
     }
 }

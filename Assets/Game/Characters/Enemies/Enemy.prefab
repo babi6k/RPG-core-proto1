@@ -35,6 +35,21 @@ MonoBehaviour:
   patrolSpeedFraction: 0.2
   guardAttackSpeedFraction: 0.5
   shoutDistance: 5
+--- !u!114 &1683292183933148567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8302127246321200340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5740d5c8a9d3743b4b2b1fe12aab34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scatterDistance: 1
+  dropLibrary: {fileID: 11400000, guid: dd80207b4273505459cc391a2badbba9, type: 2}
+  coinDrop: {fileID: 4756685045012029464, guid: 71caf1df3c4f78e44a47b2e3010d3035, type: 3}
 --- !u!114 &6669029443218747287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,7 +75,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 425282, guid: a6ebdfa58063c6e40a19612fc9013404, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 425282, guid: a6ebdfa58063c6e40a19612fc9013404, type: 3}
       propertyPath: m_LocalPosition.x
@@ -148,7 +163,7 @@ PrefabInstance:
     - target: {fileID: 159545187244346432, guid: d857e42af37554581b53e82bb28b6bda, type: 3}
       propertyPath: onDie.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1683292183933148567}
     - target: {fileID: 159545187244346432, guid: d857e42af37554581b53e82bb28b6bda, type: 3}
       propertyPath: onDie.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -175,7 +190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 159545187244346432, guid: d857e42af37554581b53e82bb28b6bda, type: 3}
       propertyPath: onDie.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RandomDropper, Assembly-CSharp
+      value: RPG.Inventories.RandomDropper, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 159545187244346432, guid: d857e42af37554581b53e82bb28b6bda, type: 3}
       propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
@@ -341,7 +356,7 @@ PrefabInstance:
       objectReference: {fileID: 3210738314453526374}
     - target: {fileID: 6248310432383575947, guid: d62397fdb302f488280a87a8d4652b11, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6248310432383575947, guid: d62397fdb302f488280a87a8d4652b11, type: 3}
       propertyPath: m_LocalPosition.x

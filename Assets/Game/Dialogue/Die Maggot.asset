@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Name: 4c79ab34-c6b0-4f52-a810-cde9e874bc84
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 1
-  text: I come to sell my sword
+  text: I come to wander the forest
   children:
   - dccccf50-6dab-47db-801a-65f4d2b9793e
   rect:
@@ -151,8 +151,8 @@ MonoBehaviour:
   - 714c5204-2541-4673-a9c2-4c286ce207c0
   rect:
     serializedVersion: 2
-    x: 839
-    y: 116
+    x: 842
+    y: 138
     width: 200
     height: 100
   onEnterAction: 
@@ -176,10 +176,11 @@ MonoBehaviour:
   text: There is a blacksmith in town , Do you know where ?
   children:
   - 12b408a4-855d-461a-addc-98596197e64c
+  - 6e08a539-735c-4bda-934b-258cb1dfc85b
   rect:
     serializedVersion: 2
-    x: 528
-    y: 206
+    x: 588
+    y: 235
     width: 200
     height: 100
   onEnterAction: 
@@ -204,15 +205,12 @@ MonoBehaviour:
   - {fileID: -7714702773557403975}
   - {fileID: 950913633951786550}
   - {fileID: -290010294565701152}
-  - {fileID: 4238099227120303644}
   - {fileID: 5656532037435791260}
   - {fileID: -430171967294924444}
   - {fileID: 8002365856159898542}
   - {fileID: 1100628277145598514}
-  - {fileID: -8486510050019432924}
   - {fileID: -4977501092488788447}
   - {fileID: -3321948612559886652}
-  - {fileID: -2006559711838148696}
   newNodeOffset: {x: 250, y: 0}
 --- !u!114 &950913633951786550
 MonoBehaviour:
@@ -227,14 +225,13 @@ MonoBehaviour:
   m_Name: 33989c3d-8ba6-42c1-878e-6a2690e2722d
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 1
-  text: I need to repair my bow
+  text: I am looking for a sword
   children:
   - 6bfb78b2-bb83-41a1-aba1-e1952f82c502
-  - 289c53c5-f2ae-4cf2-92e3-20ecbf438d18
   rect:
     serializedVersion: 2
-    x: 287
-    y: 345
+    x: 295
+    y: 324
     width: 200
     height: 100
   onEnterAction: 
@@ -260,8 +257,8 @@ MonoBehaviour:
   - bc585468-4444-4214-b490-5891bf5c8c8a
   rect:
     serializedVersion: 2
-    x: 816
-    y: 222
+    x: 840
+    y: 314
     width: 200
     height: 100
   onEnterAction: 

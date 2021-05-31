@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using RPG.Abilities.Helpers;
 using RPG.Control;
-using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Abilities.Targeting
@@ -38,7 +36,7 @@ namespace RPG.Abilities.Targeting
                     {
                         // Capture the whole of this mouse click so we don't move
                         yield return new WaitWhile(() => Input.GetMouseButtonDown(0));
-                        data.SetTargetedPoint(mouseHit.point + groundOffset / ray.direction.y * ray.direction);
+                        data.SetTargetedPoint(mouseHit.point + ray.direction * groundOffset / ray.direction.y);
                         break;
                     }
                 }

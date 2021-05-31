@@ -16,15 +16,15 @@ MonoBehaviour:
   formulas:
   - stat: 0
     currentValue: 0
-    baseValue: 30
-    adderPerLevel: 30
-    multiplierPerLevel: 0.7
+    baseValue: 15
+    adderPerLevel: 20
+    multiplierPerLevel: 0.5
     isComplex: 0
   - stat: 3
     currentValue: 0
-    baseValue: 6
+    baseValue: 4
     adderPerLevel: 2
-    multiplierPerLevel: 1.5
+    multiplierPerLevel: 1.6
     isComplex: 0
   - stat: 1
     currentValue: 0

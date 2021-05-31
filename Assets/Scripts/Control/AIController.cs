@@ -5,6 +5,7 @@ using RPG.Movement;
 using RPG.Attributes;
 using GameDevTV.Utils;
 using System;
+using RPG.Abilities;
 
 namespace RPG.Control
 {
@@ -21,6 +22,7 @@ namespace RPG.Control
         [SerializeField] float patrolSpeedFraction = 0.2f;
         [SerializeField] float guardAttackSpeedFraction = 0.5f;
         [SerializeField] float shoutDistance = 5f;
+        [SerializeField] Ability ability;
 
         //Cached ref
         Fighter fighter;
@@ -153,6 +155,10 @@ namespace RPG.Control
         {
             timeSinceLastSawPlayer = 0;
             fighter.Attack(player);
+            if (ability)
+            {
+                ability.Use(gameObject);
+            }
 
             AggrevateNearbyEnemies();
         }

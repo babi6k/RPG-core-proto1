@@ -2,8 +2,6 @@
 using GameDevTV.Saving;
 using RPG.Stats;
 using GameDevTV.Utils;
-using UnityEngine.Events;
-using System;
 
 namespace RPG.Attributes
 {

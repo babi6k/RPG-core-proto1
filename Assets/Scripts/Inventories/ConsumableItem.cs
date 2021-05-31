@@ -12,9 +12,11 @@ namespace RPG.Inventories
     {
         [SerializeField] float consumeValue = 0;
         [SerializeField] Stat stat;
+        [SerializeField] AudioClip clip = null;
 
         public override void Use(GameObject user)
         {
+            var audioSource = user.GetComponent<AudioSource>();
             var cooldownManger = user.GetComponent<CoolDownManager>();
             if (cooldownManger && cooldownManger.GetTimeRemaining(GetItemID()) > 0)
             {
@@ -30,7 +32,10 @@ namespace RPG.Inventories
             {
                 user.GetComponent<Mana>().RegenerateMana(consumeValue);
             }
-
+            if (audioSource)
+            {
+                audioSource.PlayOneShot(clip);
+            }
             cooldownManger.StartCoolDown(GetItemID(),GetCoolDownTime());
         }
 

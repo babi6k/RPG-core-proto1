@@ -43,10 +43,7 @@ public class SaveMenu : MonoBehaviour
         {
             savingWrapper.SetSlotIndex(index);
             savingWrapper.LoadLastSave();
-            gameObject.SetActive(false);
-            characterPanel.SetActive(false);
-            backButton.SetActive(false);
-            startButton.SetActive(false);
+            CloseUI();
             return;
         }
 
@@ -55,6 +52,14 @@ public class SaveMenu : MonoBehaviour
         characterPanel.SetActive(true);
         backButton.SetActive(true);
         startButton.SetActive(true);
+    }
+
+    public void CloseUI()
+    {
+        gameObject.SetActive(false);
+        characterPanel.SetActive(false);
+        backButton.SetActive(false);
+        startButton.SetActive(false);
     }
 
     public void OpenSaveMenu()

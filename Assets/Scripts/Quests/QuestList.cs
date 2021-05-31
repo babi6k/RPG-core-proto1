@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace RPG.Quests
 {
-    public class QuestList : MonoBehaviour, ISaveable,IPredicateEvaluator
+    public class QuestList : MonoBehaviour, ISaveable, IPredicateEvaluator
     {
         List<QuestStatus> statuses = new List<QuestStatus>();
         public event Action onUpdate;
@@ -27,7 +27,10 @@ namespace RPG.Quests
         public void CompleteObjective(Quest quest, string objective)
         {
             QuestStatus status = GetQuestStatus(quest);
+            if (status == null) return;
+
             status.CompleteObjective(objective);
+
             if (status.IsComplete())
             {
                 GiveReward(quest);
@@ -40,7 +43,7 @@ namespace RPG.Quests
 
         public bool HasQuest(Quest quest)
         {
-         return GetQuestStatus(quest) != null;
+            return GetQuestStatus(quest) != null;
         }
 
         public IEnumerable<QuestStatus> GetStatuses()
@@ -64,11 +67,11 @@ namespace RPG.Quests
         {
             foreach (var reward in quest.GetRewards())
             {
-               bool success = GetComponent<Inventory>().AddToFirstEmptySlot(reward.item , reward.number);
-               if (!success)
-               {
-                   GetComponent<ItemDropper>().DropItem(reward.item, reward.number);
-               }
+                bool success = GetComponent<Inventory>().AddToFirstEmptySlot(reward.item, reward.number);
+                if (!success)
+                {
+                    GetComponent<ItemDropper>().DropItem(reward.item, reward.number);
+                }
             }
         }
 
@@ -89,7 +92,7 @@ namespace RPG.Quests
             if (stateList == null) return;
 
             statuses.Clear();
-            foreach(object objectState in stateList)
+            foreach (object objectState in stateList)
             {
                 statuses.Add(new QuestStatus(objectState));
             }

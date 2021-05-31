@@ -97,3 +97,4 @@ MonoBehaviour:
   coolDownTime: 3
   consumeValue: 30
   stat: 4
+  clip: {fileID: 8300000, guid: 1397d44a051b0bf4ebb0a1de1a95cef2, type: 3}

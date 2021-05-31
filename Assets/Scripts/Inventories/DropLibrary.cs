@@ -6,112 +6,59 @@ namespace RPG.Inventories
     [CreateAssetMenu(menuName = ("RPG/Inventory/Drop Library"))]
     public class DropLibrary : ScriptableObject
     {
-        [SerializeField]
-        DropConfig[] potentialDrops;
-        [SerializeField] float [] dropChancePercentage;
-        [SerializeField] int [] minDrops;
-        [SerializeField] int [] maxDrops;
+        [SerializeField] List<DropEntry> entries = new List<DropEntry>();
 
-        [System.Serializable]
-        class DropConfig
+        public Drop GetRandomDrop(int level)
         {
-            public InventoryItem item;
-            public float [] relativeChance;
-            public int [] minNumber;
-            public int [] maxNumber;
+            List<Drop> result = GetPossibleEntries(level);
+            if (result.Count == 0) return null;
+            return result[Random.Range(0, result.Count)];
+        }
 
-            public int GetRandomNumber(int level)
+        public List<Drop> GetPossibleEntries(int level)
+        {
+            List<Drop> result = new List<Drop>();
+            foreach (DropEntry entry in entries)
             {
-                if (!item.IsStackable())
+                int chance = (int)entry.chance.Evaluate((float)level);
+                int amount = (int)entry.amount.Evaluate((float)level);
+                if (amount <= 0) continue;
+                for (int i = 0; i < chance; i++)
                 {
-                    return 1;
+                    result.Add(new Drop(entry.item, Random.Range(0, amount) + 1));
                 }
-                int min = GetByLevel(minNumber, level);
-                int max = GetByLevel(maxNumber, level);
-                return Random.Range(min, max + 1);
             }
-        }
 
-        public struct Dropped
-        {
-            public InventoryItem item;
-            public int number;
-        }
-
-        public IEnumerable<Dropped> GetRandomDrops(int level)
-        {
-            if (!ShouldRandomDrop(level))
-            {
-                yield break;
-            }
-            for (int i = 0; i< GetRandomNumberOfDrops(level); i++)
-            {
-                yield return GetRandomDrop(level);
-            }
-        }
-
-         int GetRandomNumberOfDrops(int level)
-        {
-            int min = GetByLevel(minDrops, level);
-            int max = GetByLevel(maxDrops, level);
-            return Random.Range(min, max);
-        }
-
-        bool ShouldRandomDrop(int level)
-        {
-           return Random.Range(0,100) < GetByLevel(dropChancePercentage, level);
-        }
-
-        Dropped GetRandomDrop(int level)
-        {
-            var drop = SelectRandomItem(level);
-            var result = new Dropped();
-            result.item = drop.item;
-            result.number = drop.GetRandomNumber(level);
             return result;
         }
+    }
 
-        DropConfig SelectRandomItem(int level)
+    [System.Serializable]
+    public class DropEntry
+    {
+        public InventoryItem item = null;
+        public AnimationCurve chance = new AnimationCurve();
+        public AnimationCurve amount = new AnimationCurve();
+
+        public DropEntry()
         {
-            float totalChance = GetTotalChance(level);
-            float randomRoll = Random.Range(0, totalChance);
-            float chanceTotal = 0;
-            foreach (var drop in potentialDrops)
-            {
-                chanceTotal += GetByLevel(drop.relativeChance, level);
-                if(chanceTotal > randomRoll)
-                {
-                    return drop;
-                }
-            }
-            return null;
+            chance.AddKey(0, 1);
+            chance.AddKey(100, 50);
+            amount.AddKey(0, 1);
+            amount.AddKey(100, 1);
         }
+    }
 
-        float GetTotalChance(int level)
-        {
-            float total = 0;
-            foreach (var drop in potentialDrops)
-            {
-                total += GetByLevel(drop.relativeChance, level);
-            }
-            return total;
-        }
+    [System.Serializable]
+    public class Drop
+    {
+        public InventoryItem item = null;
+        public int count = 1;
 
-        static T GetByLevel<T>(T[] values, int level)
+        public Drop(InventoryItem newItem, int newCount)
         {
-            if (values.Length == 0)
-            {
-                return default;
-            }
-            if(level > values.Length)
-            {
-                return values[values.Length - 1];
-            }
-            if (level <= 0)
-            {
-                return default;
-            }
-            return values[level - 1];
+            item = newItem;
+            count = newCount;
         }
     }
 }

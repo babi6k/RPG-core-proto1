@@ -1,0 +1,211 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7110030278753873698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 229f5ab5c82db7443958c07d0c0ac73d, type: 3}
+  m_Name: aebda4c6-0e3d-4713-99c4-ff2f8e2670c0
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: If you take the pathway on the right you will find it
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 670
+    y: 27
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
+--- !u!114 &-3961796362967132993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 229f5ab5c82db7443958c07d0c0ac73d, type: 3}
+  m_Name: 3c6b6a64-149c-4d64-ba49-7b15554cc0b9
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Where is he now ?
+  children:
+  - 1b959796-32f7-4256-a151-9df035eeab5a
+  rect:
+    serializedVersion: 2
+    x: 929
+    y: 265
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
+--- !u!114 &-3623091412617543551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 229f5ab5c82db7443958c07d0c0ac73d, type: 3}
+  m_Name: 6c99cf1e-1a9d-4b53-bbd1-cf8daf1c54a1
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'Long time ago , was a golem that come and destroy the village '
+  children:
+  - 3c6b6a64-149c-4d64-ba49-7b15554cc0b9
+  rect:
+    serializedVersion: 2
+    x: 676
+    y: 301
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
+--- !u!114 &-3147906301107206162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 229f5ab5c82db7443958c07d0c0ac73d, type: 3}
+  m_Name: 30ce17db-4ee4-4789-bba7-6e4d874ffdeb
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Where is the Market ?
+  children:
+  - aebda4c6-0e3d-4713-99c4-ff2f8e2670c0
+  rect:
+    serializedVersion: 2
+    x: 402
+    y: 23
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
+--- !u!114 &-3041879104853307202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 229f5ab5c82db7443958c07d0c0ac73d, type: 3}
+  m_Name: a0641756-5e5e-456e-a8fd-8cff1b376679
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Why is it called lonely village ?
+  children:
+  - 6c99cf1e-1a9d-4b53-bbd1-cf8daf1c54a1
+  rect:
+    serializedVersion: 2
+    x: 405
+    y: 212
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
+--- !u!114 &-2384902963073430683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 229f5ab5c82db7443958c07d0c0ac73d, type: 3}
+  m_Name: 9ce9f974-ad59-444d-86b2-fd476d08c489
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Welcome to Lonely Village , How may i help you ?
+  children:
+  - 30ce17db-4ee4-4789-bba7-6e4d874ffdeb
+  - a0641756-5e5e-456e-a8fd-8cff1b376679
+  rect:
+    serializedVersion: 2
+    x: 50
+    y: 57
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
+--- !u!114 &-2314863574145494094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 229f5ab5c82db7443958c07d0c0ac73d, type: 3}
+  m_Name: 1b959796-32f7-4256-a151-9df035eeab5a
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: If you take the pathway on the left and keep going you will find him
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1183
+    y: 153
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bedf527717fda944183286db30153d19, type: 3}
+  m_Name: Lonely Village
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -2384902963073430683}
+  - {fileID: -3147906301107206162}
+  - {fileID: -3041879104853307202}
+  - {fileID: -7110030278753873698}
+  - {fileID: -3623091412617543551}
+  - {fileID: -3961796362967132993}
+  - {fileID: -2314863574145494094}
+  newNodeOffset: {x: 250, y: 0}

@@ -8,6 +8,7 @@ namespace GameDevTV.Inventories
     public enum EquipLocation
     {
         Helmet,
+        Ring,
         Necklace,
         Body,
         Trousers,
