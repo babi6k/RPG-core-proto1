@@ -10,6 +10,7 @@ public class SaveMenu : MonoBehaviour
     [SerializeField] GameObject characterPanel;
     [SerializeField] GameObject backButton;
     [SerializeField] GameObject startButton;
+    [SerializeField] GameObject quitButton;
     [SerializeField] Transform player;
     [SerializeField] TextMeshProUGUI [] savefilesNames;
 
@@ -60,6 +61,7 @@ public class SaveMenu : MonoBehaviour
         characterPanel.SetActive(false);
         backButton.SetActive(false);
         startButton.SetActive(false);
+        quitButton.SetActive(false);
     }
 
     public void OpenSaveMenu()
@@ -68,6 +70,11 @@ public class SaveMenu : MonoBehaviour
         characterPanel.SetActive(false);
         backButton.SetActive(false);
         startButton.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     public int GetSlotIndex() {return slotIndex;}

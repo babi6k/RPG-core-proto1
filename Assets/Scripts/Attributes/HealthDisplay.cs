@@ -16,7 +16,7 @@ namespace RPG.Attributes
 
         private void Update()
         {
-            textContainer.text = health.GetHealthPoints().ToString()+ "/" + health.GetMaxHealthPoints();
+            textContainer.text = Mathf.RoundToInt(health.GetHealthPoints()).ToString()+ "/" + health.GetMaxHealthPoints();
             GetComponent<Slider>().value = health.GetFraction();
         }
     }

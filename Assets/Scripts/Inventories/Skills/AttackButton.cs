@@ -8,7 +8,6 @@ namespace RPG.Inventories
     {
         public override void Use(GameObject user)
         {
-            base.Use(user);
             var player = GameObject.FindWithTag("Player");
             var target = player.GetComponent<Targetter>().currentTarget;
             if (target == null)

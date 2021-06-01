@@ -29,7 +29,7 @@ namespace RPG.Control
         {
             if (Input.GetMouseButtonDown(0))
             {
-                pickup.PickupItem();
+                callingController.GetComponent<ItemCollector>().StartAction(pickup);
             }
             return true;
         }

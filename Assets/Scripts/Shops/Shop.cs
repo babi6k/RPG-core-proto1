@@ -234,7 +234,7 @@ namespace RPG.Shops
         {
             if (Input.GetMouseButtonDown(0))
             {
-                callingController.GetComponent<Shopper>().SetActiveShop(this);
+                callingController.GetComponent<Shopper>().StartAction(this);
             }
             return true;
         }

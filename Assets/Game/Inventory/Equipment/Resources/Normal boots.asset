@@ -93,7 +93,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  allowedEquipLocation: 4
+  allowedEquipLocation: 5
   addtiveModifers:
   - stat: 0
     value: 30

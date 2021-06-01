@@ -37,6 +37,14 @@ namespace GameDevTV.Inventories
             AddAction(InventoryItem.GetFromID("5330a020-ba2e-459a-9394-77b00aa543b0"),7,1);
         }
 
+        private void Start() 
+        {
+            if (storeUpdated != null)
+            {
+                storeUpdated();
+            }
+        }
+
         /// <summary>
         /// Get the action at the given index.
         /// </summary>
@@ -86,7 +94,6 @@ namespace GameDevTV.Inventories
                 slot.item = item as ActionItem;
                 slot.number = number;
                 dockedItems[index] = slot;
-                //coolDownManager.AddCoolDown(slot.item.GetItemID(), slot.item.GetCoolDownTime());
             }
             if (storeUpdated != null)
             {

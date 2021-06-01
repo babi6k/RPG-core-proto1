@@ -93,7 +93,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  allowedEquipLocation: 5
+  allowedEquipLocation: 6
   animatorOverride: {fileID: 22100000, guid: 0efc906bb7bb84b82b7398d65f6210f6, type: 2}
   equippedPrefab: {fileID: 5599559080685728356, guid: ea15d5e87d99b8f438f5e96de16428dd, type: 3}
   weaponRange: 10

@@ -8,6 +8,7 @@ namespace GameDevTV.Inventories
     /// </summary>
     public class Pickup : MonoBehaviour
     {
+        [SerializeField] AudioSource sound;
         // STATE
         InventoryItem item;
         int number = 1;
@@ -55,7 +56,11 @@ namespace GameDevTV.Inventories
             bool foundSlot = inventory.AddToFirstEmptySlot(item, number);
             if (foundSlot)
             {
-                Destroy(gameObject);
+                if (sound)
+                {
+                    sound.Play();
+                }
+                Destroy(gameObject,0.5f);
             }
         }
 

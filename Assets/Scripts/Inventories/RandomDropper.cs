@@ -34,11 +34,10 @@ namespace RPG.Inventories
 
         public void RandomDrop()
         {
-            Debug.Log("Starting random Drop");
             var baseStats = GetComponent<BaseStats>();
             int level = baseStats.GetLevel();
             int numberOfDrops = Random.Range(1,level);
-            int coinAmount = Random.Range(level * 10, 10 * level * level/4);
+            int coinAmount = Random.Range(level * 10, 10 * level * level/4) + 20;
             var newCoin = Instantiate(coinDrop);
             newCoin.DropGold(coinAmount,GetDropLocation());
             List<string> dropsEncounterd = new List<string>();

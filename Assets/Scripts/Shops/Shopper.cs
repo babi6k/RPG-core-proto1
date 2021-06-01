@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using RPG.Movement;
 using UnityEngine;
 
 namespace RPG.Shops
 {
-    public class Shopper : MonoBehaviour
+    public class Shopper : MoveableActionBehavior<Shop>
     {
         Shop activeShop = null;
 
@@ -34,6 +33,12 @@ namespace RPG.Shops
         public Shop GetActiveShop()
         {
             return activeShop;
+        }
+
+        protected override void Perform()
+        {
+            if (target == activeShop) return;
+            SetActiveShop(target);
         }
     }
 }

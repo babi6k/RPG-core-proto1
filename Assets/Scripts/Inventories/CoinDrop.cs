@@ -16,11 +16,12 @@ namespace RPG.Inventories
             location = dropLocation;
         }
 
-        private void AddGold(PlayerController user)
+        public void AddGold()
         {
-            var money = user.GetComponent<Money>();
+            var money = GameObject.FindWithTag("Player").GetComponent<Money>();
             money.UpdateBalance(amount);
-            Destroy(gameObject,2f);
+            audioSource.Play();
+            Destroy(gameObject,0.5f);
         }
 
         public CursorType GetCursorType()
@@ -32,8 +33,7 @@ namespace RPG.Inventories
         {
             if (Input.GetMouseButtonDown(0))
             {
-                audioSource.Play();
-                AddGold(callingController);
+                callingController.GetComponent<GoldCollector>().StartAction(this);
             }
             return true;
         }

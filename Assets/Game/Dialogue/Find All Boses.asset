@@ -18,8 +18,8 @@ MonoBehaviour:
   - d0ca4cb8-dec6-42fa-a5d5-9d3ad5654125
   rect:
     serializedVersion: 2
-    x: 387
-    y: 165
+    x: 400
+    y: 154
     width: 200
     height: 100
   onEnterAction: 
@@ -54,7 +54,7 @@ MonoBehaviour:
   condition:
     predicate: HasQuest
     parameters:
-    - Collect 5 Mushrooms
+    - FInd Boses
 --- !u!114 &-5702479524727784385
 MonoBehaviour:
   m_ObjectHideFlags: 0

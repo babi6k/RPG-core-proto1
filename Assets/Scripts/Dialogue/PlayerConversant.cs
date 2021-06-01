@@ -14,28 +14,29 @@ namespace RPG.Dialogue
         Dialogue currentDialogue;
         DialogueNode currentNode = null;
         AIConversant currentConversant = null;
+        AIConversant targetConversant = null;
         bool isChoosing = false;
 
         public event Action onConversationUpdated;
 
         void Update()
         {
-            if (!currentConversant) return;
+            if (!targetConversant) return;
             if (!GetsInRange())
             {
-                GetComponent<Mover>().MoveTo(currentConversant.transform.position, 1f);
+                GetComponent<Mover>().MoveTo(targetConversant.transform.position, 1f);
             }
             else
             {
                 GetComponent<Mover>().Cancel();
-                StartDialogue(currentConversant, currentDialogue);
-                currentConversant = null;
+                StartDialogue(targetConversant, currentDialogue);
+                targetConversant = null;
             }
         }
 
         private bool GetsInRange()
         {
-            return (Vector3.Distance(transform.position, currentConversant.transform.position) < 2f);
+            return (Vector3.Distance(transform.position, targetConversant.transform.position) < 2f);
         }
 
         public void StartDialogue(AIConversant newConversant, Dialogue newDialogue)
@@ -52,7 +53,7 @@ namespace RPG.Dialogue
             if (newConversant == currentConversant) return;
             Quit();
             GetComponent<ActionScheduler>().StartAction(this);
-            currentConversant = newConversant;
+            targetConversant = newConversant;
             currentDialogue = newDialogue;
         }
 

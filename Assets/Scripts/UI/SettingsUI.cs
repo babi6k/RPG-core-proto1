@@ -55,6 +55,7 @@ namespace RPG.UI
         public void LoadMainMenu()
         {
             savingWrapper.LoadMainMenu();
+            gameObject.SetActive(false);
         }
 
         public void SaveGame()
